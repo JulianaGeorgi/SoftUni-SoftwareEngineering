@@ -1,0 +1,5 @@
+function triplesOfLatinLetters(){
+
+}
+
+triplesOfLatinLetters();

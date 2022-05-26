@@ -24,7 +24,6 @@ function specialNumbers(n) {
             console.log(`${i} -> False`);
         }
     }
-
 }
 
 specialNumbers(20);
