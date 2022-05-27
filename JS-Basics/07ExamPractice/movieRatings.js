@@ -26,9 +26,4 @@ function movieRatings(input) {
 
 }
 
-/* "{име на филма с най-висок рейтинг} is with highest rating: {рейтинг на филма}"
-"{име на филма с най-нисък рейтинг} is with lowest rating: {рейтинг на филма}"
-"Average rating: {средният рейтинг на всички филми}"
-*/
-
 movieRatings(["5", "A Star is Born", "7.8", "Creed 2", "7.3", "Mary Poppins", "7.2", "Vice", "7.2", "Captain Marvel", "7.1"]);

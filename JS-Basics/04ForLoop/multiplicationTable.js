@@ -6,7 +6,6 @@ function multiplicationTable(input){
         console.log(`${i} * ${n} = ${i * n}`);
 
         }
-
     }
 
 multiplicationTable(["5"]);

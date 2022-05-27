@@ -31,8 +31,4 @@ function tennisRanklist(input) {
 
 }
 
-// Final points: {брой точки след изиграните турнири}
-// Average points: {средно колко точки печели за турнир}
-// {процент спечелени турнири}%
-
 tennisRanklist(["5", "1400", "F", "SF", "W", "W", "SF"])

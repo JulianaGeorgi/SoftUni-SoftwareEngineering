@@ -11,9 +11,9 @@ function cleverLily(input) {
 
     for (let i = 1; i <= age; i++) {
         if (i % 2 === 0) {
-            savedMoney += addedMoney; // 10 + 20= 30; // променлива, която всеки следващ път повишава своята стойност и я добавяме към нормалната сума
+            savedMoney += addedMoney; // променлива, която всеки следващ път повишава своята стойност и я добавяме към нормалната сума
             stolenMoney++;
-            addedMoney += 10; // 20
+            addedMoney += 10; 
         } else {
             toysCounter++;
         }

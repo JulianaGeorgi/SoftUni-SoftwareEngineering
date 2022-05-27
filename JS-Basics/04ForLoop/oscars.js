@@ -24,7 +24,4 @@ function oscars(input) {
     }
 }
 
-// "Congratulations, {име на актьора} got a nominee for leading role with {точки}!"
-// "Sorry, {име на актьора} you need {нужни точки} more!"
-
 oscars(["Zahari Baharov", "205", "4", "Johnny Depp", "45", "Will Smith", "29", "Jet Lee", "10", "Matthew Mcconaughey", "39"])

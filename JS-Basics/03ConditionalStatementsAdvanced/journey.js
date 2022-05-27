@@ -26,8 +26,4 @@ function journey(input) {
     }
 }
 
-
-// "Somewhere in [дестинация]" измежду "Bulgaria", "Balkans" и "Europe"
-// "{Вид почивка} – {Похарчена сума}"
-
 journey(["50", "summer"]);

@@ -14,8 +14,7 @@ function lunchBreak(input){
         console.log(`You don't have enough time to watch ${tvShowName}, you need ${Math.ceil(episodeDuration - timeToWatchShow)} more minutes.`);
     }
 }
-// "You have enough time to watch {име на сериал} and left with {останало време} minutes free time."
-// "You don't have enough time to watch {име на сериал}, you need {нужно време} more minutes."
+
 lunchBreak(["Game of Thrones","78","60"]);
 
 
