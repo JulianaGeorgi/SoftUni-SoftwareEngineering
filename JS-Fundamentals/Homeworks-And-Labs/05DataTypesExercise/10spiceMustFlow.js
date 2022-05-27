@@ -10,10 +10,8 @@ function spiceMustFlow(yield) {
 
         yieldStored = yield - yieldConsumption;
         yieldTotal += yieldStored;
-
-        if (days >= 1) {
-            yield -= 10;
-        }
+        yield -= 10;
+    
     }
 
     if (yield < 100) {
