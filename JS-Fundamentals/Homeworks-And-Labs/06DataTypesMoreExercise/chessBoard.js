@@ -1,71 +1,60 @@
-/* function chessBoard(n) {
+/*function chessBoard(n) {
 
     console.log(`<div class="chessboard">`);
     let index = 0;
-    let isStarted = false;
-    let isFinished = false;
     let counter = 0;
 
     while (index < n) {
 
         index++;
+        console.log(`  <div>`);
 
         for (let i = 1; i <= n; i++) {
 
             counter++;
 
-            if(i === 1){
-                isStarted = true;
-                console.log(`  <div>`);
-            }
-
-           
-            if (counter % 2 === 0) {
+            if (i % 2 === 0) {
                 console.log(`    <span class="white"></span>`);
             } else {
                 console.log(`    <span class="black"></span>`);
             }
 
-            if(i === n){
-                isFinished = true;
-                console.log(`  </div>`);
-            }
         }
-
+        console.log(`  </div>`);
     }
 
     console.log(`</div>`);
-
 }
 
 chessBoard(3);
 
 */
 
-function chessBoard(size) {
-    console.log(`<div class="chessboard">`);
-    let counter = 0;
-    for (let i = 0; i < size; i++) {
-        console.log(`  <div>`);
-        counter++;
-        for (let j = 0; j < size; j++) {
-            if(counter % 2 === 1){
-                if (j % 2 === 1) {
-                    console.log(`\t<span class="white"></span>`);
-                } else {
-                    console.log(`\t<span class="black"></span>`);
-                }
-            }else{
-                if (j % 2 === 1) {
-                    console.log(`\t<span class="black"></span>`);
-                } else {
-                    console.log(`\t<span class="white"></span>`);
-                }
-            }
+function chessBoard(arg) {
+    
+    let size = Number(arg)
+    let currentColour = 'black'
+    let previousColour = ''
+    console.log('<div class="chessboard">')
+
+    for (let rows = 1; rows <= size; rows++) {
+        console.log('  <div>')
+
+        for (let columns = 1; columns <= size; columns++) {
+            console.log(`    <span class="${currentColour}"></span>`);
+
+            previousColour = currentColour
+            currentColour = previousColour === 'black' ? 'white' : 'black'
         }
-        console.log(`  </div>`);
+
+        console.log('  </div>')
+        if (size % 2 === 0) {
+            previousColour = currentColour
+            currentColour = previousColour === 'black' ? 'white' : 'black'
+        }
     }
-    console.log(`</div>`);
+
+    console.log('</div>')
 }
 
 chessBoard(3);
