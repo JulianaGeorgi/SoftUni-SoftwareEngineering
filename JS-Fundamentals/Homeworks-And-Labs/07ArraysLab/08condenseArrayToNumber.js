@@ -1,14 +1,23 @@
-function condenseArrayToNumber(numbers){
-
+function condenseArrayToNumber(numbers) {
+    
     let result = [];
+    
+    for(let el of numbers){
+        result.push(el)
+    }
+    
+    while (result.length > 1) {
+        let tempArray = [];
 
-    result[0] = numbers[0] + numbers[1];
-    result[1] = numbers[1] + numbers[2];
-    result[2] = numbers[2] + numbers[3];
-    result[3] = numbers[3] + numbers[4];
+        for(let i = 0; i < result.length - 1; i++){
+            tempArray[i] = result[i] + result[i + 1];
+        }
 
-    console.log(result);
+        result = tempArray;
+    }
+
+    console.log(result.join());
 
 }
 
-condenseArrayToNumber([5,0,4,1,2]);
+condenseArrayToNumber([5, 0, 4, 1, 2]);
