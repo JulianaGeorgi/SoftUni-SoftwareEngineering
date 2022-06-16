@@ -17,22 +17,22 @@ function counterStrike(array) {
     let command = array[index];
 
     let distance = 0;
-    let battlesCounter = 0;
+    let wins = 0;
 
     while (command !== "End of battle") {
 
         distance = Number(array[index]);
 
         if (distance > energy) {
-            console.log(`Not enough energy! Game ends with ${battlesCounter} won battles and ${energy} energy`);
+            console.log(`Not enough energy! Game ends with ${wins} won battles and ${energy} energy`);
             return;
         }
 
         energy -= distance;
-        battlesCounter++;
+        wins++;
 
-        if (battlesCounter % 3 == 0) {
-            energy += battlesCounter;
+        if (wins % 3 == 0) {
+            energy += wins;
         }
 
         index++;
@@ -41,7 +41,7 @@ function counterStrike(array) {
     }
 
     if (energy >= 0) {
-        console.log(`Won battles: ${battlesCounter}. Energy left: ${energy}`);
+        console.log(`Won battles: ${wins}. Energy left: ${energy}`);
     }
 }
 
