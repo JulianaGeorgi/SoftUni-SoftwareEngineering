@@ -34,7 +34,7 @@ function gladiatorInventory(array) {
                 let itemUpgrade = item.split("-");
                 if (inventory.includes(itemUpgrade[0])) {
                     let indexOfItem = inventory.indexOf(itemUpgrade[0]) + 1;
-                    inventory.splice(indexOfItem, 0, item.replace("-",":"));
+                    inventory.splice(indexOfItem, 0, item.replace("-", ":"));
                 }
                 break;
         }
