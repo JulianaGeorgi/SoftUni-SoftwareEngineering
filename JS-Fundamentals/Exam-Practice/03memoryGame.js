@@ -27,29 +27,25 @@ function memoryGame(array) {
     let movesCounter = 0;
 
     for (let i = 0; i < array.length; i++) {
-
         if (sequence.length === 0) {
             console.log(`You have won in ${movesCounter} turns!`);
             return;
         }
 
-        let currentCommand = array[i];
+        let command = array[i];
 
-        if (currentCommand === "end") {
+        if (command === "end") {
             break;
         }
 
         movesCounter++;
 
-        currentCommand = currentCommand.split(" ");
-        let firstIndex = Number(currentCommand[0]);
-        let secondIndex = Number(currentCommand[1]);
+        let [firstIndex, secondIndex] = command.split(" ").map(Number);
 
-        if (firstIndex === secondIndex || firstIndex < 0 || firstIndex > sequence.length || secondIndex < 0 || secondIndex > sequence.length) {
+        if (firstIndex === secondIndex || firstIndex < 0 || firstIndex >= sequence.length || secondIndex < 0 || secondIndex >= sequence.length) {
             let elementsTpPush = `-${movesCounter}a`;
             let newSequence = sequence.splice(sequence.length / 2, 0, elementsTpPush, elementsTpPush);
             console.log("Invalid input! Adding additional elements to the board");
-
         } else {
             let firstEl = sequence[firstIndex];
             let secondEl = sequence[secondIndex];
@@ -58,13 +54,12 @@ function memoryGame(array) {
                 sequence = sequence.filter(function (el) {
                     return el != firstEl;
                 })
-                console.log(`Congrats! You have found matching elements - ${firstEl}!`);
 
+                console.log(`Congrats! You have found matching elements - ${firstEl}!`);
             } else {
                 console.log("Try again!");
             }
         }
-
     }
 
     console.log("Sorry you lose :(");
@@ -72,12 +67,12 @@ function memoryGame(array) {
 }
 
 memoryGame(["1 1 2 2 3 3 4 4 5 5",
-"1 0",
-"-1 0",
-"1 0",
-"1 0",
-"1 0",
-"end"]);
+    "1 0",
+    "-1 0",
+    "1 0",
+    "1 0",
+    "1 0",
+    "end"]);
 
 
 memoryGame([
