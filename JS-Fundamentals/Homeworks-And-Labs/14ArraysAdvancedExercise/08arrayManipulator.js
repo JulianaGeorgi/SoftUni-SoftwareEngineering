@@ -1,3 +1,5 @@
+// 90/100
+
 function arrayManipulator(nums, commands) {
 
     for (let i = 0; i < commands.length; i++) {
@@ -18,7 +20,7 @@ function arrayManipulator(nums, commands) {
                 break;
             case "addMany":
                 let indexToAddMany = currentValues.shift();
-                nums.splice(indexToAddMany, 0, [...currentValues]);
+                nums.splice(indexToAddMany, 0, [...currentValues].join(", "));
                 break;
             case "contains":
                 console.log(nums.indexOf(currentValues[0]));
@@ -43,7 +45,7 @@ function arrayManipulator(nums, commands) {
                 nums = [...pairsOfSumNums];
                 break;
             case "print":
-                console.log(`[${nums.join(", ")}]`);
+                console.log(`[ ${nums.join(", ")} ]`);
                 break;
         }
     }
