@@ -43,7 +43,6 @@ function shootForTheWin(array) {
 
             } else if (sequence[i] > targetValue){
                 sequence[i] = sequence[i] - targetValue;
-
             }
         }
         index++;
@@ -57,7 +56,6 @@ function shootForTheWin(array) {
     });
 
     console.log(`Shot targets: ${shotCount} -> ${sequence.join(" ")}`);
-
 }
 
 shootForTheWin(["24 50 36 70",
