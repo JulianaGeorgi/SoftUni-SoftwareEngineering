@@ -4,8 +4,8 @@ function movies(arr) {
 
     arr.forEach(element => {
         if (element.includes("addMovie")) {
-            let movie = element.replace('addMovie ', '');
-            movies.push({ name: movie });
+            let movie = element.replace('addMovie ', ''); // махаме аддМовие
+            movies.push({ name: movie }); // създаваме всеки един обект -> добавяме филма
         } else if (element.includes('directedBy')) {
             let movieInfo = element.split(" directedBy ");
             let name = movieInfo[0];
