@@ -8,7 +8,7 @@ class Vehicle{
         this.parts.quality = this.parts.engine * this.parts.power;
     }
 
-    drive(lostFuel){
+    drive(lostFuel){ // метод, който харчи гориво
         return this.fuel -= lostFuel;
     }
 }
