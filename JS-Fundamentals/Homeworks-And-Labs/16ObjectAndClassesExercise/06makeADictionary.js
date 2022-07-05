@@ -4,14 +4,14 @@ function makeADictionary(wordsData) {
     let tempResult = {};
 
     for (let i = 0; i < wordsData.length; i++) {
-        tempResult = Object.assign(tempResult, wordsList[i]);
+        tempResult = Object.assign(tempResult, wordsList[i]); // merging all object into one
     }
 
-    const sortedWords = Object.keys(tempResult).sort((a, b) => a.localeCompare(b));
+    const sortedWords = Object.keys(tempResult).sort((a, b) => a.localeCompare(b)); // sorting all keys of the objects (all terms alphabetically) in an array
 
-    for (let i = 0; i < sortedWords.length; i++) {
+    for (let i = 0; i < sortedWords.length; i++) { // looping through the sorted terms
         const term = sortedWords[i];
-        const definition = tempResult[term];            
+        const definition = tempResult[term]; // getting the definition (the valie that corresponds to the key) from the big object           
         console.log(`Term: ${term} => Definition: ${definition}`);
     }
 }
