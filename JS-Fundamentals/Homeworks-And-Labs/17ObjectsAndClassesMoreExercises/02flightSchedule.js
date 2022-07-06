@@ -21,7 +21,7 @@ function flightSchedule(data) {
     for (let token of data[1]) {
         let tokens = token.split(" ");
         let findFlight = result.filter(obj => obj.flightNumber === tokens[0]);
-        if (findFlight[0]) {
+        if (findFlight[0]) { // check if there were any flights found
             findFlight[0].status = "Cancelled";
         }
     }
