@@ -25,7 +25,7 @@ function worldTour(data) {
             case "Remove Stop":
                 startIndex = Number(firstParam);
                 endIndex = Number(lastParam);
-                if(!initialString[startIndex] || !initialString[endIndex]){ // ако няма такъв стартов индекс
+                if(!initialString[startIndex] || !initialString[endIndex]){ // ако няма такъв стартов индекс; undefined is falsy
                     console.log(initialString);
                     break;
                 }
@@ -47,6 +47,8 @@ function worldTour(data) {
 
         line = data.shift();
     }
+
+    console.log(`Ready for world tour! Planned stops: ${initialString}`);
 
 }
 
