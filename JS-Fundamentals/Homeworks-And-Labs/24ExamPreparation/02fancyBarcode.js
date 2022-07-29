@@ -14,16 +14,16 @@ function fancyBarcode(data) {
             isValid = true;
             let barcodeText = match[2];
 
-            for(let ch of barcodeText){
-                if(!isNaN(Number(ch))){ // to check if it's a number; if not - wil return NAN
-                    concatenateDigits +=ch;
-                } 
+            for (let ch of barcodeText) {
+                if (!isNaN(Number(ch))) { // to check if it's a number; if not - wil return NAN
+                    concatenateDigits += ch;
+                }
             }
             match = pattern.exec(barcode);
         }
 
-        if(isValid){
-            concatenateDigits = concatenateDigits !== "" ? concatenateDigits: "00"
+        if (isValid) {
+            concatenateDigits = concatenateDigits !== "" ? concatenateDigits : "00"
             console.log(`Product group: ${concatenateDigits}`);
         } else {
             console.log("Invalid barcode");

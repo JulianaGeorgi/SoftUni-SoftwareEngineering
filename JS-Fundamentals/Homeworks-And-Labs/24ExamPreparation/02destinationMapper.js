@@ -14,8 +14,6 @@ function destinationMapper(input) {
                 points += el.length;
                 destinations.push(el);
             }
-
-
         });
 
     }
