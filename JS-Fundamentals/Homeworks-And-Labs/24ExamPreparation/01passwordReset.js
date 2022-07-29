@@ -13,9 +13,9 @@ function passwordReset(input) {
             index = Number(index);
             length = Number(length);
 
-            const substring = password.substr(index,length);
+            const substring = password.substr(index, length);
 
-            return password.replace(substring, " ");
+            return password.replace(substring, "");
         },
         "Substitute": (password, substring, substitute) => {
             if (password.includes(substring)) {
