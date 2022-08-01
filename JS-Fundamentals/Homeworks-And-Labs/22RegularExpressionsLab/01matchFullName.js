@@ -1,6 +1,6 @@
 function matchFullName(data){
 
-    let pattern = /\b[A-Z]{1}[a-z]{2,} [A-Z][a-z]+/g
+    let pattern = /\b[A-Z]{1}[a-z]{1,} [A-Z]{1}[a-z]{1,}/g
 
     let match = pattern.exec(data);
     let res = [];
