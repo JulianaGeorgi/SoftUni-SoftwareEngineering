@@ -1,6 +1,6 @@
 function destinationMapper(string) {
 
-    let pattern = /[=\/][A-Z][A-Za-z]{3,}[=\/]/g; ///[=\/][A-Z][A-Za-z]{2,}[=\/]/gm;
+    let pattern = /[=\/][A-Z][A-Za-z]{2,}[=\/]/g;
     let matches = pattern.exec(string);
 
     let travelPoints = 0;
