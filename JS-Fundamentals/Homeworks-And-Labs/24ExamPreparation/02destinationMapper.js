@@ -8,9 +8,9 @@ function destinationMapper(input) {
     if (found) {
 
         found.forEach((el, i) => {
-            if (el[0] === el[el.length - 1]) {
+            if (el[0] === el[el.length - 1]) { // // to check if the char on the 0 index is the same as the one on the last 
 
-                el = el.substring(1, el.length - 1);
+                el = el.substring(1, el.length - 1); // cutting the char at the beginning and end
                 points += el.length;
                 destinations.push(el);
             }
