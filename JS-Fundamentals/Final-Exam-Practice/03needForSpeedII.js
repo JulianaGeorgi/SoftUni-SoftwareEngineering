@@ -7,7 +7,7 @@ function needForSpeed(data) {
 
         let [car, mileage, fuel] = data[i].split("|");
 
-        if (!carList[car]) {
+        if (!carList[car]) { // if the value of that key is false 
             carList[car] = []; // car is the key
             carList[car].push(Number(mileage), Number(fuel)); // in the car array we push the car mileage and fuel
         }
@@ -56,7 +56,7 @@ function needForSpeed(data) {
         }
     }
 
-    let cars = Object.entries(carList);
+    let cars = Object.entries(carList); 
     for (const [car, km] of cars) {
         console.log(`${car} -> Mileage: ${km[0]} kms, Fuel in the tank: ${km[1]} lt.`);
     }
