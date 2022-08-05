@@ -30,14 +30,14 @@ function passwordReset(input) {
             case "Substitute":
                 let substring = pam1;
                 let replacement = pam2;
-                if(password.includes(substring)){
+                if (password.includes(substring)) {
                     let pattern = new RegExp(substring, 'g');
                     password = password.replace(pattern, replacement);
                     console.log(password);
                 } else {
                     console.log("Nothing to replace!");
                 }
-                
+
                 break;
         }
 
@@ -55,6 +55,8 @@ passwordReset(["Siiceercaroetavm!:?:ahsott.:i:nstupmomceqr",
     "Substitute :: -",
     "Substitute | ^",
     "Done"]);
+
+console.log("---------------------");
 
 passwordReset(["up8rgoyg3r1atmlmpiunagt!-irs7!1fgulnnnqy",
     "TakeOdd",
