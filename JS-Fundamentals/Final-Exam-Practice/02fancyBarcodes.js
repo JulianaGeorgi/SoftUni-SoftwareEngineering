@@ -13,9 +13,9 @@ function fancyBarcodes(input) {
 
             isValid = true;
 
-            for(let ch of match[1]){
-                if(!isNaN(Number(ch))){
-                    concatenateDigits+= ch;
+            for (let ch of match[2]) {
+                if (!isNaN(Number(ch))) {
+                    concatenateDigits += ch;
                 }
             }
 
@@ -32,7 +32,7 @@ function fancyBarcodes(input) {
 }
 
 fancyBarcodes(["3",
-    "@#Fre1hFisH@#",
+    "@#FreshFisH@#",
     "@###Brea0D@###",
     "@##Che4s6E@##"]);
 
