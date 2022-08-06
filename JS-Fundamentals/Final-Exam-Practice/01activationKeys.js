@@ -37,7 +37,7 @@ function activationKeys(input) {
             case "Contains":
                 let substring = pam1;
                 if (activationKey.includes(substring)) {
-                    console.log(`${activationKey} contains ${substring}.`);
+                    console.log(`${activationKey} contains ${substring}`);
                 } else {
                     console.log("Substring not found!");
                 }
