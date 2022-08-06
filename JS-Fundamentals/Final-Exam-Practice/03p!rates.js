@@ -1,7 +1,7 @@
 function pirates(data) {
 
     let index = 0;
-    command = data[index];
+    let command = data[index];
     let citiesList = {};
 
     while (command !== "Sail") {
@@ -59,6 +59,7 @@ function pirates(data) {
                 console.log(`${gold} gold added to the city treasury. ${town} now has ${citiesList[town][1]} gold.`);
                 break;
         }
+
         index++;
         command = data[index];
     }
@@ -76,13 +77,13 @@ function pirates(data) {
     }
 }
 
-// pirates(["Tortuga||345000||1250",
-//     "Santo Domingo||240000||630",
-//     "Havana||410000||1100",
-//     "Sail",
-//     "Plunder=>Tortuga=>75000=>380",
-//     "Prosper=>Santo Domingo=>180",
-//     "End"]);
+pirates(["Tortuga||345000||1250",
+    "Santo Domingo||240000||630",
+    "Havana||410000||1100",
+    "Sail",
+    "Plunder=>Tortuga=>75000=>380",
+    "Prosper=>Santo Domingo=>180",
+    "End"]);
 
 console.log("--------------------------");
 
