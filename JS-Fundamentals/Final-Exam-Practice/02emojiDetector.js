@@ -27,7 +27,7 @@ function emojiDetector(input) {
         let emojiText = emojiMatches[2]
 
         for (let i = 0; i < emojiText.length; i++) {
-            emojiCoolness+= emojiText.charCodeAt(i);
+            emojiCoolness += emojiText.charCodeAt(i);
         }
 
         if (emojiCoolness > coolTreshold) {
@@ -35,7 +35,6 @@ function emojiDetector(input) {
         }
 
         emojiCoolness = 0;
-
         emojiMatches = emojiPattern.exec(input);
     }
 
