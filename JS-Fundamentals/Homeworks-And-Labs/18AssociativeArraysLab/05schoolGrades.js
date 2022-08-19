@@ -1,3 +1,6 @@
+// to fix 60/100
+
+
 function schoolGrades(data) {
 
     let result = new Map();
@@ -28,7 +31,6 @@ function schoolGrades(data) {
     for(let [k, v] of sortedEntries){
         console.log(`${k}: ${v.toFixed(2)}`);
     }
-
 }
 
 schoolGrades(['Lilly 4 6 6 5',
