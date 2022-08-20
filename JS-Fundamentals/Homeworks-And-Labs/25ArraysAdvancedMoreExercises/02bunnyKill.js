@@ -17,7 +17,7 @@ function bunnyKill(array) {
     console.log(killedBunniesBySnowball);
 
     function dealsDamageFromBombs(coordinates) {
-
+ 
         for (let coordinate of coordinates) {
             let [bombRow, bombCol] = coordinate;
             let bunnyBombValue = matrix[bombRow][bombCol];
