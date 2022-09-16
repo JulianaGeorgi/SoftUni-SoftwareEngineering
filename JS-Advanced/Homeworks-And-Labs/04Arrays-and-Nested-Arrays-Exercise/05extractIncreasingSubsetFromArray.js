@@ -2,7 +2,7 @@ function extractIncreasingSubsetFromArray(arr) {
 
     let res = [];
     let biggestOne = arr[0];
-    arr.reduce((acc, currentElement) => {
+    res = arr.reduce((acc, currentElement) => {
         if(biggestOne <= currentElement){
             acc.push(currentElement);
             biggestOne = currentElement;
@@ -10,7 +10,7 @@ function extractIncreasingSubsetFromArray(arr) {
         return acc
     }, []);
 
-    console.log(res);
+    return res;
 }
 
 extractIncreasingSubsetFromArray([1,
