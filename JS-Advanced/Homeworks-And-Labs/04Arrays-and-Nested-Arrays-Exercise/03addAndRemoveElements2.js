@@ -10,17 +10,17 @@ function addAndRemoveElements(arrOfCommands) {
     return res.length === 0 ? "Empty" : res.join("\n");
 }
 
-addAndRemoveElements(['add',
+console.log(addAndRemoveElements(['add',
     'add',
     'add',
-    'add']);
+    'add']));
 
-addAndRemoveElements(['add',
+console.log(addAndRemoveElements(['add',
     'add',
     'remove',
     'add',
-    'add']);
+    'add']));
 
-addAndRemoveElements(['remove',
+console.log(addAndRemoveElements(['remove',
     'remove',
-    'remove']);
+    'remove']));
