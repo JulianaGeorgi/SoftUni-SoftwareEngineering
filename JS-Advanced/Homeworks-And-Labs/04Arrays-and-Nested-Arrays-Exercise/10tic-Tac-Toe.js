@@ -12,7 +12,6 @@ function ticTacToe(input) {
 
         if (initialDashboard[x][y]) {
             console.log('This place is already taken. Please choose another!');
-            printTable(initialDashboard);
             continue;
         }
 
@@ -20,7 +19,7 @@ function ticTacToe(input) {
         initialDashboard[x][y] = marker;
 
         if (checkWin(initialDashboard, marker)) {
-            console.log(`Player ${marker} win!`);
+            console.log(`Player ${marker} wins!`);
             printTable(initialDashboard);
             return;
         }
@@ -72,46 +71,45 @@ function ticTacToe(input) {
             return false;
         }
     }
-
 }
 
-    ticTacToe(
-        ["0 1",
-            "0 0",
-            "0 2",
-            "2 0",
-            "1 0",
-            "1 1",
-            "1 2",
-            "2 2",
-            "2 1",
-            "0 0"]);
+ticTacToe(
+    ["0 1",
+        "0 0",
+        "0 2",
+        "2 0",
+        "1 0",
+        "1 1",
+        "1 2",
+        "2 2",
+        "2 1",
+        "0 0"]);
 
-    console.log("------------");
+console.log("------------");
 
-    ticTacToe(
-        ["0 0",
-            "0 0",
-            "1 1",
-            "0 1",
-            "1 2",
-            "0 2",
-            "2 2",
-            "1 2",
-            "2 2",
-            "2 1"]);
+ticTacToe(
+    ["0 0",
+        "0 0",
+        "1 1",
+        "0 1",
+        "1 2",
+        "0 2",
+        "2 2",
+        "1 2",
+        "2 2",
+        "2 1"]);
 
-    console.log("------------");
+console.log("------------");
 
 
-    ticTacToe(
-        ["0 1",
-            "0 0",
-            "0 2",
-            "2 0",
-            "1 0",
-            "1 2",
-            "1 1",
-            "2 1",
-            "2 2",
-            "0 0"]);
+ticTacToe(
+    ["0 1",
+        "0 0",
+        "0 2",
+        "2 0",
+        "1 0",
+        "1 2",
+        "1 1",
+        "2 1",
+        "2 2",
+        "0 0"]);
