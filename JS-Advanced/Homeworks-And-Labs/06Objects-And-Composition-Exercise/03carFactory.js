@@ -30,10 +30,10 @@ function carFactory(data) {
     }
 
     let size;
-    if (data.size % 2 !== 0) {
-        size = data.wheelsize
+    if (data.wheelsize % 2 !== 0) {
+        size = data.wheelsize;
     } else {
-        size = data.wheelsize - 1
+        size = data.wheelsize - 1;
     }
     res.wheels = [size, size, size, size];
 
