@@ -1,6 +1,9 @@
 function addItem() {
-    let newItemValue = document.getElementById('newItemText').value;
+    let list = document.getElementById('items');
+    let input = document.getElementById('newItemText');
+    let newItemValue = input.value;
     let liItem = document.createElement('li');
     liItem.textContent = newItemValue;
-    document.appendChild(liItem);
+    list.appendChild(liItem);
+    input.value = '';
 }
