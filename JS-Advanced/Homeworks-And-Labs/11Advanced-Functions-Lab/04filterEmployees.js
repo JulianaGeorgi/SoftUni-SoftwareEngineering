@@ -2,25 +2,13 @@ function filterEmployees(data, criteria) {
 
     let employeesData = JSON.parse(data);
     const [key, value] = criteria.split('-');
-    let res = [];
-    let counter = 1;
+    let counter = 0;
 
-    for (let i = 0; i < employeesData.length; i++) {
-        if (employeesData[i][key] === value) {
-            let newObj = {
-                listNum: `${counter}` + '.',
-                firstName: employeesData[i]['first_name'],
-                lastName: employeesData[i]['last_name'],
-                email: employeesData[i]['email']
-            };
-            res.push(newObj);
-            counter++;
+    employeesData.forEach(employee => {
+        if (key === 'all' || employee[key] === value) {
+          console.log(`${counter++}. ${employee['first_name']} ${employee['last_name']} - ${employee['email']}`);
         }
-    }
-
-    res.forEach(function (obj) {
-        console.log(`${obj.listNum} ${obj.firstName} ${obj.lastName} - ${obj.email}`)
-    })
+      });
 }
 
 filterEmployees(`[{
@@ -43,12 +31,12 @@ filterEmployees(`[{
     "email": "emaldin2@hostgator.com",
     "gender": "Male"
   }]`,
-    'gender-Female'
-);
+        'gender-Female'
+    );
 
-console.log("---------------");
+    console.log("---------------");
 
-filterEmployees(`[{
+    filterEmployees(`[{
     "id": "1",
     "first_name": "Kaylee",
     "last_name": "Johnson",
@@ -73,5 +61,5 @@ filterEmployees(`[{
     "email": "ev2@hostgator.com",
     "gender": "Male"
   }]`,
-    'last_name-Johnson'
-);
+        'last_name-Johnson'
+    );
