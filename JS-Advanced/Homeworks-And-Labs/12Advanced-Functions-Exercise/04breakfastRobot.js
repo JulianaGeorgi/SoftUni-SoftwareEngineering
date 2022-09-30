@@ -18,7 +18,7 @@ function solution() {
     return function inputHandler(input) { // manager
         let actionHandler = cmdOption(); // cmd will return an object
         let [cmd, option1, option2] = input.split(" ");
-        return actionHandler[cmd](option1, option2); // returning the result of the executed command
+        return actionHandler[cmd](option1, option2); // actionHandler returns an object and we access its  property cmd that is actually a function and we call it with option1 and option2
     }
 
     function cmdOption() { // object of functions that return strings
