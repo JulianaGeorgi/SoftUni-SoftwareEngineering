@@ -13,7 +13,7 @@ describe("Test isOddOrEven functionality", () =>{
         });
     
         it("Result should be undefined with object argument", () => {
-            assert.equal(isOddOrEven({ name: "Pesho" }));
+            assert.equal(isOddOrEven({ name: "Pesho" }, undefined));
         });
     
         it("Result should be undefined with number argument", () => {
