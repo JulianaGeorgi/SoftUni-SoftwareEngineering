@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\05DataTypesExercise\\10spiceMustFlow.js"
+            "program": "${workspaceFolder}\\06DataTypesMoreExercise\\chessBoard.js"
         }
     ]
 }
