@@ -49,7 +49,7 @@ function createCatch(event) {
 async function onCreateCatch(body) {
     const url = 'http://localhost:3030/data/catches';
     const header = getHeader('POST', body);
-    const response = await fetch(url);
+    const response = await fetch(url, header);
     const data = await response.json();
     return data;
 }
@@ -66,5 +66,5 @@ function getHeader(method, body) {
     if (body) {
         header.body = JSON.stringify(body);
     }
-    return;
+    return header;
 }
