@@ -13,9 +13,7 @@ export function checkUserNav() {
     }
 }
 
-document.getElementById('logout-link').addEventListener('click', onLogout);
-
-function onLogout(event) {
+export function onLogout(event) {
     event.preventDefault();
 
     const token = sessionStorage.getItem('accessToken');

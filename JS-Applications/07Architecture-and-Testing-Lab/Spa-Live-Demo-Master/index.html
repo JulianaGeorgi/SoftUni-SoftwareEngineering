@@ -43,12 +43,17 @@
 <body>
     <h1>SPA Demo</h1>
     <nav>
+        <a id="home-link" href="javascript:void(0)">Home</a>
         <a id="catalog-link" href="javascript:void(0)">Catalog</a>
         <a class="guest" id="login-link" href="javascript:void(0)">Login</a>
         <a class="guest" id="register-link" href="javascript:void(0)">Register</a>
         <span class="user" id="welcome-msg"></span>
         <a class="user" id="logout-link" href="javascript:void(0)">Logout</a>
     </nav>
+
+    <section id="home-view">
+        <h2>Welcome to our site! Enjoy delicious recipes! </h2>
+    </section>
 
     <section id="catalog-view">
         <h2>All Recipes</h2>
@@ -76,6 +81,18 @@
             <label>Email: <input type="text" name="email"></label>
             <label>Password: <input type="password" name="password"></label>
             <button>Login</button>
+        </form>
+    </section>
+
+    <section id="register-view">
+        <h2>Register</h2>
+
+        <form id="register-form">
+            <label>Email: <input type="text" name="email"></label>
+            <label>Username: <input type="text" name="username"></label>
+            <label>Password: <input type="password" name="password"></label>
+            <label>Repeat: <input type="password" name="repass"></label>
+            <button>Register</button>
         </form>
     </section>
 </body>
