@@ -33,6 +33,8 @@ function onNavigate(event){
         const id = event.target.id; // getting the id of the clicked element
         const view = views[id];
         if(typeof view == 'function'){ // checking as it can be null or undefined
+            event.preventDefault();
+            document.querySelector('main').replaceChildren(); // when you click on login, register, etc. to display only that section and not to pile them on top of each other
             view();
         }
     }

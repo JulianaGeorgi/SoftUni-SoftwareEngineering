@@ -1,12 +1,13 @@
 // get information about single recipe by id
 // display all information about recipe
 
+const section = document.getElementById('details-view');
+section.remove();
+
 export async function showDetailsView(id) {
-    [...document.querySelectorAll('section')].forEach(s => s.style.display = 'none');
-    
     const recipe = await getById(id);
-    
-    document.getElementById('details-view').style.display = 'block';
+
+    document.querySelector('main').appendChild(section);
 
     displayRecipe(recipe);
 }

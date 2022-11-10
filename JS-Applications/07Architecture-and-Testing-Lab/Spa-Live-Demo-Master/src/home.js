@@ -1,6 +1,6 @@
-
+const section = document.getElementById('home-view');
+section.remove();
 
 export function showHomeView(){
-    [...document.querySelectorAll('section')].forEach(s=> s.style.display ='none');
-    document.getElementById('home-view').style.display = 'block';
+    document.querySelector('main').appendChild(section);
 }

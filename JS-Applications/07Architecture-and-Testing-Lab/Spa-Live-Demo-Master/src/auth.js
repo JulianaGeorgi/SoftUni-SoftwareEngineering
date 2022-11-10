@@ -1,4 +1,6 @@
+import { get } from './api.js';
 import { showCatalogView } from './catalog.js';
+import { clearUserData } from './util.js';
 
 
 export function checkUserNav() {
@@ -13,42 +15,11 @@ export function checkUserNav() {
     }
 }
 
-export function onLogout(event) {
-    event.preventDefault();
+export function onLogout() {
+    get('/users/logout');
 
-    const token = sessionStorage.getItem('accessToken');
-
-    /*
-    try {
-        const response = await fetch('http://localhost:3030/users/logout', {
-            method: 'get',
-            headers: {
-                'X-Authorization': token
-            }
-        });
-        if (response.ok != true) {
-            const error = await response.json();
-            throw new Error(error.message);
-        }
-    } catch (err) {
-        alert(err.message);
-    } finally {
-        sessionStorage.removeItem('userId');
-        sessionStorage.removeItem('username');
-        sessionStorage.removeItem('accessToken');
-        checkUserNav();
-        showCatalogView();
-    }
-    */
-    fetch('http://localhost:3030/users/logout', {
-        method: 'get',
-        headers: {
-            'X-Authorization': token
-        }
-    });
-    sessionStorage.removeItem('userId');
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('accessToken');
+    clearUserData();
+    
     checkUserNav();
     showCatalogView();
 }
