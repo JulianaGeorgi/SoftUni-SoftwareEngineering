@@ -1,23 +1,23 @@
-import * as api from './api.js'
+import {get, post} from './api.js'
 
 //enumeration
-const endpoint = {
+const endpoints = {
     'login': 'users/login',
     'register': 'users/register',
     'logout': 'users/logout'
 }
 
 export async function login(email, password) {
-    const user = await api.post(endpoint.login, { email, password });
+    const user = await post(endpoints.login, { email, password });
     sessionStorage.setItem('user', JSON.stringify(user)); //local storage only works with strings, not objects
 }
 
 export async function register(email, password) {
-    const user = await api.post(endpoint.register, { email, password });
+    const user = await post(endpoints.register, { email, password });
     sessionStorage.setItem('user', JSON.stringify(user));
 }
 
 export async function logout() {
-    api.get(endpoint.logout);
+    get(endpoints.logout);
     sessionStorage.removeItem('user');
 }
