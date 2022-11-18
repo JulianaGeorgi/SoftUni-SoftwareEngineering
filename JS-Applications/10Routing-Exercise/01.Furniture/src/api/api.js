@@ -8,18 +8,16 @@ async function requester(url, options) {
             throw new Error(err.message);
         }
         try {
-
-            if (response.status === 204) {
+            if (response.status === 204) { // comes up by logout for example
                 return response;
             }
             const data = await response.json();
             return data;
-            
+
         } catch (error) {
             alert(error.message);
             return error;
         }
-
     } catch (error) {
         alert(error.message);
         return error;
@@ -32,12 +30,13 @@ function getOption(method, body) {
         headers: {}
     }
 
-    const user = JSON.parse(sessionStorage.getItem('userData'));
-    const token = user.accessToken;
-    if (user) {
+    const user = JSON.parse(sessionStorage.getItem('userData')); // an object with the user email, pass, access token, id, createdON
+
+    if (user && Object.keys(user).length > 0) {
+        const token = user.accessToken;
         options.headers['X-Authorization'] = token;
     }
-    if (body) {
+    if (body) { // for post requests
         options.headers['Content-Type'] = 'Application/json';
         options.body = JSON.stringify(body);
     }

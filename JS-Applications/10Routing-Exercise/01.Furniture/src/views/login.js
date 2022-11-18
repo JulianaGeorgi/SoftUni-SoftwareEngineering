@@ -4,20 +4,20 @@ import { login } from "../api/data.js";
 let context = null;
 
 export async function loginView(ctx) {
-    context = ctx.page;
-    ctx.render(createLOginTemp(onSubmit));
+    context = ctx;
+    ctx.render(createLoginTemp(onSubmit));
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
-    login(email, password);
+    await login(email, password);
     context.updateNav();
     context.page.redirect('/');
 }
 
-function createLOginTemp(handler) {
+function createLoginTemp(handler) {
     return html`
     <div class="row space-top">
         <div class="col-md-12">
