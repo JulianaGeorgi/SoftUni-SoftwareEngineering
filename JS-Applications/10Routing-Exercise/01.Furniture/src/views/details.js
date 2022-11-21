@@ -1,16 +1,32 @@
 import { html } from "https://unpkg.com/lit-html?module";
-import { getItemById } from "../api/data.js";
+import { getItemById, deleteItem } from "../api/data.js";
 
-
+let context = null;
 export async function detailsView(ctx) {
+    context = ctx;
     const id = ctx.params.id;
     const item = await getItemById(id);
     const userData = JSON.parse(sessionStorage.getItem('userData'));
     
-    ctx.render(detailsTemp(item, userData._id === item.ownerId)); // if we created the item, we should have access to the edit and delete buttons
+    ctx.render(detailsTemp(item, userData._id === item._ownerId, deleteItemById)); // if we created the item, we should have access to the edit and delete buttons
 }
 
-function detailsTemp(item, isOwner) {
+async function deleteItemById(e){
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    await deleteItem(id);
+    context.page.redirect('/');
+}
+
+function renderOwnerBtn(isOwner, deleteItemById, id){
+    return isOwner ? html`
+        <div>
+            <a href='/edit/${id}' class="btn btn-info">Edit</a>
+            <a @click=${deleteItemById} data-id=${id} href=”javascript:void(0)” class="btn btn-red">Delete</a>
+        </div>` : "";
+}
+
+function detailsTemp(item, isOwner, getElementById) {
     const itemImgNameArr = item.img.split("/");
     return html`
     <div class="row space-top">
@@ -33,16 +49,7 @@ function detailsTemp(item, isOwner) {
             <p>Description: <span>${item.description}</span></p>
             <p>Price: <span>${item.price} $</span></p>
             <p>Material: <span>${item.material}</span></p>
-            ${
-                isOwner ? 
-                html`
-                <div>
-                    <a href=”#” class="btn btn-info">Edit</a>
-                    <a href=”#” class="btn btn-red">Delete</a>
-                </div>
-                ` 
-                :""
-            }
+            ${renderOwnerBtn(isOwner, deleteItemById, item._id)}
         </div>
     </div>`;
 }
