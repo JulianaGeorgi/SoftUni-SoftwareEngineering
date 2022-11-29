@@ -391,7 +391,7 @@ describe('E2E tests', function () {
       expect(await page.isVisible('text="Edit"')).to.be.false;
     });
 
-    it('Author see delete and edit buttons [ 2.5 Points ]', async () => {
+    it.only('Author see delete and edit buttons [ 2.5 Points ]', async () => {
       const data = mockData.catalog[1];
       const user = mockData.users[0];
       const { get } = await handle(endpoints.details(data._id));
@@ -416,7 +416,7 @@ describe('E2E tests', function () {
       expect(await page.isVisible('text="Edit"')).to.be.true;
     });
 
-    it('Edit should populate form with correct data [ 5 Points ]', async () => {
+    it.only('Edit should populate form with correct data [ 5 Points ]', async () => {
       const data = mockData.catalog[1];
       const user = mockData.users[0];
       const { get } = await handle(endpoints.details(data._id));
@@ -448,7 +448,7 @@ describe('E2E tests', function () {
       expect(inputs[4]).to.contains(data.image);
     });
 
-    it('Edit does NOT work with empty fields [ 5 Points ]', async () => {
+    it.only('Edit does NOT work with empty fields [ 5 Points ]', async () => {
       const data = mockData.catalog[0];
       const user = mockData.users[0];
       const { get, put } = await handle(endpoints.delete(data._id));
@@ -485,7 +485,7 @@ describe('E2E tests', function () {
       expect(isHandled()).to.be.false;
     });
 
-    it('Edit makes correct API call for logged in user [ 5 Points ]', async () => {
+    it.only('Edit makes correct API call for logged in user [ 5 Points ]', async () => {
       const data = mockData.catalog[0];
       const user = mockData.users[0];
 
