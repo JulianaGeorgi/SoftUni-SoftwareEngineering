@@ -19,7 +19,7 @@ exports.register = async (username, email, password, repeatPassword) => {
             { username },
         ]
     });
-    
+
     if (existingUser) {
         throw new Error('User exists!');
     };
@@ -27,8 +27,9 @@ exports.register = async (username, email, password, repeatPassword) => {
     // TODO: Validate password 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-
     await User.create({ username, email, password: hashedPassword });
+
+    return this.login(email, password);
 };
 
 exports.login = async (email, password) => {
