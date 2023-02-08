@@ -9,7 +9,10 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    await authService.login(email, password);
+    const token = await authService.login(email, password);
+
+    res.cookie('auth', token);
+    res.redirect('/');
 
 });
 
@@ -25,6 +28,5 @@ router.post('/register', async (req, res) => {
 
     res.redirect('/login');
 });
-
 
 module.exports = router;
