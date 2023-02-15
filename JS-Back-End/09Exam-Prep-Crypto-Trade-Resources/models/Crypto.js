@@ -30,3 +30,7 @@ const cryptoSchema = new mongoose.Schema({
         ref: 'User', // to which model is this relation
     }
 });
+
+const Crypto = mongoose.model('Crypto', cryptoSchema);
+
+module.exports = Crypto;
