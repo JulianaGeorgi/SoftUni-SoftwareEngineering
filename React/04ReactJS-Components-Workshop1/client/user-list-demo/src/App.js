@@ -20,17 +20,38 @@ function App() {
       });
   }, []);
 
+  const onUserCreateSubmit = async (e) => {
+    // stop automatic form submit
+    e.preventDefault();
+
+    // Take form data from DOM tree 
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    // Send ajax request to server
+    const createdUser = await userService.create(data);
+
+    // If successful add new user to the state
+    setUsers(state => [...state, createdUser]);
+};
+
   return (
     <Fragment>
 
       <Header />
+
       <main className="main">
         <section className="card users-container">
           <Search />
-          <UserList users={users} />
-          <button class="btn-add btn">Add new user</button>
+
+          <UserList 
+          users={users}
+          onUserCreateSubmit={onUserCreateSubmit} 
+          />
+
         </section>
       </main>
+
       <Footer />
 
     </Fragment>
