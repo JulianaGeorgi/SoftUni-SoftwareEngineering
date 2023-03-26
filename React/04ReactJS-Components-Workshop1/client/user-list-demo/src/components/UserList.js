@@ -10,10 +10,12 @@ export const UserList = ({
     users,
     onUserCreateSubmit,
     onUserDelete,
+    onUserUpdateSubmit
 }) => {
 
     const [selectedUser, setSelectedUser] = useState(null);
     const [showDeleteUser, setShowDeleteUser] = useState(null);
+    const [showEditUser, setShowEditUser] = useState(null);
     const [showAddUser, setShowAddUser] = useState(false);
 
     const onInfoClick = async (userId) => {
@@ -26,6 +28,7 @@ export const UserList = ({
         setSelectedUser(null);
         setShowAddUser(false);
         setShowDeleteUser(null);
+        setShowEditUser(null);
     };
 
     const onUserAddClick = () => {
@@ -37,6 +40,13 @@ export const UserList = ({
         setShowAddUser(false);
     };
 
+    
+    const onUserUpdateSubmitHandler = (e, userId) => {
+        onUserUpdateSubmit(e, userId);
+        setShowEditUser(null);
+        // onClose()
+    };
+
     const onDeleteClick = (userId) => {
         setShowDeleteUser(userId);
     };
@@ -46,11 +56,18 @@ export const UserList = ({
         onClose();
     };
 
+    const onEditClick = async (userId) => {
+        const user = await userService.getOne(userId);
+        
+        setShowEditUser(user);
+    };
+
     return (
         <>
             {selectedUser && <UserDetails {...selectedUser} onClose={onClose} />}
             {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmitHandler} />}
             {showDeleteUser && <UserDelete onClose={onClose} onDelete={onDeleteHandler} />}
+            {showEditUser && <UserCreate user={showEditUser} onClose={onClose} onUserCreateSubmit={onUserUpdateSubmitHandler} />}
             <div className="table-wrapper">
 
                 {/*<div className="loading-shade">
@@ -174,6 +191,7 @@ export const UserList = ({
                                 key={u._id}
                                 onInfoClick={onInfoClick}
                                 onDeleteClick={onDeleteClick}
+                                onEditClick={onEditClick}
                             />
                         )}
                     </tbody>
