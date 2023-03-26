@@ -35,6 +35,14 @@ function App() {
     setUsers(state => [...state, createdUser]);
 };
 
+const onUserDelete = async (userId) => {
+  // Delete from server
+  await userService.remove(userId);
+
+  // Delete from state
+  setUsers(state => state.filter(x => x._id !== userId));
+};
+
   return (
     <Fragment>
 
@@ -47,6 +55,7 @@ function App() {
           <UserList 
           users={users}
           onUserCreateSubmit={onUserCreateSubmit} 
+          onUserDelete={onUserDelete}
           />
 
         </section>
