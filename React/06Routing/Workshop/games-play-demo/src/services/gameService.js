@@ -15,13 +15,13 @@ export const getAll = async () => {
 //     return result;
 // };
 
-// export const create = async (gameData) => {
-//     const result = await request.post(baseUrl, gameData);
+export const create = async (gameData) => {
+    const result = await request.post(baseUrl, gameData);
 
-//     console.log(result);
+    console.log(result);
 
-//     return result;
-// };
+    return result;
+};
 
 // export const addComment = async (gameId, data) => {
 //     const result = await request.post(`${baseUrl}/${gameId}/comments`, data);
