@@ -9,11 +9,11 @@ export const getAll = async () => {
     return games;
 };
 
-// export const getOne = async (gameId) => {
-//     const result = await request.get(`${baseUrl}/${gameId}`);
+export const getOne = async (gameId) => {
+    const result = await request.get(`${baseUrl}/${gameId}`);
 
-//     return result;
-// };
+    return result;
+};
 
 export const create = async (gameData) => {
     const result = await request.post(baseUrl, gameData);
@@ -23,8 +23,8 @@ export const create = async (gameData) => {
     return result;
 };
 
-// export const addComment = async (gameId, data) => {
-//     const result = await request.post(`${baseUrl}/${gameId}/comments`, data);
+export const addComment = async (gameId, data) => {
+    const result = await request.post(`${baseUrl}/${gameId}/comments`, data);
 
-//     return result;
-// };
+    return result;
+};
