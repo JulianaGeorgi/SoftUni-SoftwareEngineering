@@ -7,7 +7,6 @@ export const GameDetails = () => {
     const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
     const { gameId } = useParams();
-    console.log(useParams());
     const [game, setGame] = useState({});
 
     useEffect(() => {
