@@ -12,6 +12,7 @@ import { OurWork } from "./Components/OurWork/OurWork.js";
 import { CreateBlog } from "./Components/CreateBlog/CreateBlog.js";
 import { Register } from "./Components/Register/Register.js";
 import { Login } from "./Components/Login/Login.js";
+import { BlogPostDetails } from "./Components/BlogPostDetails/BlogPostDetails.js";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/blogs' element={<BlogPostsList blogPosts={blogPosts}/>} />
+          <Route path='/blogs/:blogPostId' element={<BlogPostDetails />} />
           <Route path='/work' element={<OurWork />} />
           <Route path='/create' element={<CreateBlog onCreateBlogPostSubmit={onCreateBlogPostSubmit}/>} />
           <Route path='/register' element={<Register />} />
