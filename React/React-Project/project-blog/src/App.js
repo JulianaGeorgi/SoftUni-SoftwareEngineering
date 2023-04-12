@@ -6,6 +6,8 @@ import { Footer } from "./Components/Footer/Footer.js";
 import { BlogPostsList } from "./Components/Blog/BlogPostsList.js";
 import { OurWork } from "./Components/OurWork/OurWork.js";
 import { CreateBlog } from "./Components/CreateBlog/CreateBlog.js";
+import { Register } from "./Components/Register/Register.js";
+import { Login } from "./Components/Login/Login.js";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path='/blogs' element={<BlogPostsList />} />
           <Route path='/work' element={<OurWork />} />
           <Route path='/create' element={<CreateBlog />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </main>
 

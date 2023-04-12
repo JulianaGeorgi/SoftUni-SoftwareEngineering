@@ -7,7 +7,6 @@ export const CreateBlog = () => {
                     <div className="col-md-12 col-sm-12">
                         <div className="section-title">
                             <h2>Contact us</h2>
-                            <span className="line-bar">...</span>
                         </div>
                     </div>
 

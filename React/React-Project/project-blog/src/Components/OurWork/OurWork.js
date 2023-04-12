@@ -7,7 +7,6 @@ export const OurWork = () => {
                     <div className="col-md-12 col-sm-12">
                         <div className="section-title">
                             <h2>Our work</h2>
-                            <span className="line-bar">...</span>
                         </div>
                     </div>
 

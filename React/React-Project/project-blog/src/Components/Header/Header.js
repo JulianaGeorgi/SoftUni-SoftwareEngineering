@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Header = () => {
     return (
-        <section className="navbar custom-navbar navbar-fixed-top" role="navigation" style={{background: "#C0C0C0"}}>
+        <section className="navbar custom-navbar navbar-fixed-top" role="navigation">
             <div className="container">
 
                 <div className="navbar-header">
@@ -21,15 +21,17 @@ export const Header = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/about">About</Link></li>
                         <li><Link to="/blogs">Blog</Link></li>
-                        <li><Link to="/work">Our Work</Link></li>
                         <li><Link to="/create">Create Blog</Link></li>
+                        <li><Link to="/work">Our Work</Link></li>
+
                     </ul>
 
                     <ul className="nav navbar-nav navbar-right">
                         <li><Link to="/#"><i className="fa fa-facebook-square"></i></Link></li>
                         <li><Link to="/#"><i className="fa fa-twitter"></i></Link></li>
                         <li><Link to="/#"><i className="fa fa-instagram"></i></Link></li>
-                        <li className="section-btn"><Link to="/#" data-toggle="modal" data-target="#modal-form">Sign in / Join</Link></li>
+                        <li className="section-btn"><Link to="/login" data-toggle="modal" data-target="#modal-form">Login</Link></li>
+                        <li className="section-btn"><Link to="/register" data-toggle="modal" data-target="#modal-form">Register</Link></li>
                     </ul>
                 </div>
 
