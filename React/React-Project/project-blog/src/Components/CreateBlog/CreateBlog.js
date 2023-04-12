@@ -1,4 +1,24 @@
-export const CreateBlog = () => {
+import { useState
+ } from "react";
+export const CreateBlog = ({onCreateBlogPostSubmit}) => {
+    const [values, setValues] = useState({
+        username: '',
+        email: '',
+        postTitle: '',
+        topic: '',
+        blogPostContent: '',
+    });
+
+    const onChangeHandler = (e) => {
+        setValues(state => ({...state, [e.target.name]: e.target.value}))
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        onCreateBlogPostSubmit(values);
+    };
+
     return (
         <section id="contact" data-stellar-background-ratio="0.5">
             <div className="container">
@@ -6,43 +26,43 @@ export const CreateBlog = () => {
 
                     <div className="col-md-12 col-sm-12">
                         <div className="section-title">
-                            <h2>Contact us</h2>
+                            <h2>Create a blog post</h2>
                         </div>
                     </div>
 
                     <div className="col-md-8 col-sm-8">
 
-                        <form id="contact-form" action="#" method="post">
+                        <form id="contact-form" onSubmit={onSubmit}>
                             <div className="col-md-6 col-sm-6">
-                                <input type="text" className="form-control" placeholder="Full Name" id="cf-name" name="cf-name" required="" />
+                                <input value={values.username} onChange={onChangeHandler} type="text" className="form-control" placeholder="Your username" id="username" name="username" required="" />
                             </div>
 
                             <div className="col-md-6 col-sm-6">
-                                <input type="email" className="form-control" placeholder="Your Email" id="cf-email" name="cf-email" required="" />
+                                <input value={values.email} onChange={onChangeHandler} type="email" className="form-control" placeholder="Your Email" id="email" name="email" required="" />
                             </div>
 
                             <div className="col-md-6 col-sm-6">
-                                <input type="tel" className="form-control" placeholder="Your Phone" id="cf-number" name="cf-number" required="" />
+                                <input value={values.postTitle} onChange={onChangeHandler} type="text" className="form-control" placeholder="Your blog post title" id="postTitle" name="postTitle" required="" />
                             </div>
 
                             <div className="col-md-6 col-sm-6">
-                                <select className="form-control" id="cf-budgets" name="cf-budgets">
-                                    <option>Budget Level</option>
-                                    <option>$500 to $1,000</option>
-                                    <option>$1,000 to $2,200</option>
-                                    <option>$2,200 to $4,500</option>
-                                    <option>$4,500 to $7,500</option>
-                                    <option>$7,500 to $12,000</option>
-                                    <option>$12,000 or more</option>
+                                <select value={values.topic} onChange={onChangeHandler} className="form-control" id="topic" name="topic">
+                                    <option>Topic</option>
+                                    <option>Marketing</option>
+                                    <option>SEO</option>
+                                    <option>CMS Admin</option>
+                                    <option>Business Development</option>
+                                    <option>Consulting </option>
+                                    <option>Other</option>
                                 </select>
                             </div>
 
                             <div className="col-md-12 col-sm-12">
-                                <textarea className="form-control" rows="6" placeholder="Your requirements" id="cf-message" name="cf-message" required=""></textarea>
+                                <textarea value={values.blogPostContent} onChange={onChangeHandler} className="form-control" rows="6" placeholder="Your blog post content" id="blogPostContent" name="blogPostContent" required=""></textarea>
                             </div>
 
                             <div className="col-md-4 col-sm-12">
-                                <input type="submit" className="form-control" name="submit" value="Send Message" />
+                                <input type="submit" className="form-control" name="submit" value="Send post" />
                             </div>
 
                         </form>
