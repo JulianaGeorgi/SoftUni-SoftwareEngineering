@@ -1,6 +1,6 @@
-import { Blog } from "./Blog.js";
+import { BlogPost } from "./BlogPost/BlogPost.js";
 
-export const BlogPostsList = () => {
+export const BlogPostsList = ({ blogPosts }) => {
      return (
           <section id="blog" data-stellar-background-ratio="0.5">
                <div className="container">
@@ -9,12 +9,17 @@ export const BlogPostsList = () => {
                          <div className="col-md-12 col-sm-12">
                               <div className="section-title">
                                    <h2>Our Blog</h2>
-                                   <span className="line-bar">...</span>
 
                               </div>
                          </div>
                     </div>
-                    <Blog />
+                    {blogPosts.map(x =>
+                         <BlogPost key={x._id} {...x} />
+                    )}
+
+                    {blogPosts.length === 0 && (
+                         <h3 className="no-articles">No blog posts.</h3>
+                    )}
                </div>
           </section>
 

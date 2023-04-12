@@ -528,7 +528,7 @@ http://www.templatemo.com/tm-509-hydro
   }
 
   .media.blog-thumb .media-left {
-    width: 45%;
+    width: 25%;
   }
 
   .blog-thumb small {
@@ -936,7 +936,7 @@ http://www.templatemo.com/tm-509-hydro
 
     .media.blog-thumb .media-left {
       display: block;
-      width: 100%;
+      width: 20%;
       padding-right: 0;
       overflow: hidden;
     }
