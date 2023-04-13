@@ -23,6 +23,12 @@ export const create = async (blogData) => {
     return result;
 };
 
+export const edit = async (blogData, blogPostId) => {
+    const result = await request.put(`${baseUrl}/${blogPostId}`, blogData);
+
+    return result;
+};
+
 export const addComment = async (blogPostId, data) => {
     const result = await request.post(`${baseUrl}/${blogPostId}/comments`, data);
 

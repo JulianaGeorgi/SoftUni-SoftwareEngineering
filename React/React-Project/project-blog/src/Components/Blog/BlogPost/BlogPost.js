@@ -13,7 +13,7 @@ export const BlogPost = ({
         <div className="col-md-6 col-sm-6">
             <div className="media blog-thumb">
                 <div className="media-object media-left">
-                    <a href="blog-detail.html"><img src="images/blog-image4.jpg" className="img-responsive" alt="" /></a>
+                    <Link to={`/blogs/${_id}`}><img src="images/blog-image4.jpg" className="img-responsive" alt=""/></Link>
                 </div>
                 <div className="media-body blog-info">
                     <small><i className="fa fa-clock-o"></i> {username}</small>

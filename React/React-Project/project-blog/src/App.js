@@ -13,6 +13,7 @@ import { CreateBlog } from "./Components/CreateBlog/CreateBlog.js";
 import { Register } from "./Components/Register/Register.js";
 import { Login } from "./Components/Login/Login.js";
 import { BlogPostDetails } from "./Components/BlogPostDetails/BlogPostDetails.js";
+import { EditPost } from "./Components/BlogPostDetails/EditPost/EditPost.js";
 
 function App() {
 
@@ -32,7 +33,18 @@ function App() {
       setBlogPosts(state => [...state, newBlogPost]);
 
       navigate('/blogs');
+
   };
+
+  const onEditBlogPostSubmit = async (data, blogPostId) => {
+
+    const editedBlogPost = await blogServices.edit(data, blogPostId);
+
+    setBlogPosts(state => [...state, editedBlogPost]);
+
+    navigate(`/blogs/${editedBlogPost._id}`);
+
+  }
 
 
   return (
@@ -46,6 +58,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/blogs' element={<BlogPostsList blogPosts={blogPosts}/>} />
           <Route path='/blogs/:blogPostId' element={<BlogPostDetails />} />
+          <Route path='/blogs/:blogPostId/edit' element={<EditPost onEditBlogPostSubmit={onEditBlogPostSubmit}/>} />
           <Route path='/work' element={<OurWork />} />
           <Route path='/create' element={<CreateBlog onCreateBlogPostSubmit={onCreateBlogPostSubmit}/>} />
           <Route path='/register' element={<Register />} />

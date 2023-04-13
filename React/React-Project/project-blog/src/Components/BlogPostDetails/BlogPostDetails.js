@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import * as blogPostServices from '../../services/blogPostServices.js';
 
@@ -48,7 +49,13 @@ export const BlogPostDetails = () => {
                                     <h4>Blog Sample Advertising</h4>
                                 </div>
 
+                                <div>
+                                <li className="section-btn"><Link to={`/blogs/${blogPostId}/edit`} data-toggle="modal" data-target="#modal-form">Edit</Link></li>
+                                <li className="section-btn"><Link to="/delete" data-toggle="modal" data-target="#modal-form">Delete</Link></li>
+                                </div>
+
                                 <div className="blog-social-share">
+
                                     <h4>Share this article</h4>
                                     <a href="https://www.facebook.com/templatemo" className="btn btn-primary"><i className="fa fa-facebook"></i>facebook</a>
                                     <a href="/#" className="btn btn-success"><i className="fa fa-twitter"></i>twitter</a>

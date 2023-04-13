@@ -9,7 +9,6 @@ export const BlogPostsList = ({ blogPosts }) => {
                          <div className="col-md-12 col-sm-12">
                               <div className="section-title">
                                    <h2>Our Blog</h2>
-
                               </div>
                          </div>
                     </div>
