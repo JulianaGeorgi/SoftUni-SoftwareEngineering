@@ -8,6 +8,7 @@ import { TodoList } from "./components/TodoList/TodoList";
 function App() {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [buttonText, setButtonText] = useState('Sort Todos by Status');
 
   useEffect(() => {
     fetch(`http://localhost:3030/jsonstore/todos`)
@@ -29,11 +30,12 @@ function App() {
 
   console.log(todos);
 
-  const onSortTodoClick = () => {
+  const onSortTodosByStatusClick = () => {
     // const falseFirst = arr.sort((a, b) => Number(a.bool) - Number(b.bool));
     const sortByStatus = [...todos];
     sortByStatus.sort((a, b) => Number(a.isCompleted) - Number(b.isCompleted));
     setTodos(sortByStatus);
+    setButtonText("Sort by Newest");
   };
 
 
@@ -54,7 +56,7 @@ function App() {
             <button className="btn" onClick={onTodoAddClick}>+ Add New Todo</button>
           </div>
           <div className="add-btn-container">
-            <button className="btn" onClick={onSortTodoClick}>↓↑ Sort Todos by Status</button>
+            <button className="btn" onClick={onSortTodosByStatusClick}>↓↑ Sort Todos by Status</button>
           </div>
 
           <div className="table-wrapper">
