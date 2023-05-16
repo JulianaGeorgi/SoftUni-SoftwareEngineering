@@ -1,0 +1,87 @@
+.App {
+  text-align: center;
+}
+
+body {
+  background-color: #FFFFFF;
+  margin: 0px;
+  padding: 0px;
+
+}
+
+/*--- NAVIGATION MENU ---*/
+
+nav ul {
+  background-color: #2c6e49;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+nav ul li {
+  font-size: 24px;
+  line-height: 40px;
+  height: 40px;
+  padding: 40px;
+  display: inline-block;
+}
+
+nav a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
+/*--- BUTTONS ---*/
+
+.button-primary {
+  background-color: #a7c957;
+  border-radius: 9999px;
+  padding: 10px 30px;
+  margin-left: 2em;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button-primary:hover {
+  background: linear-gradient(270deg, #007EA7 -24.77%, #80CED7 95.41%);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.button-primary:hover span {
+  color: #bc4749;
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/*--- IMAGES ---*/
+
+.logo img {
+  height: auto;
+  width: auto;
+}
+
+/*--- SOCIALS ---*/
+
+
+.social-section{
+  align-content:end;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa {
+  background: #FFFFFF;
+  color: #a7c957;
+}
+
