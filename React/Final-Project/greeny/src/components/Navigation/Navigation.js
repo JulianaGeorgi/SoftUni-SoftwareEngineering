@@ -4,7 +4,7 @@ export const Navigation = () => {
     return (
         <nav>
             <div className="logo">
-                <img src="/images/greeny_3.JPG" alt="Greeny" />
+               <a href="/home"><img src="/images/greeny-low-resolution-logo-color-on-transparent-background.png" alt="Greeny" /></a> 
             </div>
             <div className="socials-section">
             <Link to="https://www.facebook.com/greeny" className="fa fa-facebook"></Link>
