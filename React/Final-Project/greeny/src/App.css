@@ -15,6 +15,34 @@ body {
 
 }
 
+h1 {
+  font-size: 4em;
+  font-weight: 900;
+  color: #313030;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 0.1em;
+}
+
+h2 {
+  font-size: 2em;
+  padding-top: 0.5em;
+}
+
+h1~p,
+h2~p {
+  font-size: 1.5em;
+  margin-top: 0em;
+}
+
+p {
+  font-size: 1em;
+}
+
+img.avatar {
+  border-radius: 50%;
+}
+
 /*--- NAVIGATION MENU ---*/
 
 nav ul {
@@ -80,6 +108,22 @@ a:-webkit-any-link {
   padding: 2em;
 }
 
+.gif.earth {
+  height: auto;
+  max-width: 100%;
+}
+
+.gif.bee {
+  position: absolute;
+  right: 14.4vw;
+}
+
+.impact-gif-container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 5px;
+}
 
 /*--- SOCIALS ---*/
 
@@ -121,28 +165,11 @@ a.fa {
   margin: -10px;
 }
 
-.home-block h1 {
-  font-size: 4em;
-  font-weight: 900;
-  color: #313030;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  padding-top: 0.1em;
-}
-
-.home-block h2 {
-  font-size: 2em;
-  padding-top: 0.5em;
-}
-
-.home-block h1~p,
-h2~p {
-  font-size: 1.5em;
-}
-
 /*--- ACTIVITIES ---*/
 
-.activities-block {
+.activities-block,
+/* IMPROVE SELECTOR*/
+.about-block {
   text-align: center;
   margin: 0 50px;
   box-sizing: border-box;
@@ -179,7 +206,9 @@ figure {
 
 /*--- CATEGORIES ---*/
 
-.categories-block {
+.categories-block,
+/* IMPROVE SELECTOR*/
+.impact-block {
   background-color: #A7C957;
   text-align: center;
   margin: 50px 50px;

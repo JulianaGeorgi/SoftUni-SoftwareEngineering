@@ -5,11 +5,11 @@ export const Navigation = () => {
     return (
         <nav>
             <div className="logo">
-                <a href="/home"><img src="/images/greeny-low-resolution-logo-color-on-transparent-background.png" alt="Greeny" /></a>
+                <Link to="/"><img src="/images/greeny-low-resolution-logo-color-on-transparent-background.png" alt="Greeny" /></Link>
             </div>
             <SocialButtons/>
             <ul>
-                <li><Link to="/home">Home</Link></li>
+                <li><Link to="/">Home</Link></li>
                 <li><Link to="/greenies">Greenies</Link></li>
                 <li><Link to="/events">Events</Link></li>
                 <li><Link to="/about">About</Link></li>
