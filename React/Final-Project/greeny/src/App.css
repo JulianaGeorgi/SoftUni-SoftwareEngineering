@@ -39,6 +39,11 @@ p {
   font-size: 1em;
 }
 
+p.mini{
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
 img.avatar {
   border-radius: 50%;
 }
@@ -80,7 +85,7 @@ a:-webkit-any-link {
   border-radius: 9999px;
   border: none;
   padding: 10px 30px;
-  margin-left: 0em;
+  margin-left: 1em;
   box-shadow: 0px 8px 15px #0000001a;
   font-size: 30px;
   text-decoration: none;
@@ -235,6 +240,31 @@ figure {
   font-weight: 700;
   color: red;
 } */
+
+/*--- SUBSCRIBE ---*/
+
+.subscribe-block{
+  background-color: #F2E8CF;
+  color: #313030;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+input {
+  height: 1.6em;
+  width: 30%;
+  padding: 12px 20px;
+  border: 2px solid #969393;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+input[placeholder]{
+  font-size: 1em;
+  font-family: inherit;
+  color: #969393;
+}
 
 /*--- FOOTER ---*/
 

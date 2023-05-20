@@ -4,6 +4,7 @@ import { Navigation } from './components/Navigation/Navigation';
 import { Home } from './components/Home/Home';
 import { Footer } from './components/Footer/Footer';
 import { About } from './components/About/About';
+import { Subscribe } from './components/Subscribe/Subscribe';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/about' element={<About/>} />
         </Routes>
       </main>
+      <Subscribe/>
       <Footer/>
     </div>
   );
