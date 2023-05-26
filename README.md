@@ -4,10 +4,8 @@
 
 1. <a href="https://softuni.bg/trainings/3631/programming-basics-with-javascript-march-2022" > Programming Basics with JavaScript </a> -> <a href="https://softuni.bg/certificates/details/131407/07d5abd0"> Certificate </a>
 
-
-<img src="https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/blob/main/JS-Basics/Programming%20Basics%20-%20March%202022%20-%20Certificate.jpeg" width = "550"/>
-
 2. <a href="https://softuni.bg/trainings/3732/programming-fundamentals-with-javascript-may-2022" > Programming Fundamentals with JavaScript </a> -> <a href="https://softuni.bg/certificates/details/139096/af2e1815"> Certificate </a>
 
+3. <a href="https://softuni.bg/trainings/3847/js-applications-october-2022" > JS Applications </a> -> <a href="https://softuni.bg/certificates/details/149751/6d7d589a"> Certificate </a>
 
-<img src="https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/blob/main/JS-Fundamentals/Programming%20Fundamentals%20with%20JavaScript%20-%20May%202022%20-%20Certificate.jpeg" width = "550"/>
+4. <a href="https://softuni.bg/trainings/3846/js-advanced-september-2022" > JS Advanced </a> -> <a href="https://softuni.bg/certificates/details/150101/7e5acbac"> Certificate </a>
