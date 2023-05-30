@@ -1,0 +1,85 @@
+html {
+    font-family: Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    max-width: 15vw;
+    height: 35rem;
+    flex-direction: column;
+}
+
+span {
+    display: flex;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    padding: 20px;
+    margin: 2px;
+    height: 10px;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* S */
+span:nth-child(11) {
+    order: 0;
+}
+
+/* e */
+span:nth-child(2) {
+    order: 1;
+}
+
+/* m */
+span:nth-child(12){
+    order: 2;
+}
+
+/* a */
+span:nth-child(4){
+    order: 3;
+}
+
+/* n */
+span:nth-child(8){
+    order: 4;
+}
+
+/* t */
+span:nth-child(9){
+    order: 5;
+}
+
+/* i */
+span:nth-child(6){
+    order: 6;
+}
+
+/* c */
+span:nth-child(5){
+    order: 7;
+}
+
+/* H */
+span:nth-child(1){
+    order: 8;
+}
+
+/* T */
+span:nth-child(3){
+    order: 9;
+}
+
+/* M */
+span:nth-child(7){
+    order: 10;
+}
+
+/* L */
+span:nth-child(10){
+    order: 11;
+}
