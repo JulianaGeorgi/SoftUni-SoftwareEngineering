@@ -1,27 +1,24 @@
 /*--- FONTS ---*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
 
+/*--- BASIC RESET ---*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video { 
+  margin: 0; 
+  padding: 0; 
+  border: 0; 
+  font: inherit; 
+  vertical-align: baseline;
+} 
+
+/*--- TYPOGRAPHY ---*/
 .App {
-  font-family: 'Lato', sans-serif;
-  font-size: 18px;
-  line-height: 1.5;
-  font-style: normal;
-}
-
-body {
-  background-color: #F2E8CF;
-  margin: 0px;
-  padding: 0px;
-
+  font: normal 18px/1.5 'Lato', sans-serif;
 }
 
 h1 {
   font-size: 4em;
   font-weight: 900;
   color: #313030;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  padding-top: 0.1em;
 }
 
 h2 {
@@ -29,11 +26,10 @@ h2 {
   padding-top: 0.5em;
 }
 
-h1~p,
-h2~p {
+h3 {
   font-size: 1.5em;
-  margin-top: 0em;
-}
+  margin-bottom: 0.5em;
+} 
 
 p {
   font-size: 1em;
@@ -44,33 +40,30 @@ p.mini{
   font-weight: 600;
 }
 
+body {
+  background-color: #F2E8CF;
+}
+
 img.avatar {
   border-radius: 50%;
 }
+
 
 /*--- NAVIGATION MENU ---*/
 
 nav ul {
   background-color: #386641;
-  text-align: center;
-  padding: 0px;
-  margin: 0px;
-  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 nav ul li {
-  font-size: 24px;
-  line-height: 40px;
-  height: 40px;
+  display: flex;
+  font-size: 1.3em;
   padding: 40px;
-  display: inline-block;
 }
-
-nav a {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-
 
 /*--- BUTTONS ---*/
 
@@ -85,10 +78,8 @@ a:-webkit-any-link {
   border-radius: 9999px;
   border: none;
   padding: 10px 30px;
-  margin-left: 1em;
   box-shadow: 0px 8px 15px #0000001a;
   font-size: 30px;
-  text-decoration: none;
 }
 
 .button-primary:hover {
@@ -133,8 +124,8 @@ a:-webkit-any-link {
 /*--- SOCIALS ---*/
 
 .socials-section {
-  text-align: right;
-  padding-right: 2em;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .fa {
@@ -209,44 +200,45 @@ figure {
   object-fit: cover;
 }
 
-/*--- CATEGORIES ---*/
+/*--- GREENIES ---*/
 
-.categories-block,
-/* IMPROVE SELECTOR*/
-.impact-block {
+.greenies-block
+/* IMPROVE SELECTOR*/ {
   background-color: #A7C957;
   text-align: center;
   margin: 50px 50px;
-  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.categories-block .categories-item-grid .category-item .category-img img {
-  border-radius: 16px;
-  height: 175px;
-  object-fit: cover;
-  display: inline-block;
+.container {
+  display: flex;
+  gap: 2em;
 }
 
-/* 
-.categories-block .categories-item-grid .category-img .title {
-  font-size: 10em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  padding: 10px 5px;
-  text-align: center;
-  font-weight: 700;
-  color: red;
-} */
+.card {
+  width: 5em;
+  flex: 0 0 auto;
+  overflow: hidden;
+  display: flex;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);
+  transition: width 0.4s ease-in-out;
+}
+
+.card:hover {
+  width: 30em;
+}
 
 /*--- SUBSCRIBE ---*/
 
 .subscribe-block{
   background-color: #F2E8CF;
   color: #313030;
-  margin-bottom: 0;
+  margin-bottom: 50px;
   text-align: center;
 }
 
