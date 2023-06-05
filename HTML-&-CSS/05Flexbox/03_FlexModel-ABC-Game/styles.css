@@ -5,23 +5,20 @@ html {
 
 div {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     max-width: 15vw;
     height: 35rem;
+    align-items: flex-start;
     flex-direction: column;
+    gap: 1em;
 }
 
 span {
-    display: flex;
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
-    padding: 20px;
-    margin: 2px;
-    height: 10px;
-    width: 30px;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    flex: 0 0 auto;
+    width: 3em;
+    text-align: center;
+    border: 1px solid #000;
 }
 
 /* S */
