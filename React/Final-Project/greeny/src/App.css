@@ -2,13 +2,93 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
 
 /*--- BASIC RESET ---*/
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video { 
-  margin: 0; 
-  padding: 0; 
-  border: 0; 
-  font: inherit; 
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
   vertical-align: baseline;
-} 
+}
 
 /*--- TYPOGRAPHY ---*/
 .App {
@@ -23,19 +103,18 @@ h1 {
 
 h2 {
   font-size: 2em;
-  padding-top: 0.5em;
 }
 
 h3 {
   font-size: 1.5em;
   margin-bottom: 0.5em;
-} 
+}
 
 p {
   font-size: 1em;
 }
 
-p.mini{
+p.mini {
   font-size: 0.7em;
   font-weight: 600;
 }
@@ -44,14 +123,18 @@ body {
   background-color: #F2E8CF;
 }
 
-img.avatar {
-  border-radius: 50%;
+section {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
+img {
+  border-radius: 10px;
+}
 
 /*--- NAVIGATION MENU ---*/
 
-nav ul {
+.topnav ul {
   background-color: #386641;
   display: flex;
   justify-content: center;
@@ -59,7 +142,7 @@ nav ul {
   gap: 10px;
 }
 
-nav ul li {
+.topnav ul li {
   display: flex;
   font-size: 1.3em;
   padding: 40px;
@@ -73,18 +156,26 @@ a:-webkit-any-link {
   text-decoration: none;
 }
 
-.button-primary {
+.btn {
   background-color: #BC4749;
   border-radius: 9999px;
   border: none;
   padding: 10px 30px;
   box-shadow: 0px 8px 15px #0000001a;
+}
+
+.btn:hover {
+  background: linear-gradient(270deg, #007EA7 -24.77%, #80CED7 95.41%);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.btn.button-primary {
   font-size: 30px;
 }
 
-.button-primary:hover {
-  background: linear-gradient(270deg, #007EA7 -24.77%, #80CED7 95.41%);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.btn.button-secondary {
+  font-size: 18px;
+  background-color: #A7C957;
 }
 
 .button-primary:hover span {
@@ -102,6 +193,10 @@ a:-webkit-any-link {
 .logo img {
   height: 10em;
   padding: 2em;
+}
+
+img.avatar {
+  border-radius: 50%;
 }
 
 .gif.earth {
@@ -143,7 +238,7 @@ a.fa {
 }
 
 .fa:hover {
-  background: linear-gradient(270deg, #007ea7 -24.77%, #80CED7 95.41%);
+  background: linear-gradient(270deg, rgb(0, 126, 167) -24.77%, rgb(128, 206, 215) 95.41%);
   /*opacity: 0.7;*/
 }
 
@@ -161,49 +256,55 @@ a.fa {
   margin: -10px;
 }
 
-/*--- ACTIVITIES ---*/
+/*--- EVENTS ---*/
 
-.activities-block,
+.events-block,
 /* IMPROVE SELECTOR*/
 .about-block {
   text-align: center;
-  margin: 0 50px;
+  margin-left: 50px;
+  margin-right: 50px;
   box-sizing: border-box;
 }
 
-.activities-block .activities-item-grid {
+.events-item-grid {
+  display: grid;
+  gap: 80px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin-top: 50px;
+}
+
+.event-item {
   display: flex;
-  margin: 0 -0.75%;
-  width: 101.5%;
+  flex-direction: column;
+  gap: 20px;
+  /* fix Participate button going over text by page shrink */
 }
 
-.activities-block .activities-item-grid .activity-item {
-  width: 400px;
-}
-
-.activities-block .activities-items.grid>* {
-  width: 23.5%;
-  margin: 0 0.75% 0.9375em;
-}
-
-figure {
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 40px;
-  margin-inline-end: 40px;
-}
-
-.activities-block .activities-item-grid .activity-item .activity-img img {
-  border-radius: 16px;
-  max-height: 192px;
+.event-item .event-img {
   width: 100%;
+  height: 60%;
+}
+
+.event-item .description {
+  width: 100%;
+  height: 30%;
+}
+
+.event-img img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  box-shadow: 0 0 1em 0 rgba(52, 188, 233, 0.2);
 }
 
 /*--- GREENIES ---*/
 
 .greenies-block
-/* IMPROVE SELECTOR*/ {
+
+/* IMPROVE SELECTOR*/
+  {
   background-color: #A7C957;
   text-align: center;
   margin: 50px 50px;
@@ -235,10 +336,9 @@ figure {
 
 /*--- SUBSCRIBE ---*/
 
-.subscribe-block{
+.subscribe-block {
   background-color: #F2E8CF;
   color: #313030;
-  margin-bottom: 50px;
   text-align: center;
 }
 
@@ -252,7 +352,7 @@ input {
   resize: none;
 }
 
-input[placeholder]{
+input[placeholder] {
   font-size: 1em;
   font-family: inherit;
   color: #969393;

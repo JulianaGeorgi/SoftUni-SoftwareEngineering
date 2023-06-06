@@ -8,7 +8,7 @@ export const Subscribe = () => {
             <form>
                 <div className='input-box'>
                     <input type='text' id='email' name='subscription-email' placeholder='Type your email' />
-                    <button className='button-primary'>
+                    <button className='btn button-primary'>
                     <Link to='/about'>Subscribe</Link></button>
                     <p className='mini'>By clicking 'Sign Up', you consent to Greeny using your email address to receive emails about initiatives, events, greenies and more. You can opt-out at any time.</p>
                 </div>

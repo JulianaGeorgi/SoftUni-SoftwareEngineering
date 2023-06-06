@@ -76,11 +76,9 @@ export const Footer = () => {
                                 {/* <a href="#">Scanfcode</a>. */}
                             </p>
                         </div>
-                        <div className="col-md-4 col-sm-6 col-xs-12">
-                            <SocialButtons />
-                        </div>
                     </div>
                 </div>
+                <SocialButtons />
             </footer>
         </>
     );
