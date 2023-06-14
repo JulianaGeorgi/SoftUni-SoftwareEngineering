@@ -3,7 +3,7 @@
 @import url("https://use.fontawesome.com/releases/v6.1.1/css/all.css");
 
 html {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 nav {
@@ -38,36 +38,40 @@ a {
     font-size: 0.7em;
 }
 
-.main-info, .our-team, .testimonials {
+.our-team,
+.testimonials {
     margin: 70px
 }
 
 img {
-    width: 10vh;
+    width: 15vh;
     height: auto;
     border-radius: 50%;
 }
 
 section.main-info {
-    width: 600px;
+    width: 80vh;
     position: relative;
     color: rgb(37, 37, 37);
     padding: 20px;
     text-align: left;
 }
 
-section.main-info img{
+section.main-info img {
     float: right;
 }
 
 /* GRIDS TODO: customize text under images and alignment */
-div.team-cards-grid, div.testimonials-grid {
+div.team-cards-grid,
+div.testimonials-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
 }
 
-div.team-member-card, div.testimonial-card {
+div.team-member-card,
+div.testimonial-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,3 +122,26 @@ footer p.subtitle {
     display: grid;
     grid-template-columns: 10% 90%;
 }
+
+
+@media (max-width: 900px) {
+
+    div.team-cards-grid,
+    div.testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+
+    div.team-cards-grid,
+    div.testimonials-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .main-info {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
