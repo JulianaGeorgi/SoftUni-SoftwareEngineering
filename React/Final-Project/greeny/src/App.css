@@ -134,18 +134,64 @@ img {
 
 /*--- NAVIGATION MENU ---*/
 
-.topnav ul {
-  background-color: #386641;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+.topnav {
+  width: 100%;
 }
 
-.topnav ul li {
+.main-nav {
+  background-color: #386641;
   display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  padding: 2rem;
+  order: 0;
+  position: relative;
+  display: block;
+  width: auto;
   font-size: 1.3em;
-  padding: 40px;
+}
+
+.main-nav .btn {
+  order: 1;
+}
+
+.topnav .toggle {
+  display: none;
+}
+
+.submenu {
+  display: none;
+}
+
+.submenu-active .submenu {
+  display: block;
+}
+
+.has-submenu i {
+  font-size: 12px;
+}
+
+.has-submenu>a::after {
+  font-family: "Font Awesome 5 Free";
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 900;
+  content: "\f078";
+  color: white;
+  padding-left: 5px;
+}
+
+.subitem a {
+  padding: 10px 15px;
+}
+
+.submenu-active {
+  background-color: #111;
+  border-radius: 3px;
 }
 
 /*--- BUTTONS ---*/
@@ -170,7 +216,7 @@ a:-webkit-any-link {
 }
 
 .btn.button-primary {
-  font-size: 30px;
+  font-size: 1.3em;
 }
 
 .btn.button-secondary {
@@ -269,9 +315,8 @@ a.fa {
 
 .events-item-grid {
   display: grid;
-  gap: 80px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%/1, max(290px, 100%/4)), 1fr));
   margin-top: 50px;
 }
 
@@ -419,13 +464,38 @@ input[placeholder] {
   margin: 0;
 }
 
+/* LAPTOP */
 @media (max-width:991px) {
+
+  .main-nav {
+    justify-content: flex-end;
+  }
+
+  .item {
+    display: none;
+  }
+
+  .topnav .toggle {
+    display: block;
+    order: 1;
+    font-size: 2rem;
+    padding: 2rem;
+  }
+
   .site-footer [class^=col-] {
     margin-bottom: 30px;
   }
 }
 
+/* TABLET */
 @media (max-width:767px) {
+
+  .social-icons li.title {
+    display: block;
+    margin-right: 0;
+    font-weight: 600;
+  }
+
   .site-footer {
     padding-bottom: 0;
   }
@@ -436,10 +506,8 @@ input[placeholder] {
   }
 }
 
-@media (max-width:767px) {
-  .social-icons li.title {
-    display: block;
-    margin-right: 0;
-    font-weight: 600;
-  }
+/* PHONE */
+
+@media (max-width: 576px) {
+  
 }
