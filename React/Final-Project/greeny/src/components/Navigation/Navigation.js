@@ -44,11 +44,11 @@ export const Navigation = () => {
 
     return (
         <div className="pagetop">
-            <div className="logo">
-                <Link to="/"><img src="/images/greeny-low-resolution-logo-color-on-transparent-background.png" alt="Greeny" /></Link>
-            </div>
             <SocialButtons />
             <nav className="topnav">
+                <div className="logo">
+                    <Link to="/"><img src="/images/greeny-low-resolution-logo-white-on-transparent-background.png" alt="Greeny" /></Link>
+                </div>
                 <ul className="main-nav">
                     <li className="item"><Link to="/">Home</Link></li>
                     <li className="item has-submenu">

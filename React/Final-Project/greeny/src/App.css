@@ -134,26 +134,39 @@ img {
 
 /*--- NAVIGATION MENU ---*/
 
+.pagetop {
+  position: sticky;
+  top: 0;
+  background-color: #F2E8CF;
+}
+
 .topnav {
-  width: 100%;
+  background-color: #386641;
+  display: flex;
+}
+
+.logo img {
+  height: 5em;
+  padding: 1rem 3rem;
 }
 
 .main-nav {
-  background-color: #386641;
+  width: 100%;
   display: flex;
+  gap: 3rem;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
 }
 
 .item {
-  padding: 2rem;
   order: 0;
   position: relative;
   display: block;
   width: auto;
   font-size: 1.3em;
 }
+
 
 .main-nav .btn {
   order: 1;
@@ -231,16 +244,6 @@ a:-webkit-any-link {
 
 /*--- IMAGES ---*/
 
-.logo {
-  display: block;
-  text-align: center;
-}
-
-.logo img {
-  height: 10em;
-  padding: 2em;
-}
-
 img.avatar {
   border-radius: 50%;
 }
@@ -297,7 +300,7 @@ a.fa {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
+  /* position: relative; */
   padding: 100px;
   margin: -10px;
 }
