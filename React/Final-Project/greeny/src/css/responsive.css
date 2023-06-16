@@ -1,7 +1,8 @@
 /* LAPTOP */
 @media (max-width:991px) {
 
-    .main-nav {
+    .main-menu {
+        width: 100%;
         justify-content: flex-end;
     }
 
@@ -9,11 +10,12 @@
         display: none;
     }
 
-    .topnav .toggle {
+    .top-nav .toggle {
         display: block;
+        text-align: right;
         order: 1;
-        font-size: 2rem;
-        padding: 2rem;
+        font-size: 1.5rem;
+        padding: 1rem;
     }
 
     .site-footer [class^=col-] {

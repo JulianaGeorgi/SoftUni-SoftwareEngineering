@@ -45,32 +45,34 @@ export const Navigation = () => {
     return (
         <div className="page-top">
             <SocialButtons />
-            <nav className="top-nav">
-                <div className="logo">
-                    <Link to="/"><img src="/images/greeny-low-resolution-logo-white-on-transparent-background.png" alt="Greeny" /></Link>
-                </div>
-                <ul className="main-menu">
-                    <li className="item"><Link to="/">Home</Link></li>
-                    <li className="item has-submenu">
-                        {/*TODO: Greenies should not be a link */}
-                        <a tabIndex="0" href="/#">Greenies</a>
-                        <ul className="submenu">
-                            <li className="subitem"><a href="/">Home</a></li>
-                            <li className="subitem"><a href="/">Under 5 Minutes</a></li>
-                            <li className="subitem"><a href="/">Habit-changers</a></li>
-                            <li className="subitem"><a href="/">Big Steps</a></li>
-                        </ul>
-                    </li>
-                    <li className="item"><Link to="/events">Events</Link></li>
-                    <li className="item"><Link to="/about">About</Link></li>
-                    <li className="item"><Link to="/contact">Contact</Link></li>
-                    <li className="item"><Link to="/login">Login</Link></li>
-                    <li className="toggle"><a href="/"><i className="fas fa-bars"></i></a></li>
-                    <li className="item">
-                        <Link to="/signup" className="btn button-primary">SIGN-UP <span><b>♡</b></span></Link>
-                    </li>
-                </ul>
-            </nav>
+            <div className="nav-wrap">
+                <nav className="top-nav">
+                    <div className="logo">
+                        <Link to="/"><img src="/images/greeny-low-resolution-logo-white-on-transparent-background.png" alt="Greeny" /></Link>
+                    </div>
+                    <ul className="main-menu">
+                        <li className="item"><Link to="/">Home</Link></li>
+                        <li className="item has-submenu">
+                            {/*TODO: Greenies should not be a link */}
+                            <a tabIndex="0" href="/#">Greenies</a>
+                            <ul className="submenu">
+                                <li className="subitem"><a href="/">Home</a></li>
+                                <li className="subitem"><a href="/">Under 5 Minutes</a></li>
+                                <li className="subitem"><a href="/">Habit-changers</a></li>
+                                <li className="subitem"><a href="/">Big Steps</a></li>
+                            </ul>
+                        </li>
+                        <li className="item"><Link to="/events">Events</Link></li>
+                        <li className="item"><Link to="/about">About</Link></li>
+                        <li className="item"><Link to="/contact">Contact</Link></li>
+                        <li className="item"><Link to="/login">Login</Link></li>
+                        <li className="toggle"><a href="/"><i className="fas fa-bars"></i></a></li>
+                        <li className="item">
+                            <Link to="/signup" className="btn button-primary">SIGN-UP <span><b>♡</b></span></Link>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     );
 };
