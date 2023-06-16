@@ -1,0 +1,84 @@
+/*--- NAVIGATION MENU ---*/
+
+.page-top {
+    position: sticky;
+    top: 0;
+    background-color: #F2E8CF;
+}
+
+.top-nav {
+    background-color: #386641;
+    display: flex;
+    align-items: center;
+}
+
+div .logo {
+    flex-shrink: 0;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    margin: 10px 20px;
+}
+
+.main-menu {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 20px;
+}
+
+.item {
+    order: 0;
+    position: relative;
+    display: block;
+    width: auto;
+    font-size: 1.3em;
+}
+
+li.item:last-of-type{
+    flex-shrink: 0;
+}
+
+.main-menu .btn {
+    order: 1;
+}
+
+.top-nav .toggle {
+    display: none;
+}
+
+.submenu {
+    display: none;
+}
+
+.submenu-active .submenu {
+    display: block;
+}
+
+.has-submenu i {
+    font-size: 12px;
+}
+
+.has-submenu>a::after {
+    font-family: "Font Awesome 5 Free";
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 900;
+    content: "\f078";
+    color: white;
+    padding-left: 5px;
+}
+
+.subitem a {
+    padding: 10px 15px;
+}
+
+.submenu-active {
+    background-color: #111;
+    border-radius: 3px;
+}

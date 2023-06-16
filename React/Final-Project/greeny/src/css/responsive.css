@@ -1,0 +1,45 @@
+/* LAPTOP */
+@media (max-width:991px) {
+
+    .main-nav {
+        justify-content: flex-end;
+    }
+
+    .item {
+        display: none;
+    }
+
+    .topnav .toggle {
+        display: block;
+        order: 1;
+        font-size: 2rem;
+        padding: 2rem;
+    }
+
+    .site-footer [class^=col-] {
+        margin-bottom: 30px;
+    }
+}
+
+/* TABLET */
+@media (max-width:767px) {
+
+    .social-icons li.title {
+        display: block;
+        margin-right: 0;
+        font-weight: 600;
+    }
+
+    .site-footer {
+        padding-bottom: 0;
+    }
+
+    .site-footer .copyright-text,
+    .site-footer .social-icons {
+        text-align: center
+    }
+}
+
+/* PHONE */
+
+@media (max-width: 576px) {}

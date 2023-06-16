@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
+
+.App {
+    font: normal 18px/1.5 'Lato', sans-serif;
+}
+
+h1 {
+    font-size: 4em;
+    font-weight: 900;
+    color: #313030;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    font-size: 1em;
+}
+
+p.mini {
+    font-size: 0.7em;
+    font-weight: 600;
+}

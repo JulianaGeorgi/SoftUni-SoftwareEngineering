@@ -43,18 +43,18 @@ export const Navigation = () => {
     // }
 
     return (
-        <div className="pagetop">
+        <div className="page-top">
             <SocialButtons />
-            <nav className="topnav">
+            <nav className="top-nav">
                 <div className="logo">
                     <Link to="/"><img src="/images/greeny-low-resolution-logo-white-on-transparent-background.png" alt="Greeny" /></Link>
                 </div>
-                <ul className="main-nav">
+                <ul className="main-menu">
                     <li className="item"><Link to="/">Home</Link></li>
                     <li className="item has-submenu">
                         {/*TODO: Greenies should not be a link */}
                         <a tabIndex="0" href="/#">Greenies</a>
-                        <ul class="submenu">
+                        <ul className="submenu">
                             <li className="subitem"><a href="/">Home</a></li>
                             <li className="subitem"><a href="/">Under 5 Minutes</a></li>
                             <li className="subitem"><a href="/">Habit-changers</a></li>
@@ -67,7 +67,7 @@ export const Navigation = () => {
                     <li className="item"><Link to="/login">Login</Link></li>
                     <li className="toggle"><a href="/"><i className="fas fa-bars"></i></a></li>
                     <li className="item">
-                        <button className="btn button-primary"><Link to="/signup" >SIGN-UP <span><b>♡</b></span></Link></button>
+                        <Link to="/signup" className="btn button-primary">SIGN-UP <span><b>♡</b></span></Link>
                     </li>
                 </ul>
             </nav>
