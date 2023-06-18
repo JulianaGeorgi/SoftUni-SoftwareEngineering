@@ -1,0 +1,21 @@
+.site-header {
+    margin: 30px 50px;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    flex-basis: 40%;
+    gap: 5%;
+    list-style: none;
+}
+
+.main-nav li {
+    display: inline-block;
+}

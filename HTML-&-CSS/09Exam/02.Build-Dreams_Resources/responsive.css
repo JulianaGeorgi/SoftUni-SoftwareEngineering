@@ -1,0 +1,59 @@
+@media (width <=600px) {
+
+    .home-container {
+        gap: 20px;
+    }
+
+    .home-hero {
+        flex-direction: column;
+    }
+
+    .home-image1 {
+        display: flex;
+        order: 1;
+        width: 100%;
+    }
+
+    .home-hero-text-container {
+        order: 2;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .home-cta-btn2 {
+        width: 35%;
+        align-self: center;
+    }
+
+    .home-heading-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .home-features {
+        height: auto;
+    }
+
+    .home-cards-container {
+        flex-direction: column;
+    }
+
+    .home-feature-card,
+    .home-feature-card1,
+    .home-feature-card2 {
+        align-self: center;
+        width: 100%;
+    }
+
+    .home-text04,
+    .home-text05,
+    .home-text06,
+    .home-text07 {
+        font-size: 16px;
+    }
+
+    .home-stats {
+        grid-template-columns: 1fr;
+    }
+
+}

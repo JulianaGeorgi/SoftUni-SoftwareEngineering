@@ -1,0 +1,141 @@
+.hero-home, 
+.hero-replica {
+    background-color: #ADE2DF;
+    text-align: center;
+    padding: 50px;
+}
+
+.site-stats {
+    margin: 50px 150px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
+
+.card {
+    border-right: solid 2px rgb(211, 201, 201);
+}
+
+.card:first-of-type {
+    border-left: solid 2px rgb(211, 201, 201);
+}
+
+.card p {
+    margin: 0 20px;
+}
+
+.banner {
+    background-color: #ADE2DF;
+    
+}
+
+.banner.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 0 70px;
+}
+
+.banner img {
+    height: 100%;
+    padding: 30px;
+    object-fit: cover;
+}
+
+.banner .content{
+    text-align: left;
+    padding: 50px;
+    width: 70%;
+}
+
+.price-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    border-radius: 5px;
+}
+
+.pricing {
+    background-color: #f5f2f2;
+    padding-bottom: 50px;
+}
+
+.pricing header,
+.pricing h4 {
+    text-align: center;
+}
+
+.pricing header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 50px;
+}
+
+.pricing header .btn{
+    display: inline;
+}
+
+.price-plans {
+    border: solid 1px grey;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.price-cards ul li:before {
+    content: '✓';
+  }
+
+.price-card {
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:5%;
+}
+
+.price-card ul {
+    border-top: solid 1px lightgray;
+    padding: 20px;
+}
+
+div.price-card:nth-child(1),
+div.price-card:nth-child(2) {
+    border-right: solid 1px lightgray;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ADE2DF;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.contact-card p {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.price-card span {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.socials .fa-brands {
+    color: black;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.socials li {
+    display: inline-block;
+    padding: 5px;
+}

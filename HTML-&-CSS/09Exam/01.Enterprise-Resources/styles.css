@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font: 14px/1.5 'Inter', sans-serif;
+}
+
+section {
+    width: 1920px;
+    margin: 0 auto;
+    padding: 100px;
+    min-height: 100vh;
+    background-color: #D9D9D9;
+}
+
+.cards {
+    display: flex;
+    gap: 3%;
+}
+
+.card {
+    height: 700px;
+    flex: 1 0 30%;
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.img.article {
+    height: 50%;
+    width: 100%;
+}
+
+.content {
+    padding: 25px;
+}
+
+h3 {
+    color: #595959;
+}
+
+h2 {
+    color: #231133;
+    font-size: 2em;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+p {
+    font-size: 1.3em;
+}
+
+.header p {
+    color: #6b696b;
+    border-bottom: solid 1px black;
+    padding-bottom: 20px;
+}
+
+.card .img.author {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    float: left;
+}
+
+.meta-data {
+    padding-top: 20px;
+    line-height: 50px;
+}
+
+.author.name {
+    display: inline;
+    padding-left: 10px;
+}
+
+.read-time {
+    display: inline;
+    float: right;
+    color: #95989b;
+}

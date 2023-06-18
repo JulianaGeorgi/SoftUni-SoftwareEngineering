@@ -1,0 +1,13 @@
+body {
+    background-color: white;
+}
+
+.site {
+    max-width: 1920px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.site-footer {
+    margin-top: auto;
+}
