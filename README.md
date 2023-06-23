@@ -9,3 +9,5 @@
 3. <a href="https://softuni.bg/trainings/3847/js-applications-october-2022" > JS Applications </a> -> <a href="https://softuni.bg/certificates/details/149751/6d7d589a"> Certificate </a>
 
 4. <a href="https://softuni.bg/trainings/3846/js-advanced-september-2022" > JS Advanced </a> -> <a href="https://softuni.bg/certificates/details/150101/7e5acbac"> Certificate </a>
+
+4. <a href="https://softuni.bg/trainings/4114/html-and-css-may-2023" > HTML & CSS </a> -> <a href="https://softuni.bg/certificates/details/174767/1acefd67"> Certificate </a>
