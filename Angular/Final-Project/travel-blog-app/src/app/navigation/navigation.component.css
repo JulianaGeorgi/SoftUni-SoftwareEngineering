@@ -1,0 +1,24 @@
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo-wrapper {
+    width: 15%;
+    min-width: 100px;
+}
+
+.menu-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-nav a{
+    color: #073b4c;
+    padding: 5px;
+}
+
+
