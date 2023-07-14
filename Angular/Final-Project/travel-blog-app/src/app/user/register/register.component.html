@@ -1,1 +1,38 @@
-<p>register works!</p>
+<section class="register-container">
+    <h2>Registration</h2>
+    <form class="register-form" action="" method="post">
+        <label for="email">Username</label>
+        <input
+        class="input-error" 
+        type="email" 
+        id="email" 
+        name="email"
+        placeholder="Type email"
+        #inputEmail>
+
+        <label for="password">Password</label>
+        <input
+        class="input-error"
+        type="password"
+        id="password"
+        name="password"
+        placeholder="******"
+        #inputPassword>
+
+        <label for="rePassword">Confirm Password</label>
+        <input
+        class="input-error" 
+        type="rePassword"
+        id="rePassword"
+        name="rePassword"
+        placeholder="******"
+        #inputRePassword>
+
+        <button class="btn primary" type="submit" (click)="register(inputEmail.value, inputPassword.value, inputRePassword.value)">Register</button>
+        <p class="text-center">
+            Have an account?
+            <a routerLink="/login">Login</a>
+        </p>
+
+    </form>
+</section>
