@@ -1,0 +1,42 @@
+.login-container {
+    width: 300px;
+    margin: 50px auto;
+}
+
+h2 {
+    text-align: center;
+}
+
+label,
+input[type="email"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input[placeholder="Type email"], 
+input[placeholder="******"] {
+    font-style: italic;
+    color: #E29578;
+}
+
+.btn.primary {
+    width: 100%;
+    background-color: #83C5BE;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius:50px;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #E29578;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn.primary:hover {
+    background-color: #E29578;
+  }
