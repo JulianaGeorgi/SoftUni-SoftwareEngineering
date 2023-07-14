@@ -1,0 +1,17 @@
+.socials-menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.socials-menu a{
+    color: #fff;
+    padding: 5px;
+}
+
+.socials-menu li {
+    padding: 10px;
+}
+
+.fa-brands:hover {
+    color: #E29578;
+}
