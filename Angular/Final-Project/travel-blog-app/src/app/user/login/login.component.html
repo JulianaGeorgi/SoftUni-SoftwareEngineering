@@ -1,6 +1,6 @@
 <section class="login-container">
     <h2>Login</h2>
-    <form class="login-form" action="" method="post">
+    <form class="login-form" #form="ngForm" (ngSubmit)="login(form)">
         <label for="email">Email</label>
         <input
           class="input-error"
@@ -8,8 +8,16 @@
           name="email"
           id="email"
           placeholder="Type email"
-          #inputEmail
+          #inputEmail="ngModel"
+          ngModel
+          required
+          [appEmail]="appEmailDomains"
         />
+
+        <ng-container *ngIf="inputEmail.touched">
+          <p class="error" *ngIf="inputEmail.errors?.['required']">Email is required!</p>
+          <p class="error" *ngIf="inputEmail.errors?.['appEmailValidator']">Email is not valid!!</p>
+        </ng-container>
 
         <label for="password">Password</label>
         <input
@@ -17,15 +25,28 @@
           name="password"
           id="password"
           placeholder="******"
-          #inputPassword
+          ngModel
+          #inputPassword="ngModel"
+          required
+          minlength="5"
+
         />
 
-        <button class="btn primary" type="submit" (click)="login(inputEmail.value, inputPassword.value)">Log In</button>
+        <ng-container *ngIf="inputPassword.touched">
+          <p class="error" *ngIf="inputPassword.errors?.['required']">
+            Password is required!
+          </p>
+          <p class="error" *ngIf="inputPassword.errors?.['minlength']">
+            Password must be at least
+            {{inputPassword.errors?.['minlength']['requiredLength']}} characters!
+          </p>
+        </ng-container>
+
+        <button class="btn primary">Log In</button>
 
         <p class="text-center">
             Don't have an account?
             <a routerLink="/register">Register</a>
         </p>
-
     </form>
 </section>

@@ -1,0 +1,35 @@
+/*--- HOME ---*/
+
+.home-header {
+    background-image: linear-gradient(to bottom, rgb(245, 246, 252), rgba(0, 125, 167, 0.356)), url('https://99livesblog.files.wordpress.com/2015/07/untitled-12-3.jpg?w=900');
+    max-width: auto;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* position: relative; */
+    padding: 100px;
+}
+
+.btn.primary {
+    width: 20%;
+    background-color: #83C5BE;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    /* color: #E29578; */
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn.primary:hover {
+    background-color: #E29578;
+}
