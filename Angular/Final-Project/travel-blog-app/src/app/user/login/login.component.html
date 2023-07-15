@@ -29,7 +29,6 @@
           #inputPassword="ngModel"
           required
           minlength="5"
-
         />
 
         <ng-container *ngIf="inputPassword.touched">
@@ -42,7 +41,7 @@
           </p>
         </ng-container>
 
-        <button class="btn primary">Log In</button>
+        <button class="btn primary" [disabled]="form.invalid">Log In</button>
 
         <p class="text-center">
             Don't have an account?
