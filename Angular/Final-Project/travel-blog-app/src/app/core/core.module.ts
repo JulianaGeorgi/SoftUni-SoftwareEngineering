@@ -4,12 +4,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { DropdownComponent } from './header/dropdown/dropdown.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, DropdownComponent],
   imports: [CommonModule, SharedModule, RouterModule], 
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, DropdownComponent],
 })
 export class CoreModule { }

@@ -1,0 +1,11 @@
+<!-- <div class="dropdown"> -->
+    <div class="dropdown-toggle" (click)="toggleDropdown()">
+        {{ selectedOption || 'Travel Tips ' }}
+        <i class="fa-solid fa-caret-down"></i>
+    </div>
+    <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+        <li *ngFor="let option of options" (click)="navigateToPage(option)">
+            {{ option }}
+        </li>
+    </ul>
+<!-- </div> -->

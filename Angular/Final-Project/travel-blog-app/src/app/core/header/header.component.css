@@ -4,7 +4,7 @@ header {
 
 .top-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 0px 20px 10px 20px;
 }
@@ -38,6 +38,9 @@ header {
     width: 20%;
 }
 
-.top-nav a:hover{
-    color: #E29578;
+.top-nav li:hover{
+    background-color: #E29578;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
 }

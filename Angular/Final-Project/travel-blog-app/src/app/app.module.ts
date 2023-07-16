@@ -7,18 +7,22 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
+import { TravelTipsComponent } from './travel-tips/travel-tips.component';
+import { TravelTipModule } from './travel-tip/travel-tip.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    TravelTipsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
     SharedModule, 
-    UserModule
+    UserModule, 
+    TravelTipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

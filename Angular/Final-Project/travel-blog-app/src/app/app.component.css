@@ -11,9 +11,9 @@ section {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-
+/* 
 a:hover {
-    color: #E29578;
+    background-color: #E29578;
+    color: white;
     cursor: pointer;
-    text-decoration: none;
-}
+} */
