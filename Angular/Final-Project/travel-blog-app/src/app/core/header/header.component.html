@@ -5,15 +5,24 @@
             <img src="assets/99-lives-low-resolution-logo-color-on-transparent-background.png" alt="">
         </div>
         <div class="menu-wrapper">
-            <ul class="top-nav main-menu">
+            <ul class="top-nav main-menu all" >
                 <li class="menu-item"><a routerLink="/home">Home</a></li>
                 <li class="menu-item"><a routerLink="/destinations">Destinations</a></li>
-                <li class="menu-item"><a routerLink="/traveltips">Travel Tips</a></li>
+                <li class="menu-item dropdown"><a routerLink="/traveltips"><app-dropdown/></a></li>               
                 <li class="menu-item"><a routerLink="/aboutus">About Us</a></li>
+            </ul>
+            <ul class="top-nav main-menu guest" *ngIf="!isLoggedIn">
                 <li class="menu-item"><a routerLink="/login">Login</a></li>
                 <li class="menu-item"><a routerLink="/register">Register</a></li>
+            </ul>         
+            <ul class="top-nav main-menu user" *ngIf="isLoggedIn">
+                    <li>
+                      <a routerLink="/profile">{{ firstName }}'s profile</a>
+                    </li>
+                    <li (click)="logout()">
+                      <a>Logout</a>
+                    </li>
             </ul>
-
         </div>
     </nav>
 </header>
