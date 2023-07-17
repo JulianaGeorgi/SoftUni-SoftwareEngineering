@@ -6,10 +6,7 @@ h2 {
     text-align: center;
 }
 
-label,
-input[type="email"],
-input[type="password"] {
-    display: block;
-    width: 100%;
+.register-form input {
     margin-bottom: 10px;
+    width: 100%;
 }

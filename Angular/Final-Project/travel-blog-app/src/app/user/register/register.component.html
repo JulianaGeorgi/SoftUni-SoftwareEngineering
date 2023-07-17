@@ -1,15 +1,15 @@
 <section class="register container">
-    <h2>Registration</h2>
+    <h2>Join the 99 lives community</h2>
     <form class="register-form" [formGroup]="form" (ngSubmit)="register()">
 
          <!-- Username -->
-        <label for="username">Username</label>
+        <!-- <label for="username">Username</label> -->
         <input
         class="input-error" 
         type="text" 
         id="username" 
         name="username"
-        placeholder="Type username"
+        placeholder=" Username"
         formControlName="username"
         />
 
@@ -23,13 +23,13 @@
         </ng-container>
 
         <!-- Email -->
-        <label for="email">Email</label>
+        <!-- <label for="email">Email</label> -->
         <input
         class="input-error" 
         type="email" 
         id="email" 
         name="email"
-        placeholder="Type email"
+        placeholder=" E-mail"
         formControlName="email"
         />
 
@@ -46,23 +46,23 @@
         </ng-container>
 
         <!-- Phone number -->
-        <label for="phone">Phone number</label>
+        <!-- <label for="phone">Phone number</label> -->
         <input
           type="text"
           name="phone"
           id="phone"
-          placeholder="885 888 888"
+          placeholder=" Phone number (optional)"
           formControlName="phone"
         />
 
         <ng-container formGroupName="passGroup">
             <!-- password -->
-              <label for="password">Password</label>
+              <!-- <label for="password">Password</label> -->
               <input
                 type="password"
                 name="password"
                 id="password"
-                placeholder="******"
+                placeholder=" Password"
                 formControlName="password"
               />
     
@@ -86,12 +86,12 @@
             </ng-container>
     
             <!-- rePassword -->
-              <label for="rePassword"></label>
+              <!-- <label for="rePassword"></label> -->
               <input
                 type="password"
                 name="rePassword"
                 id="rePassword"
-                placeholder="******"
+                placeholder="Repeat password"
                 formControlName="rePassword"
               />
     
@@ -101,7 +101,7 @@
                 *ngIf="form.get('passGroup')?.errors?.['matchPasswordsValidator'] ||
                  form.get('passGroup')?.get('rePassword')?.errors?.['required']"
               >
-                Repeat Password does not match password!
+                Passwords do not match!
               </p>
             </ng-container>
           </ng-container>

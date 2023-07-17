@@ -8,6 +8,10 @@
     padding: 3em;
 }
 
+.site-footer .text-justify {
+    font-size: 0.8em;
+}
+
 .site-footer hr {
     border-top-color: #fff;
     opacity: 0.5;
@@ -34,6 +38,7 @@
 .footer-links {
     padding-left: 0;
     list-style: none;
+    font-size: 0.8em;
 }
 
 .footer-links li {
