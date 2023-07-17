@@ -1,0 +1,51 @@
+.submit-tip-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.submit-tip-container h2 {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 5px;
+}
+
+.form-group textarea {
+    height: 100px;
+}
+
+.btn.primary {
+    width: 100%;
+    background-color: #83C5BE;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #E29578;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn.primary:hover {
+    background-color: #E29578;
+}

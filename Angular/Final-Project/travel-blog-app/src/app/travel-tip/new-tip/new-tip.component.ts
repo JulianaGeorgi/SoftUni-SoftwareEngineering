@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-new-tip',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class NewTipComponent {
 
+  newTipSubmitHandler(form: NgForm) :void {
+    if(form.invalid){
+      return;
+    }
+    console.log(form.value);
+  }
 }
