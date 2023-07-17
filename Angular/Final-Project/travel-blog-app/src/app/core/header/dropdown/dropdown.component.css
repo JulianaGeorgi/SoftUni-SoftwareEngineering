@@ -3,6 +3,13 @@
     display: inline-block;
 }
 
+.dropdown-toggle {
+    background-color: #006d77;
+    border: none;
+    color: white;
+    padding: 10px;
+}
+
 .dropdown-menu {
     position: absolute;
     list-style: none;
@@ -18,10 +25,12 @@
 }
 
 .dropdown-menu.show li {
+    color: white;
     padding: 10px;
 }
 
-.dropdown-menu.show li:hover {
+.dropdown-menu.show li:hover, 
+.dropdown-toggle:hover {
     background-color: #E29578;
     color: white;
     cursor: pointer;

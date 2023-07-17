@@ -94,11 +94,11 @@ time,
 mark,
 audio,
 video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -144,9 +144,9 @@ select {
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -160,51 +160,97 @@ select {
 
 /* TYPOGRAPHY */
 
-html, body {
-    font: normal 18px/1.5 'Lato', sans-serif;
+html,
+body {
+  font: normal 18px/1.5 'Lato', sans-serif;
+  color: #313030;
 }
 
 h1 {
-    font-size: 4em;
-    font-weight: 900;
-    color: #313030;
+  font-size: 4em;
+  font-weight: 900;
+  color: #313030;
 }
 
 h2 {
-    font-size: 2em;
+  font-size: 2em;
+  margin-bottom: 1em;
 }
 
 h3 {
-    font-size: 1.5em;
-    margin-bottom: 0.5em;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 p {
-    font-size: 1em;
+  font-size: 1em;
 }
 
-p.mini {
-    font-size: 0.7em;
-    font-weight: 600;
+p.error {
+  font-size: 0.8em;
+  color: #E29578;
+  font-style: italic;
+  margin-top: 0px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+
+a:hover {
+  color: #E29578;
+  cursor: pointer;
+}
+
+input {
+  border-radius: 4px;
+  border: 1px solid #83C5BE;
+  height: 40px;
+}
+
+textarea {
+  border-radius: 4px;
+  border: 1px solid #83C5BE;
 }
 
 /* LAYOUT*/
 
 
 .app-root {
-    max-width: 1920px;
-    margin: 0 auto;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 body {
-    background-color: #F9F9F9;
+  background-color: #EDF6F9;
 }
 
 section {
-    margin-top: 50px;
-    margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* BUTTONS */
+
+.btn.primary {
+  width: 100%;
+  background-color: #83C5BE;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.btn.primary:hover {
+  background-color: #E29578;
+}
+
+/* FORMS  */
+
+.container {
+  margin: 50px auto;
+  padding: 20px;
+  border: 5px dotted #83C5BE;
 }

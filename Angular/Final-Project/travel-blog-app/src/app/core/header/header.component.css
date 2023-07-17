@@ -38,7 +38,7 @@ header {
     width: 20%;
 }
 
-.top-nav li:hover{
+.top-nav .menu-item:hover{
     background-color: #E29578;
     color: white;
     cursor: pointer;

@@ -1,12 +1,8 @@
-.submit-tip-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+.submit-tip.container {
+    max-width: 500px;
 }
 
-.submit-tip-container h2 {
+.submit-tip.container h2 {
     text-align: center;
 }
 
@@ -30,22 +26,7 @@
     height: 100px;
 }
 
-.btn.primary {
-    width: 100%;
-    background-color: #83C5BE;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-}
-
-a:hover {
-    color: #E29578;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.btn.primary:hover {
-    background-color: #E29578;
+.form-buttons {
+    display: flex;
+    gap: 2%;
 }

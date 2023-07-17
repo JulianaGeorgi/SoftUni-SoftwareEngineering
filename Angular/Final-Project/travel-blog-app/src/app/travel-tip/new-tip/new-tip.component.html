@@ -1,68 +1,52 @@
-<section class="submit-tip-container">
-    <h2>Submit a Travel Tip</h2>
-    <form #form="ngForm" (ngSubmit)="newTipSubmitHandler(form)">
-      <div class="form-group">
-        <label for="title">Title:</label>
-        <input 
-        type="text" 
-        id="title" 
-        name="title"
-        #inputTitle="ngModel"
-        ngModel 
-        required
-        minlength="5"
-        />
-        <ng-container *ngIf="inputTitle.touched">
-            <p class="error" *ngIf="inputTitle.errors?.['required']">
-              Tip title is required.
-            </p>
-            <p class="error" *ngIf="inputTitle.errors?.['minlength']">
-              Tip title name must be at least 5 characters long.
-            </p>
-        </ng-container>
-      </div>
+<section class="submit-tip container">
+  <div class="form-image">
+    <img src="https://images1.livehindustan.com/uploadimage/library/2022/07/18/16_9/16_9_1/travel_tips__1658147098.jpg" alt="">
+  </div>
+  <h2>Submit a Travel Tip</h2>
+  <form #form="ngForm" (ngSubmit)="newTipSubmitHandler(form)">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" #inputTitle="ngModel" ngModel required minlength="5" />
+      <ng-container *ngIf="inputTitle.touched">
+        <p class="error" *ngIf="inputTitle.errors?.['required']">
+          Tip title is required.
+        </p>
+        <p class="error" *ngIf="inputTitle.errors?.['minlength']">
+          Tip title name must be at least 5 characters long.
+        </p>
+      </ng-container>
+    </div>
 
-      <div class="form-group">
-        <label for="author">Author:</label>
-        <input 
-        type="text" 
-        id="author" 
-        name="author"
-        ngModel
-        #inputAuthor="ngModel"
-        required
-        />
-        <ng-container *ngIf="inputAuthor.touched">
-            <p class="error" *ngIf="inputAuthor.errors?.['required']">
-              Tip author is required.
-            </p>
-            <p class="error" *ngIf="inputAuthor.errors?.['minlength']">
-              Tip author must be at least 5 characters long.
-            </p>
-        </ng-container>
-      </div>
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" ngModel #inputAuthor="ngModel" required />
+      <ng-container *ngIf="inputAuthor.touched">
+        <p class="error" *ngIf="inputAuthor.errors?.['required']">
+          Tip author is required.
+        </p>
+        <p class="error" *ngIf="inputAuthor.errors?.['minlength']">
+          Tip author must be at least 5 characters long.
+        </p>
+      </ng-container>
+    </div>
 
-      <div class="form-group">
-        <label for="content">Content:</label>
-        <textarea 
-        id="content" 
-        name="content" 
-        ngModel
-        #textAreaInput="ngModel"
-        minlength="10"
-        required>
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" ngModel #textAreaInput="ngModel" minlength="10" required>
         </textarea>
-        <ng-container *ngIf="textAreaInput.touched">
-            <p class="error" *ngIf="textAreaInput.errors?.['required']">
-              The field with your Tip is required.
-            </p>
-            <p class="error" *ngIf="textAreaInput.errors?.['minlength']">
-              Tip must be at least 10 characters long.
-            </p>
-        </ng-container>
-      </div>
+      <ng-container *ngIf="textAreaInput.touched">
+        <p class="error" *ngIf="textAreaInput.errors?.['required']">
+          The field with your Tip is required.
+        </p>
+        <p class="error" *ngIf="textAreaInput.errors?.['minlength']">
+          Tip must be at least 10 characters long.
+        </p>
+      </ng-container>
+    </div>
 
+    <div class="form-buttons">
       <button class="btn primary public" [disabled]="form.invalid">Submit Tip</button>
       <button class="btn primary">Cancel</button>
-    </form>
+    </div>
+  </form>
 </section>

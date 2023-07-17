@@ -1,11 +1,12 @@
-<!-- <div class="dropdown"> -->
-    <div class="dropdown-toggle" (click)="toggleDropdown()">
-        {{ selectedOption || 'Travel Tips ' }}
+<div class="dropdown" (mouseleave)="closeDropdown()">
+    <div class="dropdown-toggle" (mouseover)="toggleDropdown()">
+        {{ selectedOption || 'Travel Tips' }}
         <i class="fa-solid fa-caret-down"></i>
     </div>
-    <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+    <ul class="dropdown-menu" [class.show]="isDropdownOpen" (mouseenter)="cancelCloseDropdown()"
+        (mouseleave)="closeDropdown()">
         <li *ngFor="let option of options" (click)="navigateToPage(option)">
             {{ option }}
         </li>
     </ul>
-<!-- </div> -->
+</div>

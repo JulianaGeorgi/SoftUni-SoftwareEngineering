@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,7 @@ export class DropdownComponent {
   options: string[] = ['Travel Tips', 'Newest', 'Add Tip'];
   selectedOption: string | null = null;
   isDropdownOpen = false;
+  closeTimeout: any;
 
   constructor(private router: Router) { }
 
@@ -33,5 +34,15 @@ export class DropdownComponent {
     }
     // Navigate to the specified route
     this.router.navigate([route]);
+  }
+
+  cancelCloseDropdown(){
+    clearTimeout(this.closeTimeout);
+  }
+
+  closeDropdown(){
+    this.closeTimeout = setTimeout(() => {
+      this.isDropdownOpen = false;
+    }, 200)
   }
 }

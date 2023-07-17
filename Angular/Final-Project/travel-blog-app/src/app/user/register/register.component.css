@@ -1,7 +1,5 @@
-.register-container {
+.register.container {
     width: 300px;
-    margin: 50px auto;
-    margin-top: 100px;
 }
 
 h2 {
@@ -14,24 +12,4 @@ input[type="password"] {
     display: block;
     width: 100%;
     margin-bottom: 10px;
-}
-
-.btn.primary {
-    width: 100%;
-    background-color: #83C5BE;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-}
-
-a:hover {
-    color: #E29578;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.btn.primary:hover {
-    background-color: #E29578;
 }
