@@ -45,15 +45,7 @@
             </p>
         </ng-container>
 
-        <!-- Phone number -->
-        <!-- <label for="phone">Phone number</label> -->
-        <input
-          type="text"
-          name="phone"
-          id="phone"
-          placeholder=" Phone number (optional)"
-          formControlName="phone"
-        />
+            {{ form.get("email")?.errors | json }}
 
         <ng-container formGroupName="passGroup">
             <!-- password -->
