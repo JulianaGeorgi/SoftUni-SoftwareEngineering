@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../types/user';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +22,12 @@ export class UserService {
     }
   }
 
-  login(): void {
+  setUserData(email: string, username: string): void {
+  
     this.user = {
-      email: 'john.doe@gmail.com',
-      firstName: 'John',
-    };
+      email: email,
+      username: username
+    }
 
     localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
   }
