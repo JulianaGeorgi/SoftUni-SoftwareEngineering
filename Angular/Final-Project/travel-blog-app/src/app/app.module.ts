@@ -9,7 +9,9 @@ import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
 import { TravelTipsComponent } from './travel-tips/travel-tips.component';
 import { TravelTipModule } from './travel-tip/travel-tip.module';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TipComponent } from './travel-tip/tip/tip.component';
 
 @NgModule({
@@ -22,10 +24,12 @@ import { TipComponent } from './travel-tip/tip/tip.component';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule, 
-    UserModule, 
-    TravelTipModule, 
+    SharedModule,
+    UserModule,
+    TravelTipModule,
     HttpClientModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

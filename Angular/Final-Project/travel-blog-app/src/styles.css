@@ -255,3 +255,10 @@ section {
   padding: 20px;
   border: 5px dotted #83C5BE;
 }
+
+.custom-snackbar{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
