@@ -63,7 +63,7 @@ export class RegisterComponent {
           // horizontalPosition: 'center',
           panelClass: 'custom-snackbar',
         })
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
         }, 
 
         error: (error) => {
