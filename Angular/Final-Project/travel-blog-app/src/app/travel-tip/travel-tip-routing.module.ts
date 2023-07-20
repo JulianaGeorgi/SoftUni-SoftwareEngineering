@@ -11,7 +11,7 @@ const routes: Routes = [
   },
 
   {
-    path: "traveltips/:id",
+    path: "traveltips/:userId/:id",
     component: TipComponent,
   },
 ];

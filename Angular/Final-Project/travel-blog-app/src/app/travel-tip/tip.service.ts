@@ -1,14 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Database, ref, set, onValue } from '@angular/fire/database';
-import { push } from 'firebase/database';
+import { child, get, getDatabase, push } from 'firebase/database';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipService {
 
-  constructor(private database: Database, private httpClient: HttpClient) { }
+  constructor(
+    private database: Database,
+    private httpClient: HttpClient,
+  ) { }
 
   submitNewTip(userId: string | null, tipTitle: string, authorName: string, imageUrl: string, tipContent: string) {
     const newTipRef = push(ref(this.database, 'traveltips/' + userId), {
@@ -19,6 +23,7 @@ export class TipService {
     });
 
     const newTipKey = newTipRef.key;
+
     //TODO: add error handling - if key cannot be retrieved
     return newTipKey;
   }
@@ -31,11 +36,19 @@ export class TipService {
     });
   }
 
-  getOneTip(tipId: string) {
-    const databaseRef = ref(this.database, 'traveltips/' + tipId);
-    onValue(databaseRef, (snapshot) => {
-      console.log(snapshot.val());
-    });
+  getOneTip(userId: string, tipId: string): Promise<any> {
+    let result = '';
+    const dbRef = ref(getDatabase());
+    return get(child(dbRef, `traveltips/${userId}/${tipId}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          // console.log(snapshot.val());
+          return (snapshot.val());
+        } else {
+          console.log("Error :( Please try again later.");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
   }
-
 }

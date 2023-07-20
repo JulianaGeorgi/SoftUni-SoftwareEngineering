@@ -1,24 +1,17 @@
-<div *ngIf="tip$ | async as tip">
-    <h2>{{ tip.title }}</h2>
-    <p>{{ tip.content }}</p>
-</div>
-
-
-<!-- <div class='tips-item-grid'>
-    <div class='tip-item'>
+<div class='tips-item-grid'>
+    <div *ngIf="tip$ | async as tip" class='tip-item'>
         <figure class='tip-img'>
-            <img alt='Must see places'
-                src='https://99livesblog.files.wordpress.com/2015/07/12246939_1054691041218893_1009480596906325821_n.jpg?w=658&crop=1&h=&zoom=2' />
+            <img alt='Must see places'src={{tip.imageUrl}} /> 
         </figure>
         <div class="description">
-            <h3>Must see places</h3>
-            <p>There are some places that you just cannot miss.</p>
+            <h3>{{ tip.tipTitle }}</h3>
+            <p>{{ tip.tipContent }}</p>
         </div>
         <button class='btn primary'>
             <a routerLink='/home'>Read more <span><b>♡</b></span></a>
         </button>
     </div>
-
+<!-- 
     <div class='tip-item'>
         <figure class='tip-img'>
             <img alt='Winter time'
@@ -87,6 +80,6 @@
         <button class='btn primary'>
             <a routerLink='/home'>Read more <span><b>♡</b></span></a>
         </button>
-    </div>
+    </div> -->
 
-</div> -->
+</div>

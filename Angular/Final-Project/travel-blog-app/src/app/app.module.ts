@@ -21,7 +21,6 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +40,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideStorage(() => getStorage()), 
+    provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent]

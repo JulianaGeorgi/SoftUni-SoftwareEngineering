@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TipService } from '../tip.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -9,21 +9,30 @@ import { map, switchMap } from 'rxjs/operators';
   templateUrl: './tip.component.html',
   styleUrls: ['./tip.component.css']
 })
-export class TipComponent implements OnInit{
+export class TipComponent implements OnInit {
 
   tip$!: Observable<any>;
 
   constructor(
     private tipService: TipService,
     private route: ActivatedRoute
-    ) {}
+  ) { }
 
   ngOnInit(): void {
-    const tip = this.tip$ = this.route.params.pipe(
-      map((params) => params['id']), // Extract the post ID from the route parameters
-      switchMap(async (tipId) => this.tipService.getOneTip(tipId)) // Fetch the post using the post ID
+    this.tip$ = combineLatest([this.route.params]).pipe(
+      map(([params]) => {
+        const userId = params['userId']; // Read the userId from route parameters
+        const tipId = params['id']; // Read the id from route parameters
+        return { userId, tipId }; // Combine both parameters into an object
+      }),
+      switchMap(async ({ userId, tipId }) => this.tipService.getOneTip(userId, tipId).then(function(val) { return val}))
     );
-
-    console.log(tip);
+    
+    this.tip$.subscribe(
+      (data: any) => {
+        console.log(data); // Handle the emitted data here
+      }
+    );
   }
 }
+
