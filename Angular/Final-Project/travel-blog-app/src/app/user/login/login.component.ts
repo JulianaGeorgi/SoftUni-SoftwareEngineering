@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment.development';
 import { User } from 'src/app/types/user';
+import { TipService } from 'src/app/travel-tip/tip.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent {
 
   constructor(
     private userService: UserService,
+    private tipService: TipService,
     private router: Router,
     private httpClient: HttpClient,
     private MatSnackBar: MatSnackBar) {
@@ -32,13 +34,13 @@ export class LoginComponent {
         { ...form.value, returnSecureToken: true }
       )
       .subscribe({
-        next: (response) => {
-          console.log(response);
+        next: (response: any) => {
           this.MatSnackBar.open("Login successful :)", "Great!", {
             verticalPosition: 'top',
             horizontalPosition: 'center',
             panelClass: 'custom-snackbar',
           })
+          this.userService.setUserData(form.value.email, form.value.username, response.localId);
           this.router.navigate(['/']);
         },
 
@@ -52,7 +54,5 @@ export class LoginComponent {
           });
         }
       });
-
-      this.userService.setUserData(form.value.email, form.value.username);
   }
 }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "travel-blog-bab80": {
+      "hosting": {
+        "travel-blog-app": [
+          "travel-blog-bab80"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "travel-blog-bab80"
+  }
+}

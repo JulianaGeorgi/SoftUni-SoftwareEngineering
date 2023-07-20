@@ -5,38 +5,48 @@
   <h2>Submit a Travel Tip</h2>
   <form #form="ngForm" (ngSubmit)="newTipSubmitHandler(form)">
     <div class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" #inputTitle="ngModel" ngModel required minlength="5" />
-      <ng-container *ngIf="inputTitle.touched">
-        <p class="error" *ngIf="inputTitle.errors?.['required']">
-          Tip title is required.
+      <label for="tipTitle">Title:</label>
+      <input type="text" id="tipTitle" name="tipTitle" #inputTipTitle="ngModel" ngModel required minlength="5" />
+      <ng-container *ngIf="inputTipTitle.touched">
+        <p class="error" *ngIf="inputTipTitle.errors?.['required']">
+          Please choose a tip title. 
         </p>
-        <p class="error" *ngIf="inputTitle.errors?.['minlength']">
-          Tip title name must be at least 5 characters long.
-        </p>
-      </ng-container>
-    </div>
-
-    <div class="form-group">
-      <label for="author">Author:</label>
-      <input type="text" id="author" name="author" ngModel #inputAuthor="ngModel" required />
-      <ng-container *ngIf="inputAuthor.touched">
-        <p class="error" *ngIf="inputAuthor.errors?.['required']">
-          Tip author is required.
-        </p>
-        <p class="error" *ngIf="inputAuthor.errors?.['minlength']">
-          Tip author must be at least 5 characters long.
+        <p class="error" *ngIf="inputTipTitle.errors?.['minlength']">
+          Tip title must be at least 5 characters long.
         </p>
       </ng-container>
     </div>
 
     <div class="form-group">
-      <label for="content">Content:</label>
-      <textarea id="content" name="content" ngModel #textAreaInput="ngModel" minlength="10" required>
+      <label for="authorName">Author's name:</label>
+      <input type="text" id="authorName" name="authorName" ngModel #inputAuthorName="ngModel" required />
+      <ng-container *ngIf="inputAuthorName.touched">
+        <p class="error" *ngIf="inputAuthorName.errors?.['required']">
+          Please write your name or pseudonym.
+        </p>
+        <p class="error" *ngIf="inputAuthorName.errors?.['minlength']">
+          The author must be at least 5 characters long.
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">ImageUrl:</label>
+      <input type="text" id="imageUrl" name="imageUrl" ngModel #inputImageUrl="ngModel" required />
+      <ng-container *ngIf="inputImageUrl.touched">
+        <p class="error" *ngIf="inputImageUrl.errors?.['required']">
+          An image is required.
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="form-group">
+      <label for="tipContent">Content:</label>
+      <textarea id="tipContent" name="tipContent" ngModel #textAreaInput="ngModel" minlength="10" required>
         </textarea>
       <ng-container *ngIf="textAreaInput.touched">
         <p class="error" *ngIf="textAreaInput.errors?.['required']">
-          The field with your Tip is required.
+          Please share your amazing tip with us. 
         </p>
         <p class="error" *ngIf="textAreaInput.errors?.['minlength']">
           Tip must be at least 10 characters long.
