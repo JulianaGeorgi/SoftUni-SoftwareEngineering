@@ -9,22 +9,32 @@ import { push } from 'firebase/database';
 export class TipService {
 
   constructor(private database: Database, private httpClient: HttpClient) { }
-  
-  submitNewTip(userId: string | null, tipTitle: string, authorName:string, imageUrl: string, tipContent:string) {
-    push(ref(this.database, 'traveltips/' + userId), {
+
+  submitNewTip(userId: string | null, tipTitle: string, authorName: string, imageUrl: string, tipContent: string) {
+    const newTipRef = push(ref(this.database, 'traveltips/' + userId), {
       tipTitle: tipTitle,
       authorName: authorName,
-      imageUrl : imageUrl, 
+      imageUrl: imageUrl,
       tipContent: tipContent
     });
 
+    const newTipKey = newTipRef.key;
+    //TODO: add error handling - if key cannot be retrieved
+    return newTipKey;
   }
-  
+
 
   getAllTips(): void {
     const databaseRef = ref(this.database, 'traveltips');
     onValue(databaseRef, (snapshot: any) => {
       // console.log(snapshot.val());
+    });
+  }
+
+  getOneTip(tipId: string) {
+    const databaseRef = ref(this.database, 'traveltips/' + tipId);
+    onValue(databaseRef, (snapshot) => {
+      console.log(snapshot.val());
     });
   }
 
