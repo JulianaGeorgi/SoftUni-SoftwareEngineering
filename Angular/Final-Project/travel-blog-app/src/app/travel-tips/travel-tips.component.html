@@ -3,18 +3,20 @@
     <h2>Enjoy the best of Bulgaria</h2>
     <h3>For foreigners and locals who want to (re)discover our lovely Bulgaria.</h3>
     </div>
-    <div class='tips-item-grid' *ngIf="featuredTips$ | async as featuredTips" >
-        <div class="tip-item" *ngFor="let tip of featuredTips">
+    <div class='tips-item-grid' *ngIf="featuredTips" >
+        
+        <div class="tip-item" *ngFor="let tip of featuredTips | keyvalue " >
             <figure class='tip-img'>
-                <img alt='Must see places'src={{tip.imageUrl}} /> 
+                <img alt='image' [src]="tip.value['imageUrl']" />
             </figure>
             <div class="description">
-                <h3>{{ tip.tipTitle }}</h3>
-                <p>{{ tip.tipContent }}</p>
+                <h3>{{tip.value['tipTitle']}}</h3>
+                <p>{{tip.value['tipContent']}}</p>
             </div>
             <button class='btn primary'>
                 <a routerLink='/home'>Read more <span><b>♡</b></span></a>
             </button>
         </div>
+
     </div>
 </section>
