@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Database, ref, set, onValue } from '@angular/fire/database';
-import { child, get, getDatabase, push } from 'firebase/database';
+import { getDatabase, child, get, push, remove } from 'firebase/database';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TipService {
 
   constructor(
@@ -47,7 +48,6 @@ export class TipService {
   }
 
   getOneTip(userId: string, tipId: string): Promise<any> {
-    let result = '';
     const dbRef = ref(getDatabase());
     return get(child(dbRef, `traveltips/${userId}/${tipId}`))
       .then((snapshot) => {
@@ -61,4 +61,15 @@ export class TipService {
         console.error(error);
       });
   }
+
+  deleteTip(userId: string | null, tipId: string | null) {
+    console.log(userId, tipId)
+    const db = getDatabase();
+    const tipRef = ref(db, `traveltips/${userId}/${tipId}`);
+    remove(tipRef).then(() => {
+      console.log("tip removed");
+    });
+  }
 }
+
+//TODO: Clean & organize better code - remove repetitions

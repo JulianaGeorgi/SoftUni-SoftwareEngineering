@@ -1,89 +1,17 @@
-
-    <div *ngIf="tip$ | async as tip" class='tip-item'>
-        <figure class='tip-img'>
-            <img alt='Must see places'src={{tip.imageUrl}} /> 
-        </figure>
-        <div class="description">
-            <h3>{{ tip.tipTitle }}</h3>
-            <p>{{ tip.tipContent }}</p>
-        </div>
-        <div class="btn wrapper" *ngIf="isOwner">
-            <button class='btn primary'>
-                <a routerLink='/newtip'>Edit <span><b>♡</b></span></a>
-            </button>
-            <button class='btn primary'>
-                <a routerLink='/home'>Delete <span><b>♡</b></span></a>
-            </button>
-        </div>
-<!-- 
-    <div class='tip-item'>
-        <figure class='tip-img'>
-            <img alt='Winter time'
-                src='https://99livesblog.files.wordpress.com/2016/01/img_1855_fhdr1.jpg?w=986&crop=1&h=&zoom=2' />
-        </figure>
-        <div class="description">
-            <h3>Winter time dos and don'ts</h3>
-            <p>Some cool tips for you to follow when visiting in Winter.</p>
-        </div>
+<div *ngIf="tip$ | async as tip" class='tip-item'>
+    <figure class='tip-img'>
+        <img alt='Must see places' src={{tip.imageUrl}} />
+    </figure>
+    <div class="description">
+        <h3>{{ tip.tipTitle }}</h3>
+        <p>{{ tip.tipContent }}</p>
+    </div>
+    <div class="btn wrapper" *ngIf="isOwner">
         <button class='btn primary'>
-            <a routerLink='/home'>Read more <span><b>♡</b></span></a>
+            <a routerLink='/newtip'>Edit <span><b>♡</b></span></a>
+        </button>
+        <button class='btn primary' (click)="deleteTip()">
+            Delete 
         </button>
     </div>
-
-    <div class='tip-item'>
-        <figure class='tip-img'>
-            <img alt='seaside'
-                src='https://99livesblog.files.wordpress.com/2016/01/dsc_0563_fhdr.jpg?w=986&crop=1&h=&zoom=2' />
-        </figure>
-        <div class="description">
-            <h3>The magnificent seaside</h3>
-            <p>Your trip won't be complete without visiting the seaside.</p>
-        </div>
-        <button class='btn primary'>
-            <a routerLink='/home'>Read more <span><b>♡</b></span></a>
-        </button>
-    </div>
-
-    <div class='tip-item'>
-        <figure class='tip-img'>
-            <img alt='martenitsa'
-                src='https://99livesblog.files.wordpress.com/2015/07/3-5.jpg?w=300&h=300' />
-        </figure>
-        <div class="description">
-            <h3>"Weird" customs</h3>
-            <p>Weird for you, traditional for us.</p>
-        </div>
-        <button class='btn primary'>
-            <a routerLink='/home'>Read more <span><b>♡</b></span></a>
-        </button>
-    </div>
-
-    <div class='tip-item'>
-        <figure class='tip-img'>
-            <img alt='winter preserves'
-                src='https://99livesblog.files.wordpress.com/2015/07/7.jpg?w=658&h=&zoom=2' />
-        </figure>
-        <div class="description">
-            <h3>Foods that you cannot miss</h3>
-            <p>The list is long, prepare yourself.</p>
-        </div>
-        <button class='btn primary'>
-            <a routerLink='/home'>Read more <span><b>♡</b></span></a>
-        </button>
-    </div>
-
-    <div class='tip-item'>
-        <figure class='tip-img'>
-            <img alt='railway'
-                src='https://99livesblog.files.wordpress.com/2015/07/dsc_0408_fhdr.jpg?w=800&h=&zoom=2' />
-        </figure>
-        <div class="description">
-            <h3>Best ways to travel</h3>
-            <p>Here are some tips to keep in mind when using different kind of transportation.</p>
-        </div>
-        <button class='btn primary'>
-            <a routerLink='/home'>Read more <span><b>♡</b></span></a>
-        </button>
-    </div> -->
-
 </div>
