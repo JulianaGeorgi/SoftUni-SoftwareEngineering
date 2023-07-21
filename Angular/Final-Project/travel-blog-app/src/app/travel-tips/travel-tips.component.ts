@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TipService } from '../travel-tip/tip.service';
-import { Observable } from 'rxjs';
 import { featuredUserId } from '../shared/constants';
 import { Tip } from '../types/tip';
 
@@ -11,7 +10,8 @@ import { Tip } from '../types/tip';
 })
 export class TravelTipsComponent implements OnInit{
 
-  featuredTips: { [key: string]: { [key: string]: any } }= {};
+  featuredTips: { [key: string]: { [key: string]: Tip } }= {};
+  readonly featuredUserId = featuredUserId;  
 
   constructor(
     private tipService: TipService
@@ -22,7 +22,6 @@ export class TravelTipsComponent implements OnInit{
       .subscribe({
         next: (tips) => {
           this.featuredTips = tips;
-          console.log(this.featuredTips);
         },
         error: (err) => {
           console.error(`Error: ${err}`);

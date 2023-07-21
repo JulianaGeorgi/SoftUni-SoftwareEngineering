@@ -14,7 +14,7 @@
                 <p>{{tip.value['tipContent']}}</p>
             </div>
             <button class='btn primary'>
-                <a routerLink='/home'>Read more <span><b>♡</b></span></a>
+                <a [routerLink]="['/traveltips',featuredUserId,tip.key]">Read more <span><b>♡</b></span></a>
             </button>
         </div>
 

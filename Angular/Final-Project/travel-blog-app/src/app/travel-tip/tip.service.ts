@@ -31,7 +31,7 @@ export class TipService {
   getAllTips(): void {
     const databaseRef = ref(this.database, 'traveltips');
     onValue(databaseRef, (snapshot: any) => {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
     });
   }
 

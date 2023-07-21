@@ -7,10 +7,14 @@
             <h3>{{ tip.tipTitle }}</h3>
             <p>{{ tip.tipContent }}</p>
         </div>
-        <button class='btn primary'>
-            <a routerLink='/home'>Read more <span><b>♡</b></span></a>
-        </button>
-
+        <div class="btn wrapper" *ngIf="isOwner">
+            <button class='btn primary'>
+                <a routerLink='/newtip'>Edit <span><b>♡</b></span></a>
+            </button>
+            <button class='btn primary'>
+                <a routerLink='/home'>Delete <span><b>♡</b></span></a>
+            </button>
+        </div>
 <!-- 
     <div class='tip-item'>
         <figure class='tip-img'>

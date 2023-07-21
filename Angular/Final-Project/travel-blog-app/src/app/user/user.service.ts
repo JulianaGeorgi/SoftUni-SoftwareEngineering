@@ -35,6 +35,13 @@ export class UserService {
     localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
   }
 
+  isOwner(authorId: string | null): boolean {
+    if(this.user?.userId === authorId){
+      return true;
+    }
+    return false;
+  }
+
   getUserData(): string | null {
     return localStorage.getItem(this.USER_KEY);
   }
