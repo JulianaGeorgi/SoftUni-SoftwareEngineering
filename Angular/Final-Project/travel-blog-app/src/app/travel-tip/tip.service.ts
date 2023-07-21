@@ -28,12 +28,22 @@ export class TipService {
     return newTipKey;
   }
 
-
   getAllTips(): void {
     const databaseRef = ref(this.database, 'traveltips');
     onValue(databaseRef, (snapshot: any) => {
-      // console.log(snapshot.val());
+      console.log(snapshot.val());
     });
+  }
+
+  getAllFeaturedTips(userId: string): Observable<any> {
+    const databaseRef = ref(this.database, `traveltips/${userId}`);
+    return new Observable((obs) => {
+      onValue(databaseRef, (snapshot: any) => {
+        const tips = snapshot.val();
+        obs.next(tips);
+        // obs.complete();
+      });
+    })
   }
 
   getOneTip(userId: string, tipId: string): Promise<any> {

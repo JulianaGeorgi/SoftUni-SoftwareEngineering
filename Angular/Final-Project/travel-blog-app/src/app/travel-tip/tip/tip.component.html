@@ -1,4 +1,4 @@
-<div class='tips-item-grid'>
+
     <div *ngIf="tip$ | async as tip" class='tip-item'>
         <figure class='tip-img'>
             <img alt='Must see places'src={{tip.imageUrl}} /> 
@@ -10,7 +10,7 @@
         <button class='btn primary'>
             <a routerLink='/home'>Read more <span><b>♡</b></span></a>
         </button>
-    </div>
+
 <!-- 
     <div class='tip-item'>
         <figure class='tip-img'>
