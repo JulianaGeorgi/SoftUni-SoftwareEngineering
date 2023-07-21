@@ -5,7 +5,7 @@
     </div>
     <ul class="dropdown-menu" [class.show]="isDropdownOpen" (mouseenter)="cancelCloseDropdown()"
         (mouseleave)="closeDropdown()">
-        <li *ngFor="let option of options" (click)="navigateToPage(option)">
+        <li *ngFor="let option of options" (click)="navigateToPage(option)" [hidden]="option === 'Add Tip' && !isLoggedIn">
             {{ option }}
         </li>
     </ul>

@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-dropdown',
@@ -12,7 +13,14 @@ export class DropdownComponent {
   isDropdownOpen = false;
   closeTimeout: any;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) { }
+
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -36,11 +44,11 @@ export class DropdownComponent {
     this.router.navigate([route]);
   }
 
-  cancelCloseDropdown(){
+  cancelCloseDropdown() {
     clearTimeout(this.closeTimeout);
   }
 
-  closeDropdown(){
+  closeDropdown() {
     this.closeTimeout = setTimeout(() => {
       this.isDropdownOpen = false;
     }, 200)
