@@ -1,39 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TipService } from '../travel-tip/tip.service';
-import { featuredUserId } from '../shared/constants';
-import { Tip } from '../types/tip';
+
 
 @Component({
   selector: 'app-travel-tips',
   templateUrl: './travel-tips.component.html',
   styleUrls: ['./travel-tips.component.css']
 })
-export class TravelTipsComponent implements OnInit{
+export class TravelTipsComponent {
 
-  featuredTips: { [key: string]: { [key: string]: Tip } }= {};
-  readonly featuredUserId = featuredUserId;  
+  allTips: any[] = [];
 
   constructor(
     private tipService: TipService
   ) { }
 
   ngOnInit(): void {
-    this.tipService.getAllFeaturedTips(featuredUserId)
+    this.tipService.getAllTips()
       .subscribe({
         next: (tips) => {
-          this.featuredTips = tips;
+
+          for (let userId in tips) { // looping the object with users - userId's(k) and (v->tipId)
+
+            for (const tipId in tips[userId]) { // looping the object with tipsId's - tipId's(k) and (v->tip-properties)
+              tips[userId][tipId].userId = userId; // saving the userId as a property of the tip
+            }
+
+            this.allTips = { ...this.allTips, ...tips[userId] } // merging the different users tips in one object with all tips
+          }
         },
         error: (err) => {
           console.error(`Error: ${err}`);
         },
       });
-
-    // this.featuredTips$! = this.tipService.getAllFeaturedTips(featuredUserId);
-
-    // this.featuredTips$.subscribe((tipsData: any) => {
-    //   this.featuredTipsTest =  Object.values(tipsData);
-    //   console.log(this.featuredTipsTest);
-    // });
-
   }
 }
