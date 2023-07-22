@@ -1,5 +1,5 @@
 export interface Tip {
-    tipTitle: string;
+    tipTitle: string ;
     authorName: string; 
     imageUrl: string;
     tipContent: string;

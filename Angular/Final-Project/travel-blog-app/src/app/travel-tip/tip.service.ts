@@ -14,7 +14,7 @@ export class TipService {
   ) { }
 
   submitNewTip(userId: string | null, tipTitle: string, authorName: string, imageUrl: string, tipContent: string) {
-    
+
     const newTipRef = push(ref(this.database, 'traveltips/' + userId), {
       tipTitle: tipTitle,
       authorName: authorName,
@@ -28,7 +28,7 @@ export class TipService {
     return newTipKey;
   }
 
-  getAllTips(): Observable <any> {
+  getAllTips(): Observable<any> {
 
     const databaseRef = ref(this.database, 'traveltips');
 
@@ -54,21 +54,21 @@ export class TipService {
     })
   }
 
-  getOneTip(userId: string, tipId: string): Observable<any> {
+  getOneTip(userId: string | null, tipId: string | null): Observable<any> {
 
     const databaseRef = ref(this.database, `traveltips/${userId}/${tipId}`);
-    
+
     return new Observable((obs) => {
-      
+
       onValue(databaseRef, (snapshot: any) => {
-        const tip = snapshot.val();
-        obs.next(tip);
-        // if (snapshot && snapshot.exists()) {
-        //   return tip;
-        // } else {
-        //   console.log("Tip not found.");
-        //   return null;
-        // }
+        if (snapshot && snapshot.exists()) {
+          const tip = snapshot.val();
+          obs.next(tip);
+          obs.complete();
+          return tip;
+        } else {
+          obs.error();
+        }
       });
     })
   }

@@ -1,4 +1,5 @@
-<div *ngIf="tip$ | async as tip" class='tip-item'>
+<div *ngIf="tip$ as tip " class='tip-item'>
+    {{tip | json}}
     <figure class='tip-img'>
         <img alt='Must see places' src={{tip.imageUrl}} />
     </figure>
