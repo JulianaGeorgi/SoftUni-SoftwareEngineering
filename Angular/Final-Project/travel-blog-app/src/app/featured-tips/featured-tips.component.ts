@@ -26,6 +26,9 @@ export class FeaturedTipsComponent implements OnInit{
         error: (err) => {
           console.error(`Error: ${err}`);
         },
+        complete: () => {
+          console.log("All featured tips were successfully fetched from the database.");
+        }
       });
   }
 }

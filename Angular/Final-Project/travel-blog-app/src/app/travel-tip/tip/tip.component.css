@@ -1,13 +1,15 @@
-.tips-item-grid {
+/* .tips-item-grid {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(min(100%/1, max(290px, 100%/4)), 1fr));
     margin-top: 50px;
-}
+} */
 
 .tip-item {
     display: flex;
     flex-direction: column;
+    gap: 50px;
+    margin: 100px;
 }
 
 .tip-item .tip-img {

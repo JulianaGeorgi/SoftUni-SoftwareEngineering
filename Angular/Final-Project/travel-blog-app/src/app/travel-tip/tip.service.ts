@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Database, ref, set, onValue } from '@angular/fire/database';
-import { getDatabase, child, get, push, remove } from 'firebase/database';
+import { Database, ref, onValue } from '@angular/fire/database';
+import { push, remove } from 'firebase/database';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,10 +11,10 @@ export class TipService {
 
   constructor(
     private database: Database,
-    private httpClient: HttpClient,
   ) { }
 
   submitNewTip(userId: string | null, tipTitle: string, authorName: string, imageUrl: string, tipContent: string) {
+    
     const newTipRef = push(ref(this.database, 'traveltips/' + userId), {
       tipTitle: tipTitle,
       authorName: authorName,
@@ -30,50 +29,56 @@ export class TipService {
   }
 
   getAllTips(): Observable <any> {
+
     const databaseRef = ref(this.database, 'traveltips');
+
     return new Observable((obs) => {
       onValue(databaseRef, (snapshot: any) => {
         const tips = snapshot.val();
-        obs.next(tips);
-        // obs.complete();
+        obs.next(tips); // next param - callback f -> gets executed every time the next method returns a value
+        obs.complete();
       });
     })
   }
 
   getAllFeaturedTips(userId: string): Observable<any> {
+
     const databaseRef = ref(this.database, `traveltips/${userId}`);
+
     return new Observable((obs) => {
       onValue(databaseRef, (snapshot: any) => {
         const tips = snapshot.val();
         obs.next(tips);
-        // obs.complete();
+        obs.complete();
       });
     })
   }
 
-  getOneTip(userId: string, tipId: string): Promise<any> {
-    const dbRef = ref(getDatabase());
-    return get(child(dbRef, `traveltips/${userId}/${tipId}`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          // console.log(snapshot.val());
-          return (snapshot.val());
-        } else {
-          console.log("Error :( Please try again later.");
-        }
-      }).catch((error) => {
-        console.error(error);
+  getOneTip(userId: string, tipId: string): Observable<any> {
+
+    const databaseRef = ref(this.database, `traveltips/${userId}/${tipId}`);
+    
+    return new Observable((obs) => {
+      
+      onValue(databaseRef, (snapshot: any) => {
+        const tip = snapshot.val();
+        obs.next(tip);
+        // if (snapshot && snapshot.exists()) {
+        //   return tip;
+        // } else {
+        //   console.log("Tip not found.");
+        //   return null;
+        // }
       });
+    })
   }
 
   deleteTip(userId: string | null, tipId: string | null) {
-    console.log(userId, tipId)
-    const db = getDatabase();
-    const tipRef = ref(db, `traveltips/${userId}/${tipId}`);
+
+    const tipRef = ref(this.database, `traveltips/${userId}/${tipId}`);
+
     remove(tipRef).then(() => {
-      console.log("tip removed");
+      console.log("Tip successfully deleted from the database.");
     });
   }
 }
-
-//TODO: Clean & organize better code - remove repetitions

@@ -234,6 +234,12 @@ section {
 
 /* BUTTONS */
 
+.btn.wrapper {
+  display: flex;
+  gap: 5%;
+  justify-content: center;
+}
+
 .btn.primary {
   width: 100%;
   background-color: #83C5BE;
@@ -242,6 +248,15 @@ section {
   border: none;
   border-radius: 50px;
   cursor: pointer;
+}
+
+.btn.primary a {
+  color:white;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: 10px 140px;
+  margin: -2em;
 }
 
 .btn.primary:hover {
@@ -256,7 +271,7 @@ section {
   border: 5px dotted #83C5BE;
 }
 
-.custom-snackbar{
+.custom-snackbar {
   position: fixed;
   right: 0;
   bottom: 0;

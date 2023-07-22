@@ -16,6 +16,7 @@ export class TravelTipsComponent {
   ) { }
 
   ngOnInit(): void {
+
     this.tipService.getAllTips()
       .subscribe({
         next: (tips) => {
@@ -32,6 +33,9 @@ export class TravelTipsComponent {
         error: (err) => {
           console.error(`Error: ${err}`);
         },
+        complete: () => {
+          console.log("All tips were successfully fetched from the database.");
+        }
       });
   }
 }

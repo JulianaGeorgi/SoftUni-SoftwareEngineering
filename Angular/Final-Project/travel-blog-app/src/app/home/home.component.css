@@ -11,26 +11,10 @@
     margin-bottom: 50px;
 }
 
-.btn.primary {
+.home-header .btn.primary {
     width: 20%;
-    background-color: #83C5BE;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
 }
 
-a {
-    color: white;
-}
-
-a:hover {
-    /* color: #E29578; */
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.btn.primary:hover {
-    background-color: #E29578;
+.home-header .btn.primary a{
+    padding: 20px;
 }

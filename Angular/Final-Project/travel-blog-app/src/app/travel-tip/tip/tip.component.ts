@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TipService } from '../tip.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/user/user.service';
 
@@ -34,14 +34,17 @@ export class TipComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    debugger;
     this.tip$ = combineLatest([this.route.params]).pipe(
       map(([params]) => {
         const userId = params['userId']; // Read the userId from route parameters
         const tipId = params['id']; // Read the id from route parameters
         return { userId, tipId }; // Combine both parameters into an object
       }),
-      switchMap(async ({ userId, tipId }) => this.tipService.getOneTip(userId, tipId).then(function (val) { return val }))
+      switchMap( ({ userId, tipId }) => from(this.tipService.getOneTip(userId, tipId))),
+      map((val: any) => {
+        return val; 
+      })
     );
 
     this.tip$.subscribe(
