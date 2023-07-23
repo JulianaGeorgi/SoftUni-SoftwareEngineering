@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Database, ref, onValue } from '@angular/fire/database';
-import { push, remove } from 'firebase/database';
+import { child, push, remove, update } from 'firebase/database';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,21 +12,6 @@ export class TipService {
   constructor(
     private database: Database,
   ) { }
-
-  submitNewTip(userId: string | null, tipTitle: string, authorName: string, imageUrl: string, tipContent: string) {
-
-    const newTipRef = push(ref(this.database, 'traveltips/' + userId), {
-      tipTitle: tipTitle,
-      authorName: authorName,
-      imageUrl: imageUrl,
-      tipContent: tipContent
-    });
-
-    const newTipKey = newTipRef.key;
-
-    //TODO: add error handling - if key cannot be retrieved
-    return newTipKey;
-  }
 
   getAllTips(): Observable<any> {
 
@@ -72,6 +57,50 @@ export class TipService {
       });
     })
   }
+
+  updateTip(tipDetails: any, userId: string | null, tipId: string | null){
+    debugger
+    console.log(tipDetails);
+
+    const updatedTipDetails = {
+      tipTitle: tipDetails.tipDetails.tipTitle,
+      authorName: tipDetails.tipDetails.authorName,
+      imageUrl: tipDetails.tipDetails.imageUrl,
+      tipContent: tipDetails.tipDetails.tipContent
+    }
+    //TODO: fix that stupid object & improve the whole function
+
+    const newTipKey = push(child(ref(this.database), 'traveltips')).key;
+
+    const updates: any = {};
+    // updates['/traveltips/' + userId + '/' + newTipKey] = updatedTipDetails;
+    updates['/traveltips/' + userId + '/' + tipId] = updatedTipDetails;
+  
+    return update(ref(this.database), updates);
+    
+    // console.log(updatedTipRef);
+
+    // const newTipKey = updatedTipRef.key;
+
+    // return newTipKey;
+
+  }
+
+  submitNewTip(userId: string | null, tipTitle: string, authorName: string, imageUrl: string, tipContent: string) {
+
+    const newTipRef = push(ref(this.database, 'traveltips/' + userId), {
+      tipTitle: tipTitle,
+      authorName: authorName,
+      imageUrl: imageUrl,
+      tipContent: tipContent
+    });
+
+    const newTipKey = newTipRef.key;
+
+    //TODO: add error handling - if key cannot be retrieved
+    return newTipKey;
+  }
+
 
   deleteTip(userId: string | null, tipId: string | null) {
 

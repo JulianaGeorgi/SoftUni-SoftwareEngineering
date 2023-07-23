@@ -7,11 +7,13 @@
         <p>{{ tip.tipContent }}</p>
     </div>
     <div class="btn wrapper" *ngIf="isOwner">
-        <button class='btn primary'>
-            <a routerLink='/newtip'>Edit <span><b>♡</b></span></a>
+        <button class='btn primary' (click)="onEditTip(tip)">
+            Edit <span><b>♡</b></span>
+            <!-- <a routerLink='/newtip' ></a> -->
         </button>
         <button class='btn primary' (click)="deleteTip()">
             Delete 
         </button>
     </div>
+    <app-update-tip *ngIf="showUpdatePost"/>
 </div>

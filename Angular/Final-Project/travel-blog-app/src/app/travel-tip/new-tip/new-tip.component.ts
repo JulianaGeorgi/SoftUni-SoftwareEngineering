@@ -28,7 +28,6 @@ export class NewTipComponent {
     }
     const tipId = this.tipService.submitNewTip(this.userId, form.value.tipTitle, form.value.authorName, form.value.imageUrl, form.value.tipContent);
 
-    // TODO: navigate to tip page
     this.router.navigate([`traveltips/${this.userId}/${tipId}`]);
 
     //   userData : any = this.userService!.getUserData();

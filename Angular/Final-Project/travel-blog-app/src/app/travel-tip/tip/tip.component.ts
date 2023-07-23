@@ -24,6 +24,8 @@ export class TipComponent implements OnInit {
   tipId: string | null = this.route.snapshot.paramMap.get('id');
   // tipId: string | null = "23457899";
 
+  showUpdatePost: boolean = false;
+
   constructor(
     private tipService: TipService,
     private userService: UserService,
@@ -39,6 +41,11 @@ export class TipComponent implements OnInit {
     this.tipService.deleteTip(this.userId, this.tipId);
     this.router.navigate(['/home']);
     return true;
+  }
+
+  onEditTip(tip: Tip) {
+    console.log("Edit button works")
+    this.showUpdatePost = true;
   }
 
   ngOnInit(): void {

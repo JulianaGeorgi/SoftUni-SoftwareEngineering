@@ -1,0 +1,56 @@
+<form [formGroup]="postForm" (ngSubmit)="onUpdateTip()">
+    <div class="form-group">
+        <label for="tipTitle">Title:</label>
+        <input type="text" id="tipTitle" formControlName="tipTitle" />
+        <!-- <ng-container *ngIf="inputTipTitle.touched">
+        <p class="error" *ngIf="inputTipTitle.errors?.['required']">
+          Please choose a tip title. 
+        </p>
+        <p class="error" *ngIf="inputTipTitle.errors?.['minlength']">
+          Tip title must be at least 5 characters long.
+        </p>
+      </ng-container> -->
+    </div>
+
+    <div class="form-group">
+        <label for="authorName">Author's name:</label>
+        <input type="text" id="authorName" formControlName="authorName"  />
+        <!-- <ng-container *ngIf="inputAuthorName.touched">
+        <p class="error" *ngIf="inputAuthorName.errors?.['required']">
+          Please write your name or pseudonym.
+        </p>
+        <p class="error" *ngIf="inputAuthorName.errors?.['minlength']">
+          The author must be at least 5 characters long.
+        </p>
+      </ng-container> -->
+    </div>
+
+    <div class="form-group">
+        <label for="imageUrl">ImageUrl:</label>
+        <input type="text" id="imageUrl" formControlName="imageUrl"  />
+        <!-- <ng-container *ngIf="inputImageUrl.touched">
+        <p class="error" *ngIf="inputImageUrl.errors?.['required']">
+          An image is required.
+        </p>
+      </ng-container> -->
+    </div>
+
+    <div class="form-group">
+        <label for="tipContent">Content:</label>
+        <textarea id="tipContent" formControlName="tipContent" >
+        </textarea>
+        <!-- <ng-container *ngIf="textAreaInput.touched">
+        <p class="error" *ngIf="textAreaInput.errors?.['required']">
+          Please share your amazing tip with us. 
+        </p>
+        <p class="error" *ngIf="textAreaInput.errors?.['minlength']">
+          Tip must be at least 10 characters long.
+        </p>
+      </ng-container> -->
+    </div>
+
+    <div class="form-buttons">
+        <button class="btn primary public" type="submit">Submit Tip</button>
+        <button class="btn primary">Cancel</button>
+    </div>
+</form>
