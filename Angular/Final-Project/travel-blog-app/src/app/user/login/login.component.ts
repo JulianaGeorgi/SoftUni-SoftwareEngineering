@@ -41,7 +41,7 @@ export class LoginComponent {
             panelClass: 'custom-snackbar',
           })
           this.userService.setUserData(form.value.email, form.value.username, response.localId);
-          this.router.navigate(['/']);
+          this.router.navigate(['/profile']);
         },
 
         error: (error) => {

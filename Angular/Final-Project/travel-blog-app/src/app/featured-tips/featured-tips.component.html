@@ -1,10 +1,16 @@
 <section class='tips-block'>
     <div class='tips-header'>
-    <h2>Enjoy the best of Bulgaria</h2>
-    <h3>For foreigners and locals who want to (re)discover our lovely Bulgaria.</h3>
+        <h2>Enjoy the best of Bulgaria</h2>
+        <h3>For foreigners and locals who want to (re)discover our lovely Bulgaria.</h3>
     </div>
-    <div class='tips-item-grid' *ngIf="featuredTips" >
+
+    <div class="featured-tips header">
+        <img src="/assets/featured-tips.png" alt="tips icon">
+        <h2>Check out this week's featured tips</h2>
         
+    </div>
+
+    <div class='tips-item-grid' *ngIf="featuredTips" >
         <div class="tip-item" *ngFor="let tip of featuredTips | keyvalue " >
             <figure class='tip-img'>
                 <img alt='image' [src]="tip.value['imageUrl']" />
@@ -17,6 +23,10 @@
                 <a [routerLink]="['/traveltips',featuredUserId,tip.key]">Read more <span><b>♡</b></span></a>
             </button>
         </div>
+    </div>
 
+    <div class="see-all-tips block">
+        <h2>Check out the rest of our amazing tips</h2>
+        <button class="btn primary"><a routerLink='/traveltips'>All tips</a></button>
     </div>
 </section>

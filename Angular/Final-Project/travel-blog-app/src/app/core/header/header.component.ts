@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
 })
 
 export class HeaderComponent {
-  constructor(private userService: UserService, private router: Router) {}
+  
+  constructor(
+    private userService: UserService, 
+    private router: Router
+    ) {}
 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;

@@ -11,15 +11,11 @@
             <ul class="user-tips" *ngFor=" let tip of userTipCollection | keyvalue">
                 <li><a [routerLink]="['/traveltips',userId, tip.key]">{{tip.value['tipTitle']}}</a></li>
             </ul>
-
-
         </div>
 
     </div>
 
-
-
-    <div class="add-tip section">
+    <div class="add-tip block">
         <h2>Have more amazing tips to share with us? </h2>
         <button class="btn primary"><a routerLink='/newtip'>Post new tip</a></button>
     </div>

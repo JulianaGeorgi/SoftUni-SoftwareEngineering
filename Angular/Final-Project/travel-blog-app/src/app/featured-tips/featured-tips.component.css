@@ -4,14 +4,28 @@
     text-align: center;
     margin-left: 50px;
     margin-right: 50px;
-    box-sizing: border-box;
+}
+
+.tips-header {
+    margin-bottom: 50px;
+}
+
+.featured-tips.header {
+    border-top: 8px solid #006D77;
+    padding-top: 50px;
+    margin-bottom: 50px;
+}
+
+.featured-tips.header img {
+    height: 100px;
+    margin: 0 auto;
 }
 
 .tips-item-grid {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(min(100%/1, max(290px, 100%/4)), 1fr));
-    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .tip-item {
@@ -40,4 +54,12 @@
 
 .tip-img img:hover {
     transform: scale(1.1);
+}
+
+.see-all-tips .btn.primary {
+    width: 20%;
+}
+
+.see-all-tips .btn.primary a{
+    padding: 20px;
 }
