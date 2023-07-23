@@ -8,7 +8,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 
 
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -20,7 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
     UserRoutingModule, 
     FormsModule, 
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
   ],
 })
 export class UserModule { }

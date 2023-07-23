@@ -41,7 +41,7 @@ export class TipService {
     })
   }
 
-  getAllFeaturedTips(userId: string): Observable<any> {
+  getTipsByUser(userId: string): Observable<any> {
 
     const databaseRef = ref(this.database, `traveltips/${userId}`);
 

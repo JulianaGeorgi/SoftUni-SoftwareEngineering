@@ -1,0 +1,36 @@
+
+
+.wrapper {
+    background-color: #83C5BE;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.your-profile.block,
+.user-tips.block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-image {
+    height: 200px;
+    width: fit-content;
+    border-radius: 50%;
+}
+
+.add-tip.section {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.add-tip .btn.primary {
+    width: 20%;
+}
+
+.add-tip .btn.primary a{
+    padding: 20px;
+}
