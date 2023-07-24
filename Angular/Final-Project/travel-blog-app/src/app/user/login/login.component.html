@@ -4,7 +4,7 @@
   </div>
   <div class="login container">
     <h2>Log in to 99 lives</h2>
-    <form class="login-form" #form="ngForm" (ngSubmit)="login(form)">
+    <form class="login-form" #form="ngForm" (ngSubmit)="onLogin(form)">
       <!-- <label for="email">Email</label> -->
       <input class="input-error" type="email" name="email" id="email" placeholder=" E-mail" #inputEmail="ngModel"
         ngModel required [appEmail]="appEmailDomains" />

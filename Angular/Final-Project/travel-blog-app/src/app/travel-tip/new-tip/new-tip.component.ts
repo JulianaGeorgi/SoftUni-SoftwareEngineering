@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { TipService } from '../tip.service';
 import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
+import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
 
 @Component({
   selector: 'app-new-tip',
@@ -18,7 +19,8 @@ export class NewTipComponent {
   constructor(
     private tipService: TipService,
     private userService: UserService,
-    private router: Router) {
+    private router: Router, 
+    private snackBar: MatSnackBarComponent) {
   }
 
   newTipSubmitHandler(form: NgForm): void {
@@ -27,6 +29,9 @@ export class NewTipComponent {
       return;
     }
     const tipId = this.tipService.submitNewTip(this.userId, form.value.tipTitle, form.value.authorName, form.value.imageUrl, form.value.tipContent);
+
+    const confirmMessage = "Tip posted successfully.";
+    this.snackBar.openSnackBar(confirmMessage,'Great!');
 
     this.router.navigate([`traveltips/${this.userId}/${tipId}`]);
 

@@ -44,7 +44,6 @@ export class TipComponent implements OnInit {
   }
 
   onEditTip(tip: Tip) {
-    console.log("Edit button works")
     this.showUpdatePost = true;
   }
 

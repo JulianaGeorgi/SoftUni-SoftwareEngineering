@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../types/user';
 import { HttpClient } from '@angular/common/http';
 import { Database, ref, onValue } from '@angular/fire/database';
-import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +15,31 @@ export class UserService {
     return !!this.user;
   }
 
-  constructor(private database: Database, private httpClient: HttpClient) {
+  constructor(
+    private database: Database, 
+    private httpClient: HttpClient) 
+    {
     try {
       const lsUser = localStorage.getItem(this.USER_KEY) || '';
       this.user = JSON.parse(lsUser);
     } catch (error) {
       this.user = undefined;
     }
+  }
+
+  register(email: string | null | undefined, password: string | null | undefined){
+    return this.httpClient
+    .post(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseApiKey}`,
+      { email, password, returnSecureToken: true }
+    )
+  }
+
+  login(email: string, password: string){
+    return this.httpClient
+    .post(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseApiKey}`,
+      { email, password, returnSecureToken: true });
   }
 
   setUserData(email: string, username: string, localId: string): void {
@@ -35,15 +53,15 @@ export class UserService {
     localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
   }
 
+  getUserData(): string | null {
+    return localStorage.getItem(this.USER_KEY);
+  }
+
   isOwner(authorId: string | null): boolean {
     if(this.user?.userId === authorId){
       return true;
     }
     return false;
-  }
-
-  getUserData(): string | null {
-    return localStorage.getItem(this.USER_KEY);
   }
 
   logout(): void {

@@ -3,6 +3,7 @@ import { TipService } from '../tip.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
 
 @Component({
   selector: 'app-update-tip',
@@ -10,8 +11,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./update-tip.component.css']
 })
 export class UpdateTipComponent implements OnInit {
-
-  showUpdatePost = false;
 
   postForm = new FormGroup({
     tipTitle: new FormControl(''),
@@ -23,7 +22,6 @@ export class UpdateTipComponent implements OnInit {
   userId: string | null = this.route.snapshot.paramMap.get('userId');
   tipId: string | null = this.route.snapshot.paramMap.get('id');
 
-
   tip$ = this.tipService.getOneTip(this.userId, this.tipId)
     .subscribe((tip) => {
       this.postForm.setValue({
@@ -34,25 +32,28 @@ export class UpdateTipComponent implements OnInit {
       });
     })
 
-  
   constructor(
     private tipService: TipService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBarComponent
   ) { }
 
-  onUpdateTip(): void {
-    
-    this.showUpdatePost = true;
+  onEditTip(): void {
+
     const tipDetails = this.postForm.value;
-  
+
     this.tipService.editTip(tipDetails, this.userId, this.tipId);
-    this.showUpdatePost = false;
+
+    //TODO: pass the state to the tip.component - showUpdatePost is now false (edit form must be hidden)
+
+    const confirmMessage = "Tip edited successfully.";
+    this.snackBar.openSnackBar(confirmMessage, 'Great!');
+
     this.router.navigate([`traveltips/${this.userId}/${this.tipId}`]);
   };
 
   ngOnInit(): void {
-    
   }
 
 }

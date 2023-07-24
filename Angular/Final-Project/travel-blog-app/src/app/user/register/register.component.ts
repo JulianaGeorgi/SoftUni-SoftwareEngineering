@@ -5,9 +5,8 @@ import { appEmailValidator } from 'src/app/shared/validators/email.validator';
 import { DEFAULT_EMAIL_DOMAINS } from 'src/app/shared/constants';
 import { matchPasswordsValidator } from 'src/app/shared/validators/match.passwords.validator';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class RegisterComponent {
+
+  // Reactive form
   form = this.formBuilder.group({
     username: ["", [Validators.required, Validators.minLength(5)]],
     email: [
@@ -37,43 +38,32 @@ export class RegisterComponent {
     private formBuilder: FormBuilder, 
     private router: Router, 
     private httpClient: HttpClient, 
-    private MatSnackBar: MatSnackBar,
+    private snackBar: MatSnackBarComponent,
+    private userService: UserService
     ) { }
 
-  register(): void {
+  onRegister(): void {
     if (this.form.invalid) {
       return;
-
     }
 
     let email = this.form.value.email; 
     let password = this.form.value.passGroup?.password;
 
-    this.httpClient
-      .post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseApiKey}`,
-        { email, password, returnSecureToken: true }
-      )
+    this.userService.register(email, password)
       .subscribe({
         next: (response) => {
-        console.log(response);
         this.form.reset();
-        this.MatSnackBar.open("Yey! Account successfully created :)", "Great!", {
-          // verticalPosition: 'top',
-          // horizontalPosition: 'center',
-          panelClass: 'custom-snackbar',
-        })
+
+        let confirmMessage = "Your account was successfully created :)";
+        this.snackBar.openSnackBar(confirmMessage,'Great!');
+        
         this.router.navigate(['/login']);
         }, 
 
         error: (error) => {
           let errorMessage = `Registration unsuccessful :(`;
-
-          this.MatSnackBar.open(errorMessage, 'Try again', {
-            // verticalPosition: 'top',
-            // horizontalPosition: 'center',
-            panelClass: 'custom-snackbar',
-          });
+          this.snackBar.openSnackBar(errorMessage,'Try again');
         }
       });
   }

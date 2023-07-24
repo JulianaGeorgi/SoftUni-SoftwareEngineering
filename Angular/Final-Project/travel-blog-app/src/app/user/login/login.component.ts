@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { NgForm } from "@angular/forms";
 import { DEFAULT_EMAIL_DOMAINS } from "src/app/shared/constants";
 import { HttpClient } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment.development';
+import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
 
 
 @Component({
@@ -20,34 +20,25 @@ export class LoginComponent {
     private userService: UserService,
     private router: Router,
     private httpClient: HttpClient,
-    private MatSnackBar: MatSnackBar) {
+    private snackBar: MatSnackBarComponent) {
   }
 
-  login(form: NgForm): void {
+  onLogin(form: NgForm): void {
 
-    this.httpClient
-      .post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseApiKey}`,
-        { ...form.value, returnSecureToken: true }
-      )
+    this.userService.login(form.value.email, form.value.password)
       .subscribe({
         next: (response: any) => {
-          this.MatSnackBar.open("Login successful :)", "Great!", {
-            verticalPosition: 'top',
-            horizontalPosition: 'center',
-            panelClass: 'custom-snackbar',
-          })
+          let confirmMessage = "Login successful :)";
+          this.snackBar.openSnackBar(confirmMessage,'Great!');
+
           this.userService.setUserData(form.value.email, form.value.username, response.localId);
+
           this.router.navigate(['/profile']);
         },
 
         error: (error) => {
-          let errorMessage = "Login unsuccessful :(";
-          this.MatSnackBar.open(errorMessage, 'Try again', {
-            verticalPosition: 'top',
-            horizontalPosition: 'center',
-            panelClass: 'custom-snackbar',
-          });
+          const errorMessage = "Login unsuccessful :(";
+          this.snackBar.openSnackBar(errorMessage,'Try again');
         }
       });
   }
