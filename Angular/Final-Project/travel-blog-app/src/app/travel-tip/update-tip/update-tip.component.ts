@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TipService } from '../tip.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -32,22 +32,23 @@ export class UpdateTipComponent implements OnInit {
         imageUrl: tip.imageUrl,
         tipContent: tip.tipContent,
       });
-      console.log(this.postForm.value);
     })
 
   
   constructor(
     private tipService: TipService,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   onUpdateTip(): void {
     
     this.showUpdatePost = true;
-    let tipDetails = {
-      tipDetails: this.postForm.value,
-    };
-    this.tipService.updateTip(tipDetails, this.userId, this.tipId);
+    const tipDetails = this.postForm.value;
+  
+    this.tipService.editTip(tipDetails, this.userId, this.tipId);
+    this.showUpdatePost = false;
+    this.router.navigate([`traveltips/${this.userId}/${this.tipId}`]);
   };
 
   ngOnInit(): void {

@@ -6,8 +6,7 @@ import { DEFAULT_EMAIL_DOMAINS } from "src/app/shared/constants";
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment.development';
-import { User } from 'src/app/types/user';
-import { TipService } from 'src/app/travel-tip/tip.service';
+
 
 @Component({
   selector: 'app-login',
@@ -19,12 +18,10 @@ export class LoginComponent {
 
   constructor(
     private userService: UserService,
-    private tipService: TipService,
     private router: Router,
     private httpClient: HttpClient,
     private MatSnackBar: MatSnackBar) {
   }
-
 
   login(form: NgForm): void {
 
@@ -46,7 +43,6 @@ export class LoginComponent {
 
         error: (error) => {
           let errorMessage = "Login unsuccessful :(";
-
           this.MatSnackBar.open(errorMessage, 'Try again', {
             verticalPosition: 'top',
             horizontalPosition: 'center',

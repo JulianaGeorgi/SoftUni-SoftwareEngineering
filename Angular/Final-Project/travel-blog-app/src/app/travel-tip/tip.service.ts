@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Database, ref, onValue } from '@angular/fire/database';
-import { child, push, remove, update } from 'firebase/database';
+import { child, push, update, remove } from 'firebase/database';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -58,32 +58,22 @@ export class TipService {
     })
   }
 
-  updateTip(tipDetails: any, userId: string | null, tipId: string | null){
-    debugger
-    console.log(tipDetails);
+  editTip(tipDetails: any, userId: string | null, tipId: string | null){
 
-    const updatedTipDetails = {
-      tipTitle: tipDetails.tipDetails.tipTitle,
-      authorName: tipDetails.tipDetails.authorName,
-      imageUrl: tipDetails.tipDetails.imageUrl,
-      tipContent: tipDetails.tipDetails.tipContent
+    const editedTipDetails = {
+      tipTitle: tipDetails.tipTitle,
+      authorName: tipDetails.authorName,
+      imageUrl: tipDetails.imageUrl,
+      tipContent: tipDetails.tipContent
     }
-    //TODO: fix that stupid object & improve the whole function
 
-    const newTipKey = push(child(ref(this.database), 'traveltips')).key;
+    push(child(ref(this.database), 'traveltips')).key;
 
     const updates: any = {};
-    // updates['/traveltips/' + userId + '/' + newTipKey] = updatedTipDetails;
-    updates['/traveltips/' + userId + '/' + tipId] = updatedTipDetails;
+
+    updates['/traveltips/' + userId + '/' + tipId] = editedTipDetails;
   
     return update(ref(this.database), updates);
-    
-    // console.log(updatedTipRef);
-
-    // const newTipKey = updatedTipRef.key;
-
-    // return newTipKey;
-
   }
 
   submitNewTip(userId: string | null, tipTitle: string, authorName: string, imageUrl: string, tipContent: string) {
@@ -100,7 +90,6 @@ export class TipService {
     //TODO: add error handling - if key cannot be retrieved
     return newTipKey;
   }
-
 
   deleteTip(userId: string | null, tipId: string | null) {
 
