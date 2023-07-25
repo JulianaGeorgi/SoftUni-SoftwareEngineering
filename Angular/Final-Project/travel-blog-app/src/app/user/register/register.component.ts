@@ -58,7 +58,7 @@ export class RegisterComponent {
         let confirmMessage = "Your account was successfully created :)";
         this.snackBar.openSnackBar(confirmMessage,'Great!');
         
-        this.router.navigate(['/login']);
+        this.router.navigate(['/user/login']);
         }, 
 
         error: (error) => {

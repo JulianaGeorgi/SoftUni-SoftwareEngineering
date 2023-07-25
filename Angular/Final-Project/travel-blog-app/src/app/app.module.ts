@@ -33,7 +33,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     BrowserModule,
     CoreModule,
     SharedModule,
-    UserModule,
+    // UserModule,
     // TravelTipModule, // ** Cannot be loaded here if we want to lazy load it!!!!
     HttpClientModule,
     MatSnackBarModule,

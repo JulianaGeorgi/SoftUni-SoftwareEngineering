@@ -14,12 +14,12 @@
                 <li class="menu-item"><a routerLink="/aboutus">About Us</a></li>
             </ul>
             <ul class="top-nav main-menu guest" *ngIf="!isLoggedIn">
-                <li class="menu-item"><a routerLink="/login">Login</a></li>
-                <li class="menu-item"><a routerLink="/register">Register</a></li>
+                <li class="menu-item"><a routerLink="/user/login">Login</a></li>
+                <li class="menu-item"><a routerLink="/user/register">Register</a></li>
             </ul>         
             <ul class="top-nav main-menu user" *ngIf="isLoggedIn">
                     <li>
-                      <a routerLink="/profile">Your profile
+                      <a routerLink="/user/profile">Your profile
                       </a>
                     </li>
                     <li (click)="logout()">

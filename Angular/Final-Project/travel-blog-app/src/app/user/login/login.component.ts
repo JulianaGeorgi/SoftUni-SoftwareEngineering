@@ -33,7 +33,7 @@ export class LoginComponent {
 
           this.userService.setUserData(form.value.email, form.value.username, response.localId);
 
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/user/profile']);
         },
 
         error: (error) => {
