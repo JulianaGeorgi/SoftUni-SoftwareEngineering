@@ -17,7 +17,8 @@
             </figure>
             <div class="description">
                 <h3>{{tip.value['tipTitle']}}</h3>
-                <p>{{tip.value['tipContent']}}</p>
+                <p>{{tip.value['tipContent'] | slice}}</p>
+                
             </div>
             <button class='btn primary'>
                 <a [routerLink]="['/traveltips',featuredUserId,tip.key]">Read more <span><b>♡</b></span></a>

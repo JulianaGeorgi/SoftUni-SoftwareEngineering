@@ -10,7 +10,7 @@ import { Tip } from '../types/tip';
 })
 export class FeaturedTipsComponent implements OnInit{
 
-  featuredTips: { [key: string]: { [key: string]: Tip } }= {};
+  featuredTips: { [key: string]: { [key: string]: string } }= {};
   readonly featuredUserId = featuredUserId;  
 
   constructor(
