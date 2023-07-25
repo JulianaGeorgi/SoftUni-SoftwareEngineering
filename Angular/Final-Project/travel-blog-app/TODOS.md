@@ -4,3 +4,4 @@
 4. Add the update form validation 
 5. Check the other forms 
 6. Improve/Edit the validation
+7. Fix /profile page -> needs to redirect to login when user is not logged in

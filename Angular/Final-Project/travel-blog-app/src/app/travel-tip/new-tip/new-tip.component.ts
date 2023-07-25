@@ -34,11 +34,5 @@ export class NewTipComponent {
     this.snackBar.openSnackBar(confirmMessage,'Great!');
 
     this.router.navigate([`traveltips/${this.userId}/${tipId}`]);
-
-    //   userData : any = this.userService!.getUserData();
-    // userDataObject = JSON.parse(this.userData);
-    // userId = this.userDataObject.userId;
-
-    // TODO : add submission confirmation
   }
 }

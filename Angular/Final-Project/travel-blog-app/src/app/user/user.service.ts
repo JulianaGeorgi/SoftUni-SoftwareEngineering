@@ -4,10 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { Database, ref, onValue } from '@angular/fire/database';
 import { environment } from 'src/environments/environment.development';
 
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+
   user: User | undefined;
   USER_KEY = '[user]';
 
@@ -16,9 +19,10 @@ export class UserService {
   }
 
   constructor(
-    private database: Database, 
-    private httpClient: HttpClient) 
-    {
+    private database: Database,
+    private httpClient: HttpClient
+    ) {
+      
     try {
       const lsUser = localStorage.getItem(this.USER_KEY) || '';
       this.user = JSON.parse(lsUser);
@@ -27,19 +31,19 @@ export class UserService {
     }
   }
 
-  register(email: string | null | undefined, password: string | null | undefined){
+  register(email: string | null | undefined, password: string | null | undefined) {
     return this.httpClient
-    .post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseApiKey}`,
-      { email, password, returnSecureToken: true }
-    )
+      .post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseApiKey}`,
+        { email, password, returnSecureToken: true }
+      )
   }
 
-  login(email: string, password: string){
+  login(email: string, password: string) {
     return this.httpClient
-    .post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseApiKey}`,
-      { email, password, returnSecureToken: true });
+      .post<User>(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseApiKey}`,
+        { email, password, returnSecureToken: true });
   }
 
   setUserData(email: string, username: string, localId: string): void {
@@ -49,7 +53,7 @@ export class UserService {
       username: email,
       userId: localId,
     }
-    
+
     localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
   }
 
@@ -58,7 +62,7 @@ export class UserService {
   }
 
   isOwner(authorId: string | null): boolean {
-    if(this.user?.userId === authorId){
+    if (this.user?.userId === authorId) {
       return true;
     }
     return false;
@@ -67,5 +71,8 @@ export class UserService {
   logout(): void {
     this.user = undefined;
     localStorage.removeItem(this.USER_KEY);
+    // return this.firebaseAuth.signOut().then(() => {
+    //   window.alert('Logged out!');
+    // });
   }
 }

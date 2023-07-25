@@ -19,6 +19,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { TravelTipsComponent } from './travel-tips/travel-tips.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 
 
@@ -45,7 +46,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     provideDatabase(() => getDatabase()),
     provideStorage(() => getStorage()),
   ],
-  providers: [],
+  // providers: [ { provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

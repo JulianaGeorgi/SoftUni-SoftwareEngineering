@@ -37,8 +37,13 @@ export class LoginComponent {
         },
 
         error: (error) => {
-          const errorMessage = "Login unsuccessful :(";
-          this.snackBar.openSnackBar(errorMessage,'Try again');
+          if(error.error.error.code == 400){
+            let errorMessage = "Account disabled. Please contact the administrator.";
+            this.snackBar.openSnackBar(errorMessage,'Got it!');
+          } else {
+            let errorMessage = "Login unsuccessful :(";
+            this.snackBar.openSnackBar(errorMessage,'Try again');
+          }
         }
       });
   }

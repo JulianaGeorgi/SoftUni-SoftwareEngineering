@@ -96,7 +96,6 @@ export class TipService {
     const tipRef = ref(this.database, `traveltips/${userId}/${tipId}`);
 
     remove(tipRef).then(() => {
-      console.log("Tip successfully deleted from the database.");
     });
   }
 }

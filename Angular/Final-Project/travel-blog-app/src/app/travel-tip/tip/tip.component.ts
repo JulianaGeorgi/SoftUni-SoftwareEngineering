@@ -5,6 +5,7 @@ import { Observable, combineLatest, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/user/user.service';
 import { Tip } from 'src/app/types/tip';
+import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
 
 @Component({
   selector: 'app-tip',
@@ -13,7 +14,7 @@ import { Tip } from 'src/app/types/tip';
 })
 export class TipComponent implements OnInit {
 
-  tip$!: Observable<any>;
+  tip$!: Observable<Tip>;
   tip: Tip = {
     tipTitle: '',
     authorName: '',
@@ -22,7 +23,7 @@ export class TipComponent implements OnInit {
   }
   userId: string | null = this.route.snapshot.paramMap.get('userId');
   tipId: string | null = this.route.snapshot.paramMap.get('id');
-  // tipId: string | null = "23457899";
+  // tipId: string | null = "23457899"; // test error
 
   showUpdatePost: boolean = false;
 
@@ -30,17 +31,21 @@ export class TipComponent implements OnInit {
     private tipService: TipService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router, 
+    private snackBar: MatSnackBarComponent
   ) { }
 
   get isOwner(): boolean {
     return this.userService.isOwner(this.userId);
   }
 
-  deleteTip(): boolean {
+  deleteTip(): void {
     this.tipService.deleteTip(this.userId, this.tipId);
+
+    const confirmMessage = "Tip deleted.";
+    this.snackBar.openSnackBar(confirmMessage, "Cool!");
+
     this.router.navigate(['/home']);
-    return true;
   }
 
   onEditTip(tip: Tip) {
@@ -56,8 +61,7 @@ export class TipComponent implements OnInit {
           this.tip = tip;
         },
         error: (err) => {
-          console.error("Sorry, tip not found :(");
-          // this.router.navigate(['notfound']);
+          this.router.navigate(['/404'], { skipLocationChange: true });
         },
         complete: () => {
           console.log("Tip was successfully fetched from the database :)");
