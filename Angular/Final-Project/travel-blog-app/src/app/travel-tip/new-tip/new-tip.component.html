@@ -6,13 +6,13 @@
   <form #form="ngForm" (ngSubmit)="newTipSubmitHandler(form)">
     <div class="form-group">
       <label for="tipTitle">Title:</label>
-      <input type="text" id="tipTitle" name="tipTitle" #inputTipTitle="ngModel" ngModel required minlength="5" />
+      <input type="text" id="tipTitle" name="tipTitle" #inputTipTitle="ngModel" ngModel required minlength="3" />
       <ng-container *ngIf="inputTipTitle.touched">
         <p class="error" *ngIf="inputTipTitle.errors?.['required']">
           Please choose a tip title. 
         </p>
         <p class="error" *ngIf="inputTipTitle.errors?.['minlength']">
-          Tip title must be at least 5 characters long.
+          Tip title must be at least 3 characters long.
         </p>
       </ng-container>
     </div>
@@ -23,9 +23,6 @@
       <ng-container *ngIf="inputAuthorName.touched">
         <p class="error" *ngIf="inputAuthorName.errors?.['required']">
           Please write your name or pseudonym.
-        </p>
-        <p class="error" *ngIf="inputAuthorName.errors?.['minlength']">
-          The author must be at least 5 characters long.
         </p>
       </ng-container>
     </div>
