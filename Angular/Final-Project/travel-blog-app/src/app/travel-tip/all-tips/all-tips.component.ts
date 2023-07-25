@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { TipService } from '../travel-tip/tip.service';
+import { TipService } from '../tip.service';
 
 
 @Component({
-  selector: 'app-travel-tips',
-  templateUrl: './travel-tips.component.html',
-  styleUrls: ['./travel-tips.component.css']
+  selector: 'app-all-tips',
+  templateUrl: './all-tips.component.html',
+  styleUrls: ['./all-tips.component.css']
 })
-export class TravelTipsComponent {
+export class AllTipsComponent {
 
   allTips: any[] = [];
 

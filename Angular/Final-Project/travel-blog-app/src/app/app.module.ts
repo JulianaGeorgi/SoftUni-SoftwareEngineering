@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import { TravelTipsComponent } from './travel-tips/travel-tips.component';
+import { AllTipsComponent } from './travel-tip/all-tips/all-tips.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
@@ -28,7 +28,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     AppComponent,
     HomeComponent,
     FeaturedTipsComponent,
-    TravelTipsComponent,
+    // TravelTipsComponent,
     NotFoundComponent,
   ],
   imports: [

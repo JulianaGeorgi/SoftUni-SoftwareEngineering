@@ -16,7 +16,7 @@
                 <img alt='image' [src]="tip.value['imageUrl']" />
             </figure>
             <div class="description">
-                <h3>{{tip.value['tipTitle']}}</h3>
+                <h3>{{tip.value['tipTitle'] | titlecase }}</h3>
                 <p>{{tip.value['tipContent'] | slice}}</p>
                 
             </div>

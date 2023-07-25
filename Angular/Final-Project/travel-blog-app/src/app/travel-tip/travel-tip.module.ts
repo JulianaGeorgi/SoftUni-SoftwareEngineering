@@ -5,6 +5,8 @@ import { TravelTipRoutingModule} from './travel-tip-routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TipComponent } from './tip/tip.component';
 import { UpdateTipComponent } from './update-tip/update-tip.component';
+import { AllTipsComponent } from './all-tips/all-tips.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -12,14 +14,16 @@ import { UpdateTipComponent } from './update-tip/update-tip.component';
   declarations: [
     NewTipComponent,
     TipComponent,
-    UpdateTipComponent
+    UpdateTipComponent, 
+    AllTipsComponent
   ],
   imports: [
     CommonModule, 
+    SharedModule,
     TravelTipRoutingModule,
     FormsModule, 
     ReactiveFormsModule
   ], 
-  exports: [TipComponent],
+  exports: [TipComponent, AllTipsComponent],
 })
 export class TravelTipModule { }
