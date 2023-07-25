@@ -15,7 +15,7 @@
                 <p>{{tip.value['tipContent'] | slice}}</p>
             </div>
             <button class='btn primary'>
-                <a [routerLink]="['/traveltips',tip.value['userId'], tip.key]">Read more <span><b>♡</b></span></a>
+                <a [routerLink]="['/traveltips/all',tip.value['userId'], tip.key]">Read more <span><b>♡</b></span></a>
             </button>
 
         </div>

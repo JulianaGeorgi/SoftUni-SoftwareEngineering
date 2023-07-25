@@ -17,7 +17,6 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import { AllTipsComponent } from './travel-tip/all-tips/all-tips.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
@@ -28,7 +27,6 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     AppComponent,
     HomeComponent,
     FeaturedTipsComponent,
-    // TravelTipsComponent,
     NotFoundComponent,
   ],
   imports: [
@@ -36,7 +34,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     CoreModule,
     SharedModule,
     UserModule,
-    TravelTipModule,
+    // TravelTipModule, // ** Cannot be loaded here if we want to lazy load it!!!!
     HttpClientModule,
     MatSnackBarModule,
     BrowserAnimationsModule,

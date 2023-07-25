@@ -6,19 +6,26 @@ import { AllTipsComponent } from './all-tips/all-tips.component';
 
 const routes: Routes = [
   {
-    path: "newtip",
+    path: 'all',
+    component: AllTipsComponent,
+  },
+
+  {
+    path: 'all/newest',
+    component: AllTipsComponent,
+  },
+  
+
+  {
+    path: 'submitTip',
     component: NewTipComponent,
   },
 
   {
-    path: "traveltips/:userId/:id",
+    path: 'all/:userId/:id',
     component: TipComponent,
   },
 
-  {
-    path: "traveltips",
-    component: AllTipsComponent,
-  },
 ];
 
 @NgModule({

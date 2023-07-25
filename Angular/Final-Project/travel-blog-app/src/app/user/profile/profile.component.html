@@ -9,7 +9,7 @@
         <div class="user-tips block" *ngIf="userTipCollection">
             <h2>Your tips</h2>
             <ul class="user-tips" *ngFor=" let tip of userTipCollection | keyvalue">
-                <li><a [routerLink]="['/traveltips',userId, tip.key]">{{tip.value['tipTitle']}}</a></li>
+                <li><a [routerLink]="['/traveltips/all',userId, tip.key]">{{tip.value['tipTitle']}}</a></li>
             </ul>
         </div>
 
@@ -17,7 +17,7 @@
 
     <div class="add-tip block">
         <h2>Have more amazing tips to share with us? </h2>
-        <button class="btn primary"><a routerLink='/newtip'>Post new tip</a></button>
+        <button class="btn primary"><a routerLink='/traveltips/submitTip'>Post new tip</a></button>
     </div>
 
 </section>

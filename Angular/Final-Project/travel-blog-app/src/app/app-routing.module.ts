@@ -11,8 +11,13 @@ const routes: Routes = [
   },
 
   {
-    path: "home",
+    path: 'home',
     component: HomeComponent,
+  },
+
+  {
+    path: 'traveltips',
+    loadChildren: () => import('./travel-tip/travel-tip.module').then((m) => m.TravelTipModule)
   },
 
   {
