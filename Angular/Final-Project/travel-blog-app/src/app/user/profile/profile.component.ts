@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { Tip } from 'src/app/types/tip';
 import { Router } from '@angular/router';
+import { User } from 'src/app/types/user'
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +13,8 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  userData: any = this.userService!.getUserData();
-  userDataObject = JSON.parse(this.userData);
-  userId = this.userDataObject.userId;
+  userData: User | undefined;
+  userId!: string;
 
   userTipCollection$!: Observable<any>
   userTipCollection: { [key: string]: { [key: string]: Tip } } = {};
@@ -23,17 +23,23 @@ export class ProfileComponent implements OnInit {
     private tipService: TipService,
     private userService: UserService,
     private router: Router
-  ) {}
-
+  ) { }
 
   ngOnInit(): void {
-  
-    this.userTipCollection$ = this.tipService.getTipsByUser(this.userId);
-    this.userTipCollection$
-      .subscribe((userTips) => {
-        this.userTipCollection = userTips;
-        console.log(userTips);
-      })
 
+    this.userData = this.userService.getUserData();
+
+    if (this.userData === undefined) {
+      this.router.navigate(['user/login']);
+    } else {
+      this.userId = this.userData?.userId!;
+
+      this.userTipCollection$ = this.tipService.getTipsByUser(this.userId);
+      
+      this.userTipCollection$
+        .subscribe((userTips) => {
+          this.userTipCollection = userTips;
+        })
+    }
   }
 }

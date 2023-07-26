@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from '../types/user';
 import { HttpClient } from '@angular/common/http';
-import { Database, ref, onValue } from '@angular/fire/database';
+import { Database } from '@angular/fire/database';
 import { environment } from 'src/environments/environment.development';
-
-// import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +11,8 @@ import { environment } from 'src/environments/environment.development';
 export class UserService {
 
   user: User | undefined;
+  user$!: Observable<any>;
+
   USER_KEY = '[user]';
 
   get isLogged(): boolean {
@@ -21,11 +22,12 @@ export class UserService {
   constructor(
     private database: Database,
     private httpClient: HttpClient
-    ) {
-      
+  ) {
+    // EXECUTED FIRST 
     try {
       const lsUser = localStorage.getItem(this.USER_KEY) || '';
       this.user = JSON.parse(lsUser);
+      console.log(this.user)
     } catch (error) {
       this.user = undefined;
     }
@@ -43,7 +45,7 @@ export class UserService {
     return this.httpClient
       .post<User>(
         `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseApiKey}`,
-        { email, password, returnSecureToken: true });
+        { email, password, returnSecureToken: true })
   }
 
   setUserData(email: string, username: string, localId: string): void {
@@ -57,8 +59,14 @@ export class UserService {
     localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
   }
 
-  getUserData(): string | null {
-    return localStorage.getItem(this.USER_KEY);
+  getUserData(): User | undefined {
+    const userJson = localStorage.getItem(this.USER_KEY);
+    if (userJson === null) {
+      this.user = undefined;
+    } else {
+      this.user = JSON.parse(userJson);
+    }
+    return this.user;
   }
 
   isOwner(authorId: string | null): boolean {
@@ -71,8 +79,5 @@ export class UserService {
   logout(): void {
     this.user = undefined;
     localStorage.removeItem(this.USER_KEY);
-    // return this.firebaseAuth.signOut().then(() => {
-    //   window.alert('Logged out!');
-    // });
   }
 }

@@ -19,10 +19,6 @@ export class HeaderComponent {
     return this.userService.isLogged;
   }
 
-  get username(): string {
-    return this.userService.user?.username || '';
-  }
-
   logout(): void {
     this.userService.logout();
     this.router.navigate(['/']);

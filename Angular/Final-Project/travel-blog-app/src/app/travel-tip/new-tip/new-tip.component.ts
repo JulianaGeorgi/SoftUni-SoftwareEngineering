@@ -1,26 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TipService } from '../tip.service';
 import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
 import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
+import { User } from 'src/app/types/user'
 
 @Component({
   selector: 'app-new-tip',
   templateUrl: './new-tip.component.html',
   styleUrls: ['./new-tip.component.css']
 })
-export class NewTipComponent {
+export class NewTipComponent implements OnInit {
 
-  userData: any = this.userService!.getUserData();
-  userDataObject = JSON.parse(this.userData);
-  userId = this.userDataObject.userId;
+  userData: User | undefined;
+  userId!: string;
 
   constructor(
     private tipService: TipService,
     private userService: UserService,
     private router: Router, 
     private snackBar: MatSnackBarComponent) {
+  }
+
+  ngOnInit(): void {
+
+    this.userData = this.userService.getUserData();
+
+    if (this.userData === undefined) {
+      this.router.navigate(['user/login']);
+    } else {
+      this.userId = this.userData.userId!;
+    }
   }
 
   newTipSubmitHandler(form: NgForm): void {

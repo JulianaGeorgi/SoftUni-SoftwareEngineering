@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TipService } from '../tip.service';
 
-
 @Component({
   selector: 'app-all-tips',
   templateUrl: './all-tips.component.html',
@@ -12,7 +11,7 @@ export class AllTipsComponent {
   allTips: any[] = [];
 
   constructor(
-    private tipService: TipService
+    private tipService: TipService,
   ) { }
 
   ngOnInit(): void {
@@ -39,3 +38,5 @@ export class AllTipsComponent {
       });
   }
 }
+
+  

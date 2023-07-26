@@ -19,12 +19,12 @@ export class LoginComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    private httpClient: HttpClient,
     private snackBar: MatSnackBarComponent) {
   }
 
   onLogin(form: NgForm): void {
 
+    
     this.userService.login(form.value.email, form.value.password)
       .subscribe({
         next: (response: any) => {
@@ -37,7 +37,7 @@ export class LoginComponent {
         },
 
         error: (error) => {
-          if(error.error.error.code == 400){
+          if(error.error.error.message == "USER_DISABLED"){
             let errorMessage = "Account disabled. Please contact the administrator.";
             this.snackBar.openSnackBar(errorMessage,'Got it!');
           } else {
