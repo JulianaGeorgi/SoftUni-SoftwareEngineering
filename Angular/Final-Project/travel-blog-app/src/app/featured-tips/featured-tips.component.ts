@@ -18,6 +18,7 @@ export class FeaturedTipsComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    
     this.tipService.getTipsByUser(featuredUserId)
       .subscribe({
         next: (tips) => {

@@ -19,10 +19,7 @@ export class RegisterComponent {
   // Reactive form
   form = this.formBuilder.group({
     username: ["", [Validators.required, Validators.minLength(5)]],
-    email: [
-      "",
-      [Validators.required, appEmailValidator(DEFAULT_EMAIL_DOMAINS)],
-    ],
+    email: ["", [Validators.required, appEmailValidator(DEFAULT_EMAIL_DOMAINS)],],
     passGroup: this.formBuilder.group(
       {
         password: ["", [Validators.required, Validators.minLength(5)]],
@@ -35,35 +32,33 @@ export class RegisterComponent {
   });
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private router: Router, 
-    private httpClient: HttpClient, 
+    private formBuilder: FormBuilder,
+    private router: Router,
     private snackBar: MatSnackBarComponent,
     private userService: UserService
-    ) { }
+  ) { }
 
   onRegister(): void {
     if (this.form.invalid) {
       return;
     }
 
-    let email = this.form.value.email; 
+    let email = this.form.value.email;
     let password = this.form.value.passGroup?.password;
 
     this.userService.register(email, password)
       .subscribe({
         next: (response) => {
-        this.form.reset();
+          this.form.reset();
 
-        let confirmMessage = "Your account was successfully created :)";
-        this.snackBar.openSnackBar(confirmMessage,'Great!');
-        
-        this.router.navigate(['/user/login']);
-        }, 
+          let confirmMessage = "Your account was successfully created :)";
+          this.snackBar.openSnackBar(confirmMessage, 'Great!');
 
+          this.router.navigate(['/user/login']);
+        },
         error: (error) => {
           let errorMessage = `Registration unsuccessful :(`;
-          this.snackBar.openSnackBar(errorMessage,'Try again');
+          this.snackBar.openSnackBar(errorMessage, 'Try again');
         }
       });
   }

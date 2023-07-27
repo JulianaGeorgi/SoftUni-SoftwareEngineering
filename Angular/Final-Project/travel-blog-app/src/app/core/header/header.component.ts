@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 
 export class HeaderComponent {
-  
+
   constructor(
     private userService: UserService, 
     private router: Router
@@ -18,7 +18,7 @@ export class HeaderComponent {
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
   }
-
+ 
   logout(): void {
     this.userService.logout();
     this.router.navigate(['/']);

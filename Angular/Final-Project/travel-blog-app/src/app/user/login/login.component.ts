@@ -3,8 +3,6 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { NgForm } from "@angular/forms";
 import { DEFAULT_EMAIL_DOMAINS } from "src/app/shared/constants";
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
 import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
 
 
@@ -23,12 +21,12 @@ export class LoginComponent {
   }
 
   onLogin(form: NgForm): void {
-
     
     this.userService.login(form.value.email, form.value.password)
       .subscribe({
         next: (response: any) => {
-          let confirmMessage = "Login successful :)";
+          console.log(response)
+          const confirmMessage = "Login successful :)";
           this.snackBar.openSnackBar(confirmMessage,'Great!');
 
           this.userService.setUserData(form.value.email, form.value.username, response.localId);
