@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TipService } from '../tip.service';
-import { Tip } from 'src/app/types/tip';
 
 @Component({
   selector: 'app-all-tips',

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms'
-import { appEmailValidator } from 'src/app/shared/validators/email.validator';
+import { appEmailValidator } from 'src/app/shared/validators/email/email.validator';
 import { DEFAULT_EMAIL_DOMAINS } from 'src/app/shared/constants';
-import { matchPasswordsValidator } from 'src/app/shared/validators/match.passwords.validator';
+import { matchPasswordsValidator } from 'src/app/shared/validators/email/match.passwords.validator';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
 import { UserService } from '../user.service';

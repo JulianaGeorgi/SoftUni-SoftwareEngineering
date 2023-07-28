@@ -18,6 +18,7 @@ import { appEmailValidator } from "./email.validator";
     },
   ],
 })
+
 export class AppEmailDirective implements Validator, OnChanges {
   @Input() appEmail: string[] = [];
 

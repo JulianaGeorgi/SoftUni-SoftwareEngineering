@@ -13,7 +13,7 @@ import { User } from 'src/app/types/user'
 })
 
 export class NewTipComponent implements OnInit {
-
+  imageUrl: string[] = [];
   userData: User | undefined;
   userId!: string;
 
@@ -25,7 +25,7 @@ export class NewTipComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
     this.userData = this.userService.getUserData();
 
     if (this.userData === undefined) {

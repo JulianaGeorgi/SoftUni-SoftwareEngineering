@@ -8,7 +8,7 @@ import { UserService } from 'src/app/user/user.service';
   styleUrls: ['./dropdown.component.css']
 })
 export class DropdownComponent {
-  options: string[] = ['Travel Tips', 'Newest', 'Add Tip'];
+  options: string[] = ['All Tips', 'Newest', 'Add Tip'];
   selectedOption: string | null = null;
   isDropdownOpen = false;
   closeTimeout: any;

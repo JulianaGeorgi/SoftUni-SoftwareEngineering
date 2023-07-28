@@ -1,7 +1,7 @@
 export const environment: {
-    production: boolean;
-    firebaseApiKey: string;
-    firebase : {};
+  production: boolean;
+  firebaseApiKey: string;
+  firebase: {};
 } = {
   firebase: {
     projectId: 'travel-blog-bab80',
@@ -12,6 +12,6 @@ export const environment: {
     authDomain: 'travel-blog-bab80.firebaseapp.com',
     messagingSenderId: '437098294099',
   },
-    production: false,
-    firebaseApiKey: 'AIzaSyBhHnxGYoAJnFhP6jGncUaZlCkvL5fi6ko',
+  production: false,
+  firebaseApiKey: 'AIzaSyBhHnxGYoAJnFhP6jGncUaZlCkvL5fi6ko',
 };

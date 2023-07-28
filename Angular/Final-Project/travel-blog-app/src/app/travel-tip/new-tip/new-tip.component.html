@@ -4,9 +4,19 @@
   </div>
   <h2>Submit a Travel Tip</h2>
   <form #form="ngForm" (ngSubmit)="newTipSubmitHandler(form)">
+
+    <!-- TIP TITLE -->
     <div class="form-group">
       <label for="tipTitle">Title:</label>
-      <input type="text" id="tipTitle" name="tipTitle" #inputTipTitle="ngModel" ngModel required minlength="3" />
+      <input
+      type="text"
+      id="tipTitle"
+      name="tipTitle"
+      #inputTipTitle="ngModel"
+      ngModel
+      required
+      minlength="3"
+      />
       <ng-container *ngIf="inputTipTitle.touched">
         <p class="error" *ngIf="inputTipTitle.errors?.['required']">
           Please choose a tip title. 
@@ -17,9 +27,16 @@
       </ng-container>
     </div>
 
+    <!-- AUTHOR -->
     <div class="form-group">
       <label for="authorName">Author's name:</label>
-      <input type="text" id="authorName" name="authorName" ngModel #inputAuthorName="ngModel" required />
+      <input
+      type="text"
+      id="authorName"
+      name="authorName"
+      ngModel #inputAuthorName="ngModel"
+      required
+      />
       <ng-container *ngIf="inputAuthorName.touched">
         <p class="error" *ngIf="inputAuthorName.errors?.['required']">
           Please write your name or pseudonym.
@@ -27,20 +44,39 @@
       </ng-container>
     </div>
 
+    <!-- IMAGE -->
     <div class="form-group">
       <label for="imageUrl">ImageUrl:</label>
-      <input type="text" id="imageUrl" name="imageUrl" ngModel #inputImageUrl="ngModel" required />
-      <ng-container *ngIf="inputImageUrl.touched">
+      <input 
+      type="text"
+      id="imageUrl"
+      name="imageUrl"
+      ngModel 
+      #inputImageUrl="ngModel"
+      required 
+      [appUrl]="imageUrl"
+      />
+      <ng-container *ngIf="inputImageUrl.touched" >
         <p class="error" *ngIf="inputImageUrl.errors?.['required']">
           An image is required.
+        </p>
+        <p class="error" *ngIf="inputImageUrl.errors?.['imageUrlValidator']">
+          Url invalid.
         </p>
       </ng-container>
     </div>
 
+    <!-- TIP CONTENT -->
     <div class="form-group">
       <label for="tipContent">Content:</label>
-      <textarea id="tipContent" name="tipContent" ngModel #textAreaInput="ngModel" minlength="10" required>
-        </textarea>
+      <textarea
+      id="tipContent"
+      name="tipContent"
+      ngModel
+      #textAreaInput="ngModel"
+      minlength="10"
+      required>
+      </textarea>
       <ng-container *ngIf="textAreaInput.touched">
         <p class="error" *ngIf="textAreaInput.errors?.['required']">
           Please share your amazing tip with us. 

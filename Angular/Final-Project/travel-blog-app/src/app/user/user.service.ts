@@ -1,12 +1,13 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from '../types/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-
+import { signOut } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class UserService {
 
   user: User | undefined;
@@ -16,11 +17,11 @@ export class UserService {
     return !!this.user;
   }
 
-
   constructor(
     private httpClient: HttpClient
-  ) {
-    
+  ) 
+  
+  {
     // *EXECUTED FIRST - WITH THE INSTANTIATION OF THE USERSERVICE CLASS 
     try {
       const lsUser = localStorage.getItem(this.USER_KEY) || '';
@@ -31,21 +32,22 @@ export class UserService {
   }
 
   register(email: string | null | undefined, password: string | null | undefined) {
+    const apiUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
     return this.httpClient
       .post<User>(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseApiKey}`,
+        `${apiUrl + environment.firebaseApiKey}`,
         { email, password, returnSecureToken: true })
   }
 
   login(email: string, password: string) {
-    
+    const apiUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
     return this.httpClient
       .post<User>(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseApiKey}`,
+        `${apiUrl + environment.firebaseApiKey}`,
         { email, password, returnSecureToken: true })    
   }
 
-  setUserData(email: string, username: string, localId: string): void { 
+  setUserData(email: string, username: string, localId: string): void {
     this.user = {
       email: email,
       username: email,
