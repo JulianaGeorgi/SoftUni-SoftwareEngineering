@@ -3,14 +3,20 @@ import { TipService } from '../tip.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-update-tip',
   templateUrl: './update-tip.component.html',
   styleUrls: ['./update-tip.component.css']
 })
+
+
 export class UpdateTipComponent implements OnInit {
-  
+
+  @Output() closeUpdateTipEvent = new EventEmitter<boolean>();
+
+  // reactive form group
   tipForm = this.formBuilder.group({
     tipTitle: ['', [Validators.required, Validators.minLength(3)]],
     authorName: ['', [Validators.required]],
@@ -39,16 +45,20 @@ export class UpdateTipComponent implements OnInit {
     private snackBar: MatSnackBarComponent
   ) { }
 
+  closeUpdateTip(value: boolean) {
+    this.closeUpdateTipEvent.emit(value);
+  }
+
   onEditTip(): void {
 
     const tipDetails = this.tipForm.value;
 
     this.tipService.editTip(tipDetails, this.userId, this.tipId);
 
-    //TODO: pass the state to the tip.component - showUpdatePost is now false (edit form must be hidden)
-
     const confirmMessage = "Tip edited successfully.";
     this.snackBar.openSnackBar(confirmMessage, 'Great!');
+
+    this.closeUpdateTip(false); // hide edit form -> passing the info to the parent component (tip)
 
     this.router.navigate([`traveltips/all/${this.userId}/${this.tipId}`]);
   };

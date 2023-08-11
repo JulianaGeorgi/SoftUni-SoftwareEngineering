@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { User } from '../types/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { signOut } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -67,10 +66,7 @@ export class UserService {
   }
 
   isOwner(authorId: string | null): boolean {
-    if (this.user?.userId === authorId) {
-      return true;
-    }
-    return false;
+    return this.user?.userId === authorId;
   }
 
   logout(): void {

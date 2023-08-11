@@ -1,4 +1,4 @@
-<div *ngIf="tip" class='tip-item'>
+<div *ngIf="tip" class='tip-item' >
     <figure class='tip-img'>
         <img alt='image' src={{tip.imageUrl}} />
     </figure>
@@ -14,5 +14,5 @@
             Delete 
         </button>
     </div>
-    <app-update-tip *ngIf="showUpdatePost"/>
+    <app-update-tip (closeUpdateTipEvent)="showUpdatePostTip($any($event))" *ngIf="showUpdatePost"/>
 </div>

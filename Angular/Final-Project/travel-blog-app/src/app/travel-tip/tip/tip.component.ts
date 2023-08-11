@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TipService } from '../tip.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, combineLatest, from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { UserService } from 'src/app/user/user.service';
 import { Tip } from 'src/app/types/tip';
 import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar.component';
@@ -12,6 +11,8 @@ import { MatSnackBarComponent } from 'src/app/shared/mat-snack-bar/mat-snack-bar
   templateUrl: './tip.component.html',
   styleUrls: ['./tip.component.css']
 })
+
+
 export class TipComponent implements OnInit {
 
   tip$!: Observable<Tip>;
@@ -35,6 +36,10 @@ export class TipComponent implements OnInit {
     private snackBar: MatSnackBarComponent
   ) { }
 
+  showUpdatePostTip(show: boolean) {
+    this.showUpdatePost = show;
+  }
+  
   get isOwner(): boolean {
     return this.userService.isOwner(this.userId);
   }
@@ -61,12 +66,13 @@ export class TipComponent implements OnInit {
           this.tip = tip;
         },
         error: (err) => {
-          this.router.navigate(['/404'], { skipLocationChange: true });
+          this.router.navigate(['/404'], { skipLocationChange: true }); // to not update the url
         },
         complete: () => {
           console.log("Tip was successfully fetched from the database :)");
         }
       });
   }
+
 }
 

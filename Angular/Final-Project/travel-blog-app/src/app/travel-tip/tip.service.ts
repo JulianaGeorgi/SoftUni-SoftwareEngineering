@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Database, ref, onValue } from '@angular/fire/database';
 import { child, push, update, remove } from 'firebase/database';
 import { Observable } from 'rxjs';
+import { Tip } from '../types/tip';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class TipService {
   constructor(
     private database: Database,
   ) { }
+  
 
   getAllTips(): Observable<any> {
 
@@ -39,7 +41,7 @@ export class TipService {
     })
   }
 
-  getOneTip(userId: string | null, tipId: string | null): Observable<any> {
+  getOneTip(userId: string | null, tipId: string | null): Observable<Tip> {
 
     const databaseRef = ref(this.database, `traveltips/${userId}/${tipId}`);
 
@@ -47,10 +49,8 @@ export class TipService {
 
       onValue(databaseRef, (snapshot: any) => {
         if (snapshot && snapshot.exists()) {
-          const tip = snapshot.val();
-          obs.next(tip);
-          obs.complete();
-          return tip;
+          const tip = snapshot.val(); // extracting the tip data
+          obs.next(tip); // emit tip data to observers
         } else {
           obs.error();
         }
@@ -98,4 +98,5 @@ export class TipService {
     remove(tipRef).then(() => {
     });
   }
+
 }
