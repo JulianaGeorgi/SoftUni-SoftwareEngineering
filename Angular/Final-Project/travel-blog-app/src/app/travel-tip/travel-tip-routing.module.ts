@@ -22,7 +22,7 @@ const routes: Routes = [
   },
 
   {
-    path: ':userId/:id',
+    path: 'all/:userId/:id',
     component: TipComponent,
   },
 

@@ -31,7 +31,7 @@ export class DropdownComponent {
 
     // Determine the route based on the selected option
     let route: string;
-    if (option === 'Travel Tips') {
+    if (option === 'All Tips') {
       route = '/traveltips/all';
     } else if (option === 'Newest') {
       route = '/traveltips/all/newest';
