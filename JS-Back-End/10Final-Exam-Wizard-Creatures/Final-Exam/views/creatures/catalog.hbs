@@ -1,0 +1,21 @@
+<main>
+
+    <section id="catalog">
+        <h1>All posts</h1>
+         {{#if creature}}
+        <div class="band">
+
+            <div class="flip flip-vertical"></div>
+            {{#each creature}}
+            {{> creaturePartial}}
+            {{/each}}
+        </div>
+        {{else}}
+
+        <div class="no-posts">
+            <p class="no-offer">There are no posts yet...</p>
+        </div>
+        {{/if}}
+        </div>
+    </section>
+</main>

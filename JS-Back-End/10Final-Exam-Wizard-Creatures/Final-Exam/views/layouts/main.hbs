@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="box">
+
+        <nav>
+            <img src="/static/img/logo.png" alt="logo">
+
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/creatures/catalog">All Posts</a></li>
+                {{#if user}}
+                <li><a href="/creatures/create">Create Post</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/auth/register">Register</a></li>
+                <li><a href="/auth/login">Login</a></li>
+                {{/if}}
+            </ul>
+
+        </nav>
+
+        {{#if error}}
+        <div>
+            <div class="error-container">
+                <p>{{error}}</p>
+            </div>
+        </div>
+        {{/if}}
+
+        {{{body}}}
+
+        <footer>
+            © JS Back-End Exam 2023
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
