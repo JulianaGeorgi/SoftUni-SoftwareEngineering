@@ -51,6 +51,10 @@ export class UpdateTipComponent implements OnInit {
 
   onEditTip(): void {
 
+    if (this.tipForm.invalid) {
+      return;
+    }
+
     const tipDetails = this.tipForm.value;
 
     this.tipService.editTip(tipDetails, this.userId, this.tipId);
