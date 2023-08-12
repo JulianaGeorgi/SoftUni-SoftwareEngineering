@@ -28,7 +28,16 @@ Users can:
 - Delete tip (if they are the author) 
 - See all the tips they have posted 
 - Log out
-  
+
+-------------------------
+
+## Technologies Used:
+
+- Angular CLI (see further details below) - for building the user interface.
+- Firebase - Realtime Database & Authentication services for data storage and user authentication.
+- CSS & HTML: My own, expcept the footer (template).
+- RxJS for handling asynchronous operations.
+
 -------------------------
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
