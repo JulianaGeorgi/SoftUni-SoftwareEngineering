@@ -1,5 +1,36 @@
 # TravelBlogApp
 
+## General info
+
+**99 lives**
+
+A blog app dedicated to sharing travel tips about Bulgaria.
+![Home](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/b2c52b8c-0b87-43ec-af31-757d5bc1c18b)
+
+
+**Public part (Guest area)**
+![View-Guest](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/41bf0d32-2b49-4981-930f-6b41b2c0f08a)
+
+Guests can: 
+- Register
+- Log in 
+- Access the home page with featured tips
+- Browse all tips 
+- View a single tip  
+
+**Private part (User area)**
+![View-User](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/756b9074-2cad-44c5-bb26-432bedad68f3)
+
+Users can: 
+- Access their profile page
+- Submit a new tip 
+- Edit tip (if they are the author)
+- Delete tip (if they are the author) 
+- See all the tips they have posted 
+- Log out
+  
+-------------------------
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
 
 ## Development server
@@ -27,31 +58,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ---------------------------------
-## General info
-
-**99 lives**
-
-A blog app dedicated to sharing travel tips about Bulgaria
-![Home](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/b2c52b8c-0b87-43ec-af31-757d5bc1c18b)
-
-
-**Public part (Guest area)**
-![View-Guest](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/41bf0d32-2b49-4981-930f-6b41b2c0f08a)
-
-Guests can: 
-- Register
-- Log in 
-- Access the home page with featured tips
-- Browse all tips 
-- View a single tip  
-
-**Private part (User area)**
-![View-User](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/756b9074-2cad-44c5-bb26-432bedad68f3)
-
-Users can: 
-- Access their profile page
-- Submit a new tip 
-- Edit tip (if they are the author)
-- Delete tip (if they are the author) 
-- See all the tips they have posted 
-- Log out
