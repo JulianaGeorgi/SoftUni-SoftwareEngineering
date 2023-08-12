@@ -45,6 +45,6 @@ export class NewTipComponent implements OnInit {
     const confirmMessage = "Tip posted successfully.";
     this.snackBar.openSnackBar(confirmMessage,'Great!');
 
-    this.router.navigate([`traveltips/${this.userId}/${tipId}`]);
+    this.router.navigate([`traveltips/all/${this.userId}/${tipId}`]);
   }
 }
