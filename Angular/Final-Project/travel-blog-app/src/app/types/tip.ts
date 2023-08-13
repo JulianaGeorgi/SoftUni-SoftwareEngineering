@@ -3,4 +3,5 @@ export interface Tip {
     authorName: string; 
     imageUrl: string;
     tipContent: string;
+    userId?: string;
   }

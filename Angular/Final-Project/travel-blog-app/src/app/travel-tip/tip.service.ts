@@ -15,29 +15,29 @@ export class TipService {
   ) { }
   
 
-  getAllTips(): Observable<any> {
+  getAllTips(): Observable<{[userId: string]: {[tipId: string]: Tip;}}> {
 
     const databaseRef = ref(this.database, 'traveltips');
 
     return new Observable((obs) => {
-      onValue(databaseRef, (snapshot: any) => {
+      const unsubscribe = onValue(databaseRef, (snapshot: any) => {
         const tips = snapshot.val();
         obs.next(tips); // next param - callback f -> gets executed every time the next method returns a value
-        obs.complete();
       });
+      return () => unsubscribe();
     })
   }
 
-  getTipsByUser(userId: string): Observable<any> {
+  getTipsByUser(userId: string): Observable<{[tipId: string]: Tip;}> {
 
     const databaseRef = ref(this.database, `traveltips/${userId}`);
 
     return new Observable((obs) => {
-      onValue(databaseRef, (snapshot: any) => {
+      const unsubscribe = onValue(databaseRef, (snapshot: any) => {
         const tips = snapshot.val();
         obs.next(tips);
-        obs.complete();
       });
+      return () => unsubscribe(); //unsubscribing from the Firebase onValue
     })
   }
 

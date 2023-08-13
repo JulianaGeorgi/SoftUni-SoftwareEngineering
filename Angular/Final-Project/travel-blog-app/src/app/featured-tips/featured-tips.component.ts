@@ -8,17 +8,17 @@ import { Tip } from '../types/tip';
   templateUrl: './featured-tips.component.html',
   styleUrls: ['./featured-tips.component.css']
 })
-export class FeaturedTipsComponent implements OnInit{
+export class FeaturedTipsComponent implements OnInit {
 
-  featuredTips: { [key: string]: { [key: string]: string } }= {};
-  readonly featuredUserId = featuredUserId;  
+  featuredTips: {[tipId: string]: Tip;} = {};
+  readonly featuredUserId = featuredUserId;
 
   constructor(
     private tipService: TipService
   ) { }
 
   ngOnInit(): void {
-    
+
     this.tipService.getTipsByUser(featuredUserId)
       .subscribe({
         next: (tips) => {

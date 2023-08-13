@@ -34,7 +34,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})], // auto scroll to the page top on route change!!
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

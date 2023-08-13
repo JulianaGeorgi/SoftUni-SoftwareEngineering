@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TipService } from '../tip.service';
+import { Tip } from 'src/app/types/tip';
 
 @Component({
   selector: 'app-all-tips',
@@ -8,7 +9,7 @@ import { TipService } from '../tip.service';
 })
 export class AllTipsComponent {
 
-  allTips: {} = {}
+  allTips: {[tipId: string]: Tip;} = {}
 
   constructor(
     private tipService: TipService,
@@ -39,4 +40,4 @@ export class AllTipsComponent {
   }
 }
 
-  
+
