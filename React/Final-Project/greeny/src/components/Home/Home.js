@@ -10,7 +10,7 @@ export const Home = () => {
                 <h1>#1 Green App.</h1>
                 <h1>Get inspired anytime, anywhere. Start today.</h1>
                 <h3>Track your impact.</h3>
-                <button className='btn button-primary'><Link to='/signup' >SIGN UP FOR FREE <span><b>♡</b></span></Link></button>
+                <button className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500"><Link to='/signup' >SIGN UP FOR FREE <span><b>♡</b></span></Link></button>
             </header>
 
             <section className='events-block'>

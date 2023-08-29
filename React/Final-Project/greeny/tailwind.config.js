@@ -32,9 +32,12 @@ module.exports = {
         "champagne": "#F2E8CF",
         "alice-blue": "#EDF6F9",
         "watermelon-red": "#BC4749",
-        "blue-gradient": "linear-gradient(270deg, #007EA7 -24.77%, #80CED7 95.41%)",
         "font-dark": "#313030",
       },
+
+        backgroundImage: {
+          'forest': "url('https://img.freepik.com/free-photo/aerial-view-green-forest_144627-45271.jpg?w=2000')",
+        }
   
     },
   },
