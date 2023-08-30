@@ -1,22 +1,27 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 export const Register = () => {
 
-    const [formValues, setValues] = useState({
-        username: '',
-        email: '',
-        password: '',
-        repeatPassword: '',
-    });
+    const form = useForm(
+        {
+            mode: "onChange",
+            defaultValues: {
+                name: "",
+                email: "",
+                username: "",
+                password: "",
+                repeatPassword: ""
+            }
+        }
+    );
 
-    const onSubmitHandler = (e) => {
-        e.preventDefault() 
-    };
+    const { register, control, handleSubmit, formState, watch } = form; // a method that can be accessed on the form object to track the form state
+    const { errors, isDirty, isValid } = formState;
 
-    const onChangeHandler = (e) => {
-        setValues(state => ({...state, [e.target.name]: e.target.value}));
-    };
-
+    const onSubmit = (data) => {
+        console.log("Form submitted!", data);
+    }
 
     return (
         <div>
@@ -27,25 +32,33 @@ export const Register = () => {
                             Join Greeny
                         </h3>
                     </div>
-                    <form onSubmit={onSubmitHandler}>
-                        <div>
+
+                    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+
+                        {/* NAME */}
+                        <div className="mt-4">
                             <label
-                                htmlFor="username"
+                                htmlFor="name"
                                 className="block text-m font-medium text-font-dark undefined"
                             >
-                                Username
+                                Name
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
-                                    type="text"
-                                    name="username"
-                                    id="username"
                                     className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    value={formValues.username}
-                                    onChange={onChangeHandler}
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    {...register("name",
+                                        {
+                                            required: "Name is required.",
+                                        })}
                                 />
+                                <p className="text-sm text-red-600">{errors.name?.message}</p>
                             </div>
                         </div>
+
+                        {/* EMAIL */}
                         <div className="mt-4">
                             <label
                                 htmlFor="email"
@@ -55,15 +68,52 @@ export const Register = () => {
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
+                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     type="email"
                                     name="email"
                                     id="email"
-                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    value={formValues.email}
-                                    onChange={onChangeHandler}
+                                    {...register("email",
+                                        {
+                                            required: "Email is required.",
+                                            pattern: {
+                                                value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                                                message: "Email is not valid. Please try again."
+                                            }
+                                        },
+
+                                    )}
                                 />
+                                <p className="text-sm text-red-600">{errors.email?.message}</p>
                             </div>
                         </div>
+
+                        {/* USERNAME */}
+                        <div className="mt-4">
+                            <label
+                                htmlFor="username"
+                                className="block text-m font-medium text-font-dark undefined"
+                            >
+                                Username
+                            </label>
+                            <div className="flex flex-col items-start">
+                                <input
+                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    type="text"
+                                    id="username"
+                                    {...register("username", // same as name={name} ref={ref} onChange={onChange} onBlur={onBlur}
+                                        {
+                                            required: "Username is required.",
+                                            minLength: {
+                                                value: 3,
+                                                message: "Username has to be longer than 3 symbols."
+                                            }
+                                        })}
+                                />
+                                <p className="text-sm text-red-600">{errors.username?.message}</p>
+                            </div>
+                        </div>
+
+                        {/* PASS */}
                         <div className="mt-4">
                             <label
                                 htmlFor="password"
@@ -73,15 +123,25 @@ export const Register = () => {
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
+                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     type="password"
                                     name="password"
                                     id="password"
-                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    value={formValues.password}
-                                    onChange={onChangeHandler}
+                                    {...register("password",
+                                        {
+                                            required: "Password is required.",
+                                            minLength: {
+                                                value: 6,
+                                                message: "Password has to be longer than 6 symbols."
+                                            }
+                                        }
+                                    )}
                                 />
+                                <p className="text-sm text-red-600">{errors.password?.message}</p>
                             </div>
                         </div>
+
+                        {/* REPEAT PASS */}
                         <div className="mt-4">
                             <label
                                 htmlFor="repeatPassword"
@@ -91,15 +151,25 @@ export const Register = () => {
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
+                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     type="password"
                                     name="repeatPassword"
                                     id="repeatPassword"
-                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    value={formValues.repeatPassword}
-                                    onChange={onChangeHandler}
+                                    {...register("repeatPassword",
+                                        {
+                                            required: "Repeat password is required.",
+                                            validate: (repeatPassword) => {
+                                                if (watch('password') !== repeatPassword) {
+                                                    return "Passwords do not match.";
+                                                }
+                                            },
+                                        }
+                                    )}
                                 />
+                                <p className="text-sm text-red-600">{errors.repeatPassword?.message}</p>
                             </div>
                         </div>
+
                         <div className="flex items-center justify-around mt-4">
                             <a
                                 className="text-m text-font-dark underline hover:text-gray-900"
@@ -108,6 +178,7 @@ export const Register = () => {
                                 Already registered?
                             </a>
                             <button
+                                disabled={!isDirty || !isValid}
                                 type="submit"
                                 className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500"
                             >
@@ -115,6 +186,9 @@ export const Register = () => {
                             </button>
                         </div>
                     </form>
+
+                    <DevTool control={control} />
+
                 </div>
             </div>
         </div>
