@@ -6,27 +6,14 @@ import { Footer } from './components/Footer/Footer';
 import { About } from './components/About/About';
 import { Register } from './components/Register/Register';
 
-import { useState, useEffect } from 'react';
+import { AuthProvider } from './contexts/AuthContext';
 
-import { AuthContext } from './contexts/AuthContext';
-
-import { auth } from './firebase'
-import { onAuthStateChanged } from 'firebase/auth'
+import Login from './components/Login/Login';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
-
-    onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      console.log(currentUser);
-    })
-  }, [currentUser])
-
   return (
-    <AuthContext.Provider value={{ currentUser }}>
+    <AuthProvider>
       <div className="App">
         <Navigation />
 
@@ -35,13 +22,14 @@ function App() {
 
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
+            <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Register />} />
 
           </Routes>
         </main>
         <Footer />
       </div>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 

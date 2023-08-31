@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { signup } from "../../services/auth";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../contexts/AuthContext";
 
 export const Register = () => {
 
     const navigate = useNavigate();
+    const { signup } = useAuth();
 
     const form = useForm(
         {
@@ -23,15 +24,13 @@ export const Register = () => {
     const { register, control, handleSubmit, formState, watch } = form; // a method that can be accessed on the form object to track the form state
     const { errors, isDirty, isValid } = formState;
 
-    const onRegisterSubmit = (formData) => {
-        console.log("Form submitted!", formData);
-
-        signup(formData.email, formData.password);
-        // console.log(user); // undefined
-  
-        navigate('/');
-
-        //TODO: Update state?
+    async function onRegisterSubmitHandler(formData) {
+        try {
+            await signup(formData.email, formData.password);
+            navigate('/');
+        } catch (err) {
+            alert(`Registration failed - ${err.code - err.message}`);
+        };
     }
 
     return (
@@ -44,7 +43,7 @@ export const Register = () => {
                         </h3>
                     </div>
 
-                    <form onSubmit={handleSubmit(onRegisterSubmit)} noValidate>
+                    <form onSubmit={handleSubmit(onRegisterSubmitHandler)} noValidate>
 
                         {/* NAME */}
                         <div className="mt-4">
