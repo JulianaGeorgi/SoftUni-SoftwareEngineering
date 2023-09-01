@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}",],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/tw-elements-react/dist/js/**/*.js"
+  ],
   theme: {
 
     fontFamily: {
@@ -22,7 +25,8 @@ module.exports = {
       sm: '480px',
       md: '768px',
       lg: '976px',
-      xl: '1440px',
+      xl: '1280px',
+      xxl: '1440px',
     },
 
     extend: {
@@ -35,12 +39,13 @@ module.exports = {
         "font-dark": "#313030",
       },
 
-        backgroundImage: {
-          'forest': "url('https://img.freepik.com/free-photo/aerial-view-green-forest_144627-45271.jpg?w=2000')",
-        }
-  
+      backgroundImage: {
+        "forest": "url('https://img.freepik.com/free-photo/aerial-view-green-forest_144627-45271.jpg?w=2000')",
+        "earthDay": "url(https://www.yardi.com/blog/wp-content/uploads/sites/15/2022/04/rsz_adobestock_332835800.jpg)",
+      }
+
     },
   },
-  plugins: [],
+  plugins: [require("tw-elements-react/dist/plugin.cjs")],
 }
 

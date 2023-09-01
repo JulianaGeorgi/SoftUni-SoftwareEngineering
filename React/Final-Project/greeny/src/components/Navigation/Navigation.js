@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SocialButtons } from "../Buttons/SocialButtons";
 import { useAuth } from "../../contexts/AuthContext";
 
 export const Navigation = () => {
 
+    const navigate = useNavigate();
     const { currentUser, logout } = useAuth()
 
     async function handleLogout() {
         try {
             await logout();
+            navigate("/");
         } catch {
             alert("Failed to log out");
         }

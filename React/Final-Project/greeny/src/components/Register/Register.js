@@ -136,6 +136,7 @@ export const Register = () => {
                                     className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     type="password"
                                     name="password"
+                                    autoComplete="off"
                                     id="password"
                                     {...register("password",
                                         {
@@ -164,6 +165,7 @@ export const Register = () => {
                                     className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     type="password"
                                     name="repeatPassword"
+                                    autoComplete="off"
                                     id="repeatPassword"
                                     {...register("repeatPassword",
                                         {
