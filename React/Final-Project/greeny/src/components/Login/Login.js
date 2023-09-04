@@ -25,7 +25,7 @@ export const Login = () => {
 
     return (
         <section className="h-full bg-neutral-200 dark:bg-neutral-700">
-            <div className="flex-col h-full p-10 w-3/4 m-auto">
+            <div className="flex-col h-full p-10 w-5/6 m-auto">
                 <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
                     <div className="w-full">
                         <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
@@ -38,23 +38,24 @@ export const Login = () => {
                                         {/* <!--Logo--> */}
                                         <div className="text-center">
                                             <img
-                                                className="mx-auto w-48 pt-1"
+                                                className="mx-auto w-48 pt-1 pb-12"
                                                 src="/images/greeny-low-resolution-logo-color-on-transparent-background.png"
                                                 alt="logo"
                                             />
-                                            <h4 className="mb-12 mt-12 pb-1 text-4xl font-bold text-font-dark">
-                                                Welcome back
+                                            <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
+                                                Please login to your account
                                             </h4>
                                         </div>
 
                                         <form onSubmit={handleSubmit(onLoginSubmitHandler)}>
-                                            <p className="mb-4">Please login to your account</p>
-                                            {/* <!--Username input--> */}
+
+                                            {/* <!--USERNAME--> */}
                                             <TEInput
-                                                id="email"
                                                 name="email"
                                                 type="text"
+                                                label="Email"
                                                 className="mb-4"
+                                                id="email"
                                                 required={true}
                                                 {...register("email", {
                                                     required: "Please enter your email.",
@@ -70,27 +71,27 @@ export const Login = () => {
                                                 <p className="text-sm text-red-600">{errors.email.message}</p>
                                             )}
 
-                                            {/* <!--Password input--> */}
+                                            {/* <!--PASS--> */}
                                             <TEInput
-                                                id="password"
                                                 name="password"
                                                 type="password"
+                                                label="Password"
+                                                id="password"
                                                 required={true}
                                                 autoComplete="off"
-                                                className={`mb-4 form-control ${errors.password && "invalid"}`}
+                                                className="mb-4"
+                                                // className={`mb-4 form-control ${errors.password && "invalid"}`}
                                                 {...register("password", {
                                                     required: "Please enter your password."
                                                 })}
                                                 error={(errors.password)}
                                             ></TEInput>
-                                            
+
                                             {errors.password && (
-                                                <p className="text-sm text-red-600">
-                                                    {errors.password.message}
-                                                </p>
+                                                <p className="text-sm text-red-600">{errors.password.message}</p>
                                             )}
 
-                                            {/* <!--Submit button--> */}
+                                            {/* <!--Submit form --> */}
                                             <div className="mb-12 pb-1 pt-1 text-center">
                                                 <TERipple rippleColor="light" className="w-full">
                                                     <button
@@ -117,7 +118,7 @@ export const Login = () => {
                                                         type="button"
                                                         className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
                                                     >
-                                                        <Link to="/signup">Register</Link>
+                                                        <Link to="/register">Register</Link>
                                                     </button>
                                                 </TERipple>
                                             </div>
@@ -136,72 +137,5 @@ export const Login = () => {
         </section>
     );
 
-    // return (
-    //     <>
-    //         <h1>Log In</h1>
-    //         <form onSubmit={handleSubmit(onLoginSubmitHandler)}>
-
-    //             {/* EMAIL */}
-    //             <div>
-    //             <label htmlFor="email">Email</label>
-    //             <input
-    //                 id="email"
-    //                 name="email"
-    //                 type='email'
-    //                 required={true}
-    //                 {...register("email", {
-    //                     required: "Email is Required!!!",
-    //                     pattern: {
-    //                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-    //                         message: "Invalid email address",
-    //                     }
-    //                 })}
-    //                 error={(errors.email)}
-    //             // onKeyUp={() => { trigger("email") }}
-    //             ></input>
-    //             {errors.email && (
-    //                 <small className="text-danger">{errors.email.message}</small>
-    //             )}
-    //             </div>
-
-    //             {/* PASS */}
-    //             <div>
-    //                 <label>Your password</label>
-    //                 <input
-    //                     name='password'
-    //                     id="password"
-    //                     type='password'
-    //                     autoComplete='off'
-    //                     className={`form-control ${errors.password && "invalid"}`}
-    //                     required={true}
-    //                     {...register("password", {
-    //                         required: "You must specify a password",
-    //                         // pattern: {
-    //                         //     value: '^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=. (.*.[\W]){1,})(?!.*\s).{8,}$',
-    //                         //     message: "Password should contain at least one number and one special character"
-    //                         // },
-    //                         // minLength: {
-    //                         //     value: 8,
-    //                         //     message: "Password must be more than 8 characters"
-    //                         // },
-    //                         // maxLength: {
-    //                         //     value: 20,
-    //                         //     message: "Password must be less than 20 characters"
-    //                         // },
-    //                     })}
-    //                     // onKeyUp={() => { trigger("password") }}
-    //                     error={(errors.password)}
-    //                 ></input>
-    //                 {errors.password && (
-    //                     <small className="text-danger">
-    //                         {errors.password.message}
-    //                     </small>
-    //                 )}
-    //             </div >
-
-    //             <button type="submit">Submit</button>
-    //         </form >
-    //     </>
-    // );
 };
 export default Login;

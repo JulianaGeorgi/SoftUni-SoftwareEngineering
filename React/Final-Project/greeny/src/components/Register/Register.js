@@ -1,6 +1,9 @@
+import { TEInput, TERipple } from "tw-elements-react";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from 'react-router-dom';
+
 import { DevTool } from "@hookform/devtools";
-import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from "../../contexts/AuthContext";
 
 export const Register = () => {
@@ -34,175 +37,166 @@ export const Register = () => {
     }
 
     return (
-        <div>
-            <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-forest">
-                <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-champagne shadow-md sm:max-w-md sm:rounded-lg opacity-90">
-                    <div>
-                        <h3 className="text-4xl font-bold text-font-dark text-center">
-                            Join Greeny
-                        </h3>
+        <section className="h-full bg-neutral-200 dark:bg-neutral-700">
+            <div className="h-full p-10 w-5/6 m-auto">
+                <div className="g-6 flex h-full w-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+                    <div className="w-full">
+                        <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+                            <div className="g-0 lg:flex lg:flex-wrap">
+
+                                {/* <!-- Left column container--> */}
+                                <div className="px-4 md:px-0 lg:w-6/12">
+                                    <div className="md:mx-6 md:p-12">
+                                        
+                                        {/* <!--Logo--> */}
+                                        <div className="text-center">
+                                            <img
+                                                className="mx-auto w-48 pb-12"
+                                                src="/images/greeny-low-resolution-logo-color-on-transparent-background.png"
+                                                alt="logo"
+                                            />
+                                            <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
+                                                Please register an account
+                                            </h4>
+                                        </div>
+
+                                        <form onSubmit={handleSubmit(onRegisterSubmitHandler)} noValidate>
+
+                                            {/* <!--NAME--> */}
+                                            <TEInput
+                                                type="text"
+                                                label="Name"
+                                                className="mb-4"
+                                                id="name"
+                                                {...register("name",
+                                                    {
+                                                        required: "Name is required.",
+                                                    })}
+                                            ></TEInput>
+                                            <p className="text-sm text-red-600">{errors.name?.message}</p>
+
+                                            {/* <!--EMAIL--> */}
+                                            <TEInput
+                                                type="email"
+                                                label="Email"
+                                                className="mb-4"
+                                                id="email"
+                                                {...register("email",
+                                                    {
+                                                        required: "Email is required.",
+                                                        pattern: {
+                                                            value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                                                            message: "Email is not valid. Please try again."
+                                                        }
+                                                    },
+                                                )}
+                                            ></TEInput>
+                                            <p className="text-sm text-red-600">{errors.email?.message}</p>
+
+                                            {/* <!--USERNAME--> */}
+                                            <TEInput
+                                                type="text"
+                                                label="Username"
+                                                className="mb-4"
+                                                id="username"
+                                                {...register("username", // same as name={name} ref={ref} onChange={onChange} onBlur={onBlur}
+                                                    {
+                                                        required: "Username is required.",
+                                                        minLength: {
+                                                            value: 3,
+                                                            message: "Username has to be longer than 3 symbols."
+                                                        }
+                                                    })}
+                                            ></TEInput>
+                                            <p className="text-sm text-red-600">{errors.username?.message}</p>
+
+                                            {/* <!--PASS--> */}
+                                            <TEInput
+                                                type="password"
+                                                label="Password"
+                                                className="mb-4"
+                                                autoComplete="off"
+                                                id="password"
+                                                {...register("password",
+                                                    {
+                                                        required: "Password is required.",
+                                                        minLength: {
+                                                            value: 6,
+                                                            message: "Password has to be longer than 6 symbols."
+                                                        }
+                                                    }
+                                                )}
+                                            ></TEInput>
+                                            <p className="text-sm text-red-600">{errors.password?.message}</p>
+
+                                            {/* <!--REPEAT PASS --> */}
+                                            <TEInput
+                                                type="password"
+                                                label="Confirm password"
+                                                className="mb-4"
+                                                autoComplete="off"
+                                                id="repeatPassword"
+                                                {...register("repeatPassword",
+                                                    {
+                                                        required: "Repeat password is required.",
+                                                        validate: (repeatPassword) => {
+                                                            if (watch('password') !== repeatPassword) {
+                                                                return "Passwords do not match.";
+                                                            }
+                                                        },
+                                                    }
+                                                )}
+                                            ></TEInput>
+                                            <p className="text-sm text-red-600">{errors.repeatPassword?.message}</p>
+
+                                            {/* <!--Submit form button--> */}
+                                            <div className="mb-12 pb-1 pt-1 text-center">
+                                                <TERipple rippleColor="light" className="w-full">
+                                                    <button
+                                                        disabled={!isDirty || !isValid}
+                                                        className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+                                                        type="submit"
+                                                        style={{
+                                                            background:
+                                                                "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                                        }}
+                                                    >
+                                                        Register
+                                                    </button>
+                                                </TERipple>
+                                            </div>
+
+                                            {/* <!--Register button--> */}
+                                            <div className="flex items-center justify-between pb-6">
+                                                <p className="mb-0 mr-2">Have an account?</p>
+                                                <Link to="/login">
+                                                    <TERipple rippleColor="light">
+                                                        <button
+                                                            type="button"
+                                                            className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                                                        >
+                                                            Login
+                                                        </button>
+                                                    </TERipple>
+                                                </Link>
+                                            </div>
+                                        </form>
+
+                                        <DevTool control={control} />
+
+                                    </div>
+                                </div>
+
+                                {/* <!-- Right column container with background image--> */}
+                                <div
+                                    class="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none bg-forest bg-cover xxl:bg-cover bg-center"      
+                                >
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <form onSubmit={handleSubmit(onRegisterSubmitHandler)} noValidate>
-
-                        {/* NAME */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="name"
-                                className="block text-m font-medium text-font-dark undefined"
-                            >
-                                Name
-                            </label>
-                            <div className="flex flex-col items-start">
-                                <input
-                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    {...register("name",
-                                        {
-                                            required: "Name is required.",
-                                        })}
-                                />
-                                <p className="text-sm text-red-600">{errors.name?.message}</p>
-                            </div>
-                        </div>
-
-                        {/* EMAIL */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="email"
-                                className="block text-m font-medium text-font-dark undefined"
-                            >
-                                Email
-                            </label>
-                            <div className="flex flex-col items-start">
-                                <input
-                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    {...register("email",
-                                        {
-                                            required: "Email is required.",
-                                            pattern: {
-                                                value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                                                message: "Email is not valid. Please try again."
-                                            }
-                                        },
-
-                                    )}
-                                />
-                                <p className="text-sm text-red-600">{errors.email?.message}</p>
-                            </div>
-                        </div>
-
-                        {/* USERNAME */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="username"
-                                className="block text-m font-medium text-font-dark undefined"
-                            >
-                                Username
-                            </label>
-                            <div className="flex flex-col items-start">
-                                <input
-                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    type="text"
-                                    id="username"
-                                    {...register("username", // same as name={name} ref={ref} onChange={onChange} onBlur={onBlur}
-                                        {
-                                            required: "Username is required.",
-                                            minLength: {
-                                                value: 3,
-                                                message: "Username has to be longer than 3 symbols."
-                                            }
-                                        })}
-                                />
-                                <p className="text-sm text-red-600">{errors.username?.message}</p>
-                            </div>
-                        </div>
-
-                        {/* PASS */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="password"
-                                className="block text-m font-medium text-font-dark undefined"
-                            >
-                                Password
-                            </label>
-                            <div className="flex flex-col items-start">
-                                <input
-                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    type="password"
-                                    name="password"
-                                    autoComplete="off"
-                                    id="password"
-                                    {...register("password",
-                                        {
-                                            required: "Password is required.",
-                                            minLength: {
-                                                value: 6,
-                                                message: "Password has to be longer than 6 symbols."
-                                            }
-                                        }
-                                    )}
-                                />
-                                <p className="text-sm text-red-600">{errors.password?.message}</p>
-                            </div>
-                        </div>
-
-                        {/* REPEAT PASS */}
-                        <div className="mt-4">
-                            <label
-                                htmlFor="repeatPassword"
-                                className="block text-m font-medium text-font-dark undefined"
-                            >
-                                Confirm Password
-                            </label>
-                            <div className="flex flex-col items-start">
-                                <input
-                                    className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    type="password"
-                                    name="repeatPassword"
-                                    autoComplete="off"
-                                    id="repeatPassword"
-                                    {...register("repeatPassword",
-                                        {
-                                            required: "Repeat password is required.",
-                                            validate: (repeatPassword) => {
-                                                if (watch('password') !== repeatPassword) {
-                                                    return "Passwords do not match.";
-                                                }
-                                            },
-                                        }
-                                    )}
-                                />
-                                <p className="text-sm text-red-600">{errors.repeatPassword?.message}</p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center justify-around mt-4">
-                            <a
-                                className="text-m text-font-dark underline hover:text-gray-900"
-                                href="/login"
-                            >
-                                Already registered?
-                            </a>
-                            <button
-                                disabled={!isDirty || !isValid}
-                                type="submit"
-                                className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500"
-                            >
-                                Register
-                            </button>
-                        </div>
-                    </form>
-
-                    <DevTool control={control} />
-
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

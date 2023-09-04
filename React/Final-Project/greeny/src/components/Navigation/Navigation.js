@@ -61,9 +61,19 @@ export const Navigation = () => {
                             className="list-style-none mr-auto flex flex-row pl-0 lg:flex-col"
                             data-te-navbar-nav-ref=""
                         >
+                            <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
+                                            <Link to="/"
+                                                className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
+                                                href="#"
+                                                data-te-nav-link-ref=""
+                                            >
+                                                Home
+                                            </Link>
+                                        </li>
                             {!currentUser ?
                                 (
                                     <div className="flex flex-row">
+
                                         <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
                                             <Link to="/login"
                                                 className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
@@ -73,9 +83,9 @@ export const Navigation = () => {
                                                 Login
                                             </Link>
                                         </li>
-                                        
+
                                         <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
-                                            <Link to="/signup"
+                                            <Link to="/register"
                                                 className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
                                                 href="#"
                                                 data-te-nav-link-ref=""
@@ -85,12 +95,20 @@ export const Navigation = () => {
                                         </li>
                                     </div>
                                 )
-
                                 :
-
-                                
                                 (
-                                    <Logout/>
+                                    <div className="flex flex-row">
+                                        <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
+                                            <Link to="/create"
+                                                className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+                                                href="#"
+                                                data-te-nav-link-ref=""
+                                            >
+                                                Create Greeny
+                                            </Link>
+                                        </li>
+                                        <Logout />
+                                    </div>
                                 )
                             }
                         </ul>

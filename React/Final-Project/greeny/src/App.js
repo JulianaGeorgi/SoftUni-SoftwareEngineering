@@ -10,6 +10,7 @@ import { Login } from './components/Login/Login';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { Logout } from './components/Logout/Logout';
+import { CreateGreeny } from './components/CreateGreeny/CreateGreeny';
 
 
 
@@ -26,7 +27,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<Register />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/create' element={<CreateGreeny />} />
             <Route path='/logout' element={<Logout />} />
 
           </Routes>
