@@ -1,11 +1,20 @@
 import { database } from "../firebase";
-import { ref, push } from "firebase/database";
+import { ref, push, onValue } from "firebase/database";
 
 export const postServices = () => {
 
-    const publishPost = async ({author, title, imageUrl, content, ownerId}) => {
+    const getAllGreenies = async () => {
 
-        const result = await push(ref(database, 'greenies/'), {
+        const allGreeniesRef = ref(database, 'greenies/');
+        onValue(allGreeniesRef, (snapshot) => {
+            const data = snapshot.val();
+            return data;
+        });
+    }
+
+    const publishPost = async ({ author, title, imageUrl, content, ownerId }) => {
+
+        const newGreenyRef = await push(ref(database, 'greenies/'), {
             author: author,
             title: title,
             imageUrl: imageUrl,
@@ -13,11 +22,13 @@ export const postServices = () => {
             ownerId: ownerId
         });
 
-        console.log(result)
-        return result;
+        const newGreenyId = newGreenyRef.key;
+
+        return newGreenyId;
     }
 
     return {
+        getAllGreenies,
         publishPost
     }
 }

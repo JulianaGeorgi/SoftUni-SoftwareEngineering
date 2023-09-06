@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../contexts/AuthContext";
+import { useGame } from "../../contexts/GreenyContext";
 import { postServices } from "../../services/postServices";
 
 
@@ -30,8 +31,12 @@ export const CreateGreeny = () => {
     const { errors, isDirty, isValid } = formState;
 
     const onCreateGreenySubmit = async () => {
+
         const formValues = getValues();
-        await postServices().publishPost({...formValues, ownerId: userId});
+        const newGreeny = { ...formValues, ownerId: userId }
+        
+        const newGreenyKey = await postServices().publishPost(newGreeny);
+        
         navigate('/');
         //TODO: Add error handling
     };

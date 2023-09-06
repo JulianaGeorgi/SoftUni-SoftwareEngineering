@@ -13,7 +13,7 @@ export const AuthContext = createContext(); // returns a context object - does n
 
 // f to read the context 
 export function useAuth() {
-    return useContext(AuthContext) 
+    return useContext(AuthContext) ;
 }
 
 // specifying the value of the context
