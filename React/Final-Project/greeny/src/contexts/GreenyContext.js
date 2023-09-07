@@ -7,20 +7,23 @@ export function useGame() {
     return useContext(GreenyContext);
 }
 
-export const GreenyProvider = ({children}) => {
+export const GreenyProvider = ({ children }) => {
 
     const [greenies, setGreenies] = useState([]);
 
     useEffect(() => {
-        postServices().getAllGreenies()
-            .then(allGreenies => {
-                setGreenies([allGreenies]);
+        postServices()
+            .getAllGreenies()
+            .then((allGreenies) => {
+                setGreenies([...allGreenies]);
             })
+            .catch((error) => {
+                console.error("API call error:", error);
+            });
     }, []);
 
-
     const value = {
-        greenies, 
+        greenies,
         setGreenies
     }
 

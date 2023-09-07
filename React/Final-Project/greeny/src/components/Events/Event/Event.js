@@ -1,21 +1,29 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useGame } from "../../../contexts/GreenyContext";
 
 export const Event = () => {
+
+    const { greenies } = useGame();
+
     return (
 
         <div className='events-item-grid'>
-            <div className='event-item'>
-                <figure className='event-img'>
-                    <img alt='community cleaning streets' src='https://cdn.shopify.com/s/files/1/0098/1362/2848/products/community_600x.jpg?v=1597415519' />
-                </figure>
-                <div className="description">
-                    <h3>Neighborhood clean</h3>
-                    <p>Community-based waste management program.</p>
+            {greenies.map((greeny) => (
+                <div className="event-item" key={greeny.id}>
+                    <figure className="event-img">
+                        <img alt={greeny.name} src={greeny.imageUrl} />
+                    </figure>
+                    <div className="description">
+                        <h3>{greeny.name}</h3>
+                        <p>{greeny.content}</p>
+                    </div>
+                    <button className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500">
+                        <Link to="#">PARTICIPATE <span><b>♡</b></span></Link>
+                    </button>
                 </div>
-                <button className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500"><Link to='#' >PARTICIPATE <span><b>♡</b></span></Link></button>
-            </div>
+            ))}
 
-            <div className='event-item'>
+            {/* <div className='event-item'>
                 <figure className='event-img'>
                     <img alt='community cleaning streets' src='https://hips.hearstapps.com/hmg-prod/images/plant-for-the-earth-royalty-free-image-1635783818.jpg' />
                 </figure>
@@ -68,7 +76,7 @@ export const Event = () => {
                     <p>Learn about the impact of our foods.</p>
                 </div>
                 <button className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500"><Link to='#' >PARTICIPATE <span><b>♡</b></span></Link></button>
-            </div>
+            </div> */}
 
         </div>
     )
