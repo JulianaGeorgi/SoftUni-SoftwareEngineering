@@ -38,10 +38,10 @@ export const CreateGreeny = () => {
         const newGreeny = { ...formValues, ownerId: userId }
         
         const newGreenyData = await postServices().publishPost(newGreeny);
-
-        setGreenies(oldGreenies => [...oldGreenies, newGreenyData]);
         
-        navigate('/');
+        setGreenies((oldGreenies) => [...oldGreenies, newGreenyData]);
+        
+        navigate(`/greenies/${newGreenyData.id}`);
         //TODO: Add error handling
     };
 

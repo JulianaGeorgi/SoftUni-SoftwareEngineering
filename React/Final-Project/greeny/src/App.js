@@ -7,10 +7,10 @@ import { Footer } from './components/Footer/Footer';
 import { About } from './components/About/About';
 import { Register } from './components/Register/Register';
 import { Login } from './components/Login/Login';
-
-import { AuthProvider } from './contexts/AuthContext';
 import { Logout } from './components/Logout/Logout';
 import { CreateGreeny } from './components/CreateGreeny/CreateGreeny';
+
+import { AuthProvider } from './contexts/AuthContext';
 import { GreenyProvider } from './contexts/GreenyContext';
 
 

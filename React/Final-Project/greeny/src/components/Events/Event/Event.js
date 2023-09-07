@@ -4,6 +4,7 @@ import { useGame } from "../../../contexts/GreenyContext";
 export const Event = () => {
 
     const { greenies } = useGame();
+    console.log(greenies)
 
     return (
 
@@ -18,7 +19,7 @@ export const Event = () => {
                         <p>{greeny.content}</p>
                     </div>
                     <button className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500">
-                        <Link to="#">PARTICIPATE <span><b>♡</b></span></Link>
+                        <Link to={`/greenies/${greeny.id}`}>PARTICIPATE <span><b>♡</b></span></Link>
                     </button>
                 </div>
             ))}

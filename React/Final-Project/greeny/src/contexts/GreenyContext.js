@@ -10,15 +10,18 @@ export function useGame() {
 export const GreenyProvider = ({ children }) => {
 
     const [greenies, setGreenies] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         postServices()
             .getAllGreenies()
             .then((allGreenies) => {
                 setGreenies([...allGreenies]);
+                setIsLoading(false);
             })
             .catch((error) => {
                 console.error("API call error:", error);
+                setIsLoading(false);
             });
     }, []);
 
