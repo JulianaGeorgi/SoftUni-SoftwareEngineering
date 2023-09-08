@@ -12,6 +12,7 @@ import { CreateGreeny } from './components/CreateGreeny/CreateGreeny';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { GreenyProvider } from './contexts/GreenyContext';
+import { GreenyDetails } from './components/Events/Event/GreenyDetails';
 
 
 
@@ -27,6 +28,7 @@ function App() {
           <Routes>
 
             <Route path='/' element={<Home />} />
+            <Route path='/greenies/:greenyId' element={<GreenyDetails/>} />
             <Route path='/about' element={<About />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />

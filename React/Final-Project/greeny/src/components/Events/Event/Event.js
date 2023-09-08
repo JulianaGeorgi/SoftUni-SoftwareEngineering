@@ -4,7 +4,6 @@ import { useGame } from "../../../contexts/GreenyContext";
 export const Event = () => {
 
     const { greenies } = useGame();
-    console.log(greenies)
 
     return (
 
