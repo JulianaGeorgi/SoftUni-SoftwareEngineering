@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 import { TERipple } from "tw-elements-react";
 
@@ -11,7 +11,7 @@ export const GreenyDetails = () => {
     const navigate = useNavigate();
 
     const params = useParams();
-    const id = params.greenyId;
+    const currentGreenyId = params.greenyId;
 
     const [currentGreeny, setCurrentGreeny] = useState({});
     const {deleteGreeny} = useGreeny();
@@ -19,7 +19,7 @@ export const GreenyDetails = () => {
     useEffect(() => {
         async function getCurrentGreeny() {
             try {
-                const currentGreeny = await postServices().getGreenyById(id);
+                const currentGreeny = await postServices().getGreenyById(currentGreenyId);
                 const date = new Date(currentGreeny.timestamp);
                 const formattedDate = `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}-${date.getFullYear()}`;
                 setCurrentGreeny({ ...currentGreeny, timestamp: formattedDate });
@@ -28,16 +28,16 @@ export const GreenyDetails = () => {
             }
         }
         getCurrentGreeny();
-    }, [id]);
+    }, [currentGreenyId]);
 
     const handleDelete= async() => {
   
         const result = window.confirm(`Are you sure you want to delete ${currentGreeny.title}`);
 
         if (result){
-            await postServices().deleteGreeny(id); // delete from db
+            await postServices().deleteGreeny(currentGreenyId); // delete from db
        
-            deleteGreeny(id); // delete from state via context
+            deleteGreeny(currentGreenyId); // delete from state via context
     
             navigate("/");
         }
@@ -103,7 +103,7 @@ export const GreenyDetails = () => {
                                     "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
                             }}
                         >
-                            Edit
+                           <Link to={`/greenies/${currentGreenyId}/edit`}>Edit</Link>
                         </button>
                     </TERipple>
                 </div>

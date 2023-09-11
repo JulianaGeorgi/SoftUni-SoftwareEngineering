@@ -29,9 +29,14 @@ export const GreenyProvider = ({ children }) => {
         setGreenies(state => state.filter(greeny => greeny.id !== greenyId));
     };
 
+    const editGreeny = (updatedGreenyData, greenyId) => {
+        setGreenies(state => state.map(x => x.id === greenyId ? updatedGreenyData : x));
+    }
+
     const value = {
         greenies,
-        setGreenies, 
+        setGreenies,
+        editGreeny,
         deleteGreeny
     }
 

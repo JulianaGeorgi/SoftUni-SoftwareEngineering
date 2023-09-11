@@ -1,5 +1,5 @@
 import { database } from "../firebase";
-import { ref, push, get, remove } from "firebase/database";
+import { ref, push, get, remove, update, child } from "firebase/database";
 
 export const postServices = () => {
 
@@ -68,14 +68,44 @@ export const postServices = () => {
     return resultObj;
   }
 
+  const updateGreeny = async ({ author, title, imageUrl, content, ownerId }, greenyId) => {
+    const timestamp = new Date().getTime();
+  
+    try {
+      const greenyRef = ref(database, '/greenies/' + greenyId);
+  
+      // Update the greeny data
+      await update(greenyRef, {
+        author: author,
+        title: title,
+        imageUrl: imageUrl,
+        content: content,
+        ownerId: ownerId,
+        timestamp: timestamp,
+      });
+  
+      // Fetch the updated data
+      const updatedGreenySnapshot = await get(greenyRef);
+      const updatedGreenyData = updatedGreenySnapshot.val();
+
+      const resultObj = { ...updatedGreenyData, id: greenyId }
+  
+      return resultObj;
+    } catch (error) {
+      console.error('Error updating greeny:', error);
+      throw error;
+    }
+  };
+
   const deleteGreeny = async (greenyId) => {
-   remove(ref(database, "/greenies/" + greenyId));
+    remove(ref(database, "/greenies/" + greenyId));
   }
 
   return {
     getAllGreenies,
     getGreenyById,
-    publishPost, 
+    publishPost,
+    updateGreeny,
     deleteGreeny
   }
 }
