@@ -1,5 +1,5 @@
 import { database } from "../firebase";
-import { ref, push, onValue, get } from "firebase/database";
+import { ref, push, get, remove } from "firebase/database";
 
 export const postServices = () => {
 
@@ -33,12 +33,10 @@ export const postServices = () => {
       const snapshot = await get(greenyRef);
       if (snapshot.exists()) {
         const greenyData = snapshot.val();
-        // You've successfully fetched the item by ID
-        console.log("Greeny Data:", greenyData);
         return greenyData;
       } else {
         console.log("Greeny not found.");
-        return [];
+        return {};
       }
 
     } catch (error) {
@@ -70,9 +68,14 @@ export const postServices = () => {
     return resultObj;
   }
 
+  const deleteGreeny = async (greenyId) => {
+   remove(ref(database, "/greenies/" + greenyId));
+  }
+
   return {
     getAllGreenies,
     getGreenyById,
-    publishPost
+    publishPost, 
+    deleteGreeny
   }
 }

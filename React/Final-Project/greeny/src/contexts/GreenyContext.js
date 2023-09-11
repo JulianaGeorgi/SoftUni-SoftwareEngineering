@@ -3,7 +3,7 @@ import { postServices } from "../services/postServices";
 
 export const GreenyContext = createContext();
 
-export function useGame() {
+export function useGreeny() {
     return useContext(GreenyContext);
 }
 
@@ -25,9 +25,14 @@ export const GreenyProvider = ({ children }) => {
             });
     }, []);
 
+    const deleteGreeny = (greenyId) => {
+        setGreenies(state => state.filter(greeny => greeny.id !== greenyId));
+    };
+
     const value = {
         greenies,
-        setGreenies
+        setGreenies, 
+        deleteGreeny
     }
 
     return (

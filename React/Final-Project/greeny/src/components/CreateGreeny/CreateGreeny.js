@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../contexts/AuthContext";
-import { useGame } from "../../contexts/GreenyContext";
+import { useGreeny } from "../../contexts/GreenyContext";
 import { postServices } from "../../services/postServices";
 
 
@@ -15,7 +15,7 @@ export const CreateGreeny = () => {
     const { currentUser } = useAuth();
     const userId = currentUser.uid;
 
-    const { setGreenies } = useGame();
+    const { setGreenies } = useGreeny();
 
     const form = useForm(
         {

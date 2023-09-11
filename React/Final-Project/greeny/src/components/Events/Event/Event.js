@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useGame } from "../../../contexts/GreenyContext";
+import { useGreeny } from "../../../contexts/GreenyContext";
 
 export const Event = () => {
 
-    const { greenies } = useGame();
+    const { greenies } = useGreeny();
 
     return (
 
