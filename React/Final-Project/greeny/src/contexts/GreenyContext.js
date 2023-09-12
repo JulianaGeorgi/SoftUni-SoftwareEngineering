@@ -25,6 +25,10 @@ export const GreenyProvider = ({ children }) => {
             });
     }, []);
 
+    const createGreeny = (newGreenyData) => {
+        setGreenies((oldGreenies) => [...oldGreenies, newGreenyData]);
+    }
+
     const deleteGreeny = (greenyId) => {
         setGreenies(state => state.filter(greeny => greeny.id !== greenyId));
     };
@@ -35,7 +39,7 @@ export const GreenyProvider = ({ children }) => {
 
     const value = {
         greenies,
-        setGreenies,
+        createGreeny,
         editGreeny,
         deleteGreeny
     }

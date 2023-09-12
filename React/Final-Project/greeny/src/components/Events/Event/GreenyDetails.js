@@ -5,21 +5,25 @@ import { TERipple } from "tw-elements-react";
 
 import { postServices } from "../../../services/postServices";
 import { useGreeny } from "../../../contexts/GreenyContext";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export const GreenyDetails = () => {
 
     const navigate = useNavigate();
 
-    const params = useParams();
-    const currentGreenyId = params.greenyId;
+    const { greenyId } = useParams();
+    // const greenyId = params.greenyId;
+
+    const { currentUser } = useAuth();
 
     const [currentGreeny, setCurrentGreeny] = useState({});
-    const {deleteGreeny} = useGreeny();
+
+    const { deleteGreeny } = useGreeny();
 
     useEffect(() => {
         async function getCurrentGreeny() {
             try {
-                const currentGreeny = await postServices().getGreenyById(currentGreenyId);
+                const currentGreeny = await postServices().getGreenyById(greenyId);
                 const date = new Date(currentGreeny.timestamp);
                 const formattedDate = `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}-${date.getFullYear()}`;
                 setCurrentGreeny({ ...currentGreeny, timestamp: formattedDate });
@@ -28,17 +32,19 @@ export const GreenyDetails = () => {
             }
         }
         getCurrentGreeny();
-    }, [currentGreenyId]);
+    }, [greenyId]);
 
-    const handleDelete= async() => {
-  
+    const isOwner = currentUser.uid === currentGreeny.ownerId;
+
+    const handleDelete = async () => {
+
         const result = window.confirm(`Are you sure you want to delete ${currentGreeny.title}`);
 
-        if (result){
-            await postServices().deleteGreeny(currentGreenyId); // delete from db
-       
-            deleteGreeny(currentGreenyId); // delete from state via context
-    
+        if (result) {
+            await postServices().deleteGreeny(greenyId); // delete from db
+
+            deleteGreeny(greenyId); // delete from state via context
+
             navigate("/");
         }
     }
@@ -92,36 +98,39 @@ export const GreenyDetails = () => {
                 </main>
             )}
             {/* BUTTONS */}
-            <div className="flex flex-row justify-center gap-3">
-                <div className="mb-12 pb-1 pt-1 text-center">
-                    <TERipple rippleColor="light">
-                        <button
-                            className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                            type="button"
-                            style={{
-                                background:
-                                    "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
-                            }}
-                        >
-                           <Link to={`/greenies/${currentGreenyId}/edit`}>Edit</Link>
-                        </button>
-                    </TERipple>
+
+            {isOwner && (
+                <div className="flex flex-row justify-center gap-3">
+                    <div className="mb-12 pb-1 pt-1 text-center">
+                        <TERipple rippleColor="light">
+                            <button
+                                className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+                                type="button"
+                                style={{
+                                    background:
+                                        "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                }}
+                            >
+                                <Link to={`/greenies/${greenyId}/edit`}>Edit</Link>
+                            </button>
+                        </TERipple>
+                    </div>
+                    <div className="mb-12 pb-1 pt-1 text-center">
+                        <TERipple rippleColor="light">
+                            <button onClick={handleDelete}
+                                className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+                                type="button"
+                                style={{
+                                    background:
+                                        "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                }}
+                            >
+                                Delete
+                            </button>
+                        </TERipple>
+                    </div>
                 </div>
-                <div className="mb-12 pb-1 pt-1 text-center">
-                    <TERipple rippleColor="light">
-                        <button onClick={handleDelete}
-                            className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                            type="button"
-                            style={{
-                                background:
-                                    "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
-                            }}
-                        >
-                            Delete
-                        </button>
-                    </TERipple>
-                </div>
-            </div>
+            )}
         </div>
 
     )

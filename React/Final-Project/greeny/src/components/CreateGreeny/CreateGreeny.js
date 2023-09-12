@@ -15,7 +15,7 @@ export const CreateGreeny = () => {
     const { currentUser } = useAuth();
     const userId = currentUser.uid;
 
-    const { setGreenies } = useGreeny();
+    const { createGreeny } = useGreeny();
 
     const form = useForm(
         {
@@ -39,7 +39,8 @@ export const CreateGreeny = () => {
         
         const newGreenyData = await postServices().publishPost(newGreeny);
         
-        setGreenies((oldGreenies) => [...oldGreenies, newGreenyData]);
+        createGreeny(newGreenyData);
+        // setGreenies((oldGreenies) => [...oldGreenies, newGreenyData]);
         
         navigate(`/greenies/${newGreenyData.id}`);
         //TODO: Add error handling
