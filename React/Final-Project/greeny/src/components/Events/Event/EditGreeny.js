@@ -103,6 +103,29 @@ export const EditGreeny = () => {
                             )}
                         </div>
 
+                        {/* CATEGORY */}
+                        <div>
+                            <   select
+                                id="select"
+                                label="Category"
+                                required={true}
+                                className="peer block min-h-[auto] w-full bg-champagne text-neutral-500 rounded border border-stone-300 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary motion-reduce:transition-none placeholder:opacity-0 disabled:bg-neutral-100 dark:disabled:bg-neutral-700 dark:read-only:bg-neutral-700 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary px-3 py-[0.32rem] leading-[1.6] mb-4"
+                                {...register("category", {
+                                    required: "Please choose a category of your Greeny."
+                                }
+                                )}>
+                                error={(errors.category)}
+                                <option value="">Choose category...</option>
+                                <option value="Reduce">Reduce</option>
+                                <option value="Reuse">Reuse</option>
+                                <option value="Recycle">Recycle</option>
+                                <option value="Knowledge">Knowledge</option>
+                            </select>
+                            {errors.category && (
+                                <p className="text-sm text-red-600">{errors.category.message}</p>
+                            )}
+                        </div>
+
                         {/* IMAGE */}
                         <div>
                             <TEInput
@@ -170,7 +193,7 @@ export const EditGreeny = () => {
                         <div className="mb-12 pb-1 pt-1 text-center">
                             <TERipple rippleColor="light">
                                 <button
-                                    onClick={() => reset()}
+                                    onClick={() => navigate(-1)}
                                     className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
                                     type="button"
                                     style={{
@@ -178,7 +201,7 @@ export const EditGreeny = () => {
                                             "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
                                     }}
                                 >
-                                    Cancel
+                                    Go back
                                 </button>
                             </TERipple>
                         </div>

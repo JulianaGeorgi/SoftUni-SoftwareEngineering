@@ -34,6 +34,8 @@ export const GreenyDetails = () => {
         getCurrentGreeny();
     }, [greenyId]);
 
+    console.log(currentGreeny)
+
     const isOwner = currentUser.uid === currentGreeny.ownerId;
 
     const handleDelete = async () => {
@@ -72,7 +74,7 @@ export const GreenyDetails = () => {
                                 href="#"
                                 className="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2"
                             >
-                                Nutrition
+                                {currentGreeny.category}
                             </a>
                             <h2 className="text-4xl font-semibold text-gray-100 leading-tight">
                                 {currentGreeny.title}

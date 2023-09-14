@@ -36,19 +36,19 @@ export const CreateGreeny = () => {
 
         const formValues = getValues();
         const newGreeny = { ...formValues, ownerId: userId }
-        
+
         const newGreenyData = await postServices().publishPost(newGreeny);
-        
+
         createGreeny(newGreenyData);
         // setGreenies((oldGreenies) => [...oldGreenies, newGreenyData]);
-        
+
         navigate(`/greenies/${newGreenyData.id}`);
         //TODO: Add error handling
     };
 
 
     return (
-        <section className="m-12 bg-light-green">
+        <section className="m-12">
             <div className="p-10 w-auto m-auto bg-champagne">
                 <form onSubmit={handleSubmit(onCreateGreenySubmit)} noValidate>
                     <fieldset>
@@ -95,6 +95,28 @@ export const CreateGreeny = () => {
                             ></TEInput>
                             {errors.title && (
                                 <p className="text-sm text-red-600">{errors.title.message}</p>
+                            )}
+                        </div>
+
+                        {/* CATEGORY */}
+                        <div>
+                        <   select 
+                             id="select"
+                             label="Category"
+                             required={true}
+                             className="peer block min-h-[auto] w-full bg-champagne text-neutral-500 rounded border border-stone-300 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary motion-reduce:transition-none placeholder:opacity-0 disabled:bg-neutral-100 dark:disabled:bg-neutral-700 dark:read-only:bg-neutral-700 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary px-3 py-[0.32rem] leading-[1.6] mb-4"
+                            {...register("category", {
+                                required: "Please choose a category of your Greeny."}
+                            )}>
+                            error={(errors.category)}
+                                <option value="">Choose category...</option>
+                                <option value="Reduce">Reduce</option>
+                                <option value="Reuse">Reuse</option>
+                                <option value="Recycle">Recycle</option>
+                                <option value="Knowledge">Knowledge</option>
+                            </select>
+                            {errors.category && (
+                                <p className="text-sm text-red-600">{errors.category.message}</p>
                             )}
                         </div>
 

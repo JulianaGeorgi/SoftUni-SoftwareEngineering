@@ -45,13 +45,14 @@ export const postServices = () => {
     };
   }
 
-  const publishPost = async ({ author, title, imageUrl, content, ownerId }) => {
+  const publishPost = async ({ author, title, category, imageUrl, content, ownerId }) => {
 
     const timestamp = new Date().getTime();
 
     const newGreenyRef = await push(ref(database, 'greenies/'), {
       author: author,
       title: title,
+      category: category,
       imageUrl: imageUrl,
       content: content,
       ownerId: ownerId,
@@ -68,7 +69,7 @@ export const postServices = () => {
     return resultObj;
   }
 
-  const updateGreeny = async ({ author, title, imageUrl, content, ownerId }, greenyId) => {
+  const updateGreeny = async ({ author, title, category, imageUrl, content, ownerId }, greenyId) => {
     const timestamp = new Date().getTime();
   
     try {
@@ -78,6 +79,7 @@ export const postServices = () => {
       await update(greenyRef, {
         author: author,
         title: title,
+        category: category,
         imageUrl: imageUrl,
         content: content,
         ownerId: ownerId,
