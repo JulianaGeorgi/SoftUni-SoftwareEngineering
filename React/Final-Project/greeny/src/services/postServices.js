@@ -45,6 +45,30 @@ export const postServices = () => {
     };
   }
 
+  const getGreenyByUserId = async (userId) => {
+    const greeniesRef = ref(database, "/greenies/");
+
+    try {
+      const snapshot = await get(greeniesRef);
+      if (snapshot.exists()) {
+        const greenyData = snapshot.val();
+
+        const filteredDataArray = Object.keys(greenyData)
+          .filter((key) => greenyData[key].ownerId === userId)
+          .map((key) => ({ id: key, ...greenyData[key] }));
+        return filteredDataArray;
+
+      } else {
+        console.log("Greeny not found.");
+        return {};
+      }
+
+    } catch (error) {
+      console.error("Error fetching item:", error);
+      return error;
+    };
+  }
+
   const publishPost = async ({ author, title, category, imageUrl, content, ownerId }) => {
 
     const timestamp = new Date().getTime();
@@ -71,10 +95,10 @@ export const postServices = () => {
 
   const updateGreeny = async ({ author, title, category, imageUrl, content, ownerId }, greenyId) => {
     const timestamp = new Date().getTime();
-  
+
     try {
       const greenyRef = ref(database, '/greenies/' + greenyId);
-  
+
       // Update the greeny data
       await update(greenyRef, {
         author: author,
@@ -85,13 +109,13 @@ export const postServices = () => {
         ownerId: ownerId,
         timestamp: timestamp,
       });
-  
+
       // Fetch the updated data
       const updatedGreenySnapshot = await get(greenyRef);
       const updatedGreenyData = updatedGreenySnapshot.val();
 
       const resultObj = { ...updatedGreenyData, id: greenyId }
-  
+
       return resultObj;
     } catch (error) {
       console.error('Error updating greeny:', error);
@@ -106,6 +130,7 @@ export const postServices = () => {
   return {
     getAllGreenies,
     getGreenyById,
+    getGreenyByUserId,
     publishPost,
     updateGreeny,
     deleteGreeny

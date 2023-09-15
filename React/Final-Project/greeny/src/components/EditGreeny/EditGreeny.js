@@ -3,9 +3,9 @@ import { TEInput } from "tw-elements-react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useAuth } from "../../../contexts/AuthContext";
-import { useGreeny } from "../../../contexts/GreenyContext";
-import { postServices } from "../../../services/postServices";
+import { useAuth } from "../../contexts/AuthContext";
+import { useGreeny } from "../../contexts/GreenyContext";
+import { postServices } from "../../services/postServices";
 
 
 export const EditGreeny = () => {

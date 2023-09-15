@@ -181,9 +181,8 @@ export const Navigation = () => {
                             data-te-dropdown-alignment="end"
                         >
                             {/* Second dropdown trigger */}
-                            <a
+                            <Link to={"/profile"}
                                 className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
-                                href="#"
                                 id="dropdownMenuButton2"
                                 role="button"
                                 data-te-dropdown-toggle-ref=""
@@ -197,7 +196,7 @@ export const Navigation = () => {
                                     alt=""
                                     loading="lazy"
                                 />
-                            </a>
+                            </Link>
                             {/* Second dropdown menu */}
                             <ul
                                 className="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"

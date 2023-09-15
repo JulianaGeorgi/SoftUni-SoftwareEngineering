@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useGreeny } from "../../../contexts/GreenyContext";
+import { useGreeny } from "../../contexts/GreenyContext";
 
-export const Event = () => {
+export const Greeny = () => {
 
     const { greenies } = useGreeny();
 

@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 
-import { postServices } from "../../../services/postServices";
-import { useGreeny } from "../../../contexts/GreenyContext";
-import { useAuth } from "../../../contexts/AuthContext";
+import { DeleteModal } from "../DeleteModal/DeleteModal";
+
+import { postServices } from "../../services/postServices";
+import { useGreeny } from "../../contexts/GreenyContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const GreenyDetails = () => {
 
+    const { greenyId } = useParams();
+    const { currentUser } = useAuth();
+    const [currentGreeny, setCurrentGreeny] = useState({});
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const { deleteGreeny } = useGreeny();
     const navigate = useNavigate();
 
-    const { greenyId } = useParams();
-    // const greenyId = params.greenyId;
-
-    const { currentUser } = useAuth();
-
-    const [currentGreeny, setCurrentGreeny] = useState({});
-
-    const { deleteGreeny } = useGreeny();
+    const toggleDeleteModal = () => {
+        setIsDeleteModalOpen(!isDeleteModalOpen);
+    };
 
     useEffect(() => {
         async function getCurrentGreeny() {
@@ -34,17 +36,15 @@ export const GreenyDetails = () => {
 
     const isOwner = currentUser && currentUser.uid === currentGreeny.ownerId;
 
-    const handleDelete = async () => {
+    const handleDeleteConfirmed = async () => {
 
-        const result = window.confirm(`Are you sure you want to delete ${currentGreeny.title}`);
+        toggleDeleteModal();
 
-        if (result) {
-            await postServices().deleteGreeny(greenyId); // delete from db
+        await postServices().deleteGreeny(greenyId); // delete from db
 
-            deleteGreeny(greenyId); // delete from state via context
+        deleteGreeny(greenyId); // delete from state via context
 
-            navigate("/");
-        }
+        navigate("/");
     }
 
     return (
@@ -107,8 +107,8 @@ export const GreenyDetails = () => {
                         </button>
                     </div>
                     <div className="mb-12 pb-1 pt-1 text-center">
-
-                        <button onClick={handleDelete}
+                        <button
+                            onClick={toggleDeleteModal}
                             className="px-10 py-2 text-white bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
                         >
                             Delete
@@ -116,7 +116,13 @@ export const GreenyDetails = () => {
                     </div>
                 </div>
             )}
-        </div>
-    )
-}
 
+            {/* Delete Modal */}
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={toggleDeleteModal}
+                onDelete={handleDeleteConfirmed}
+            />
+        </div>
+    );
+};

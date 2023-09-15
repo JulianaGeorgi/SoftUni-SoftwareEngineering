@@ -9,13 +9,14 @@ import { Register } from './components/Register/Register';
 import { Login } from './components/Login/Login';
 import { Logout } from './components/Logout/Logout';
 import { CreateGreeny } from './components/CreateGreeny/CreateGreeny';
-import { GreenyDetails } from './components/Events/Event/GreenyDetails';
-import { EditGreeny } from './components/Events/Event/EditGreeny';
+import { GreenyDetails } from './components/GreenyDetails.js/GreenyDetails';
+import { EditGreeny } from './components/EditGreeny/EditGreeny';
 
 import { ScrollToTop } from './utils/ScrollToTop';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { GreenyProvider } from './contexts/GreenyContext';
+import { UserProfile } from './components/UserProfile/UserProfile';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
               <Route path='/create' element={<CreateGreeny />} />
 
               <Route path='/logout' element={<Logout />} />
+              <Route path='/profile' element={<UserProfile/>} />
 
             </Routes>
             <ScrollToTop />
