@@ -40,7 +40,8 @@ module.exports = {
       },
 
       backgroundImage: {
-        "forest": "url('https://img.freepik.com/free-photo/aerial-view-green-forest_144627-45271.jpg?w=2000')",
+        "forest": "url('https://shopprogression.com/wp-content/uploads/2022/08/i.shgcdn-scaled.webp')",
+        "scientist": "url('https://studenthub.africa/app/uploads/careers/M5usarbpr7lZHAcpTUKGgSS5sbhm3bpD.jpg')",
         "earthDay": "url(https://www.yardi.com/blog/wp-content/uploads/sites/15/2022/04/rsz_adobestock_332835800.jpg)",
       }
 

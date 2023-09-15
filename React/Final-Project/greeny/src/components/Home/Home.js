@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Event } from '../Events/Event/Event';
-import { Greeny } from '../Greenies/Greeny';
-import { Subscribe } from '../Subscribe/Subscribe';
 import { useAuth } from '../../contexts/AuthContext';
 
 export const Home = () => {
@@ -10,40 +8,35 @@ export const Home = () => {
 
     return (
         <div className='home-page'>
-            <header className='home-header'>
-                <h1>#1 Green App.</h1>
-                <h1>Get inspired anytime, anywhere. Start today.</h1>
-                <h3>Track your impact.</h3>
-                {!currentUser ? (
-                    <button className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500"><Link to='/signup' >SIGN UP FOR FREE <span><b>♡</b></span></Link></button>
-                )
-                    :
-                    (
-                        <button className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500"><Link to='/signup' >POST A GREENY <span><b>♡</b></span></Link></button>
-                    )}
-            </header>
+            <div className="h-screen bg-gray-50 flex items-center">
+                <section
+                    className="w-full bg-cover bg-center py-40"
+                    style={{ backgroundImage: 'url("https://amala.earth/cdn/shop/articles/Women_Are_Building_A_Better_Planet_5_Women_Working_Towards_A_Sustainable_India.png?v=1649829499")' }}
+                >
+                    <div className="container mx-auto text-center text-white">
+                        <h1 className="text-5xl font-medium mb-6">Welcome to Greeny</h1>
+                        <p className="text-xl mb-12">
+                            Get inspired anytime, anywhere. Start today.
+                        </p>
+                        {!currentUser ? (
+                            <button className="bg-indigo-500 text-white py-4 px-12 rounded-full hover:bg-indigo-600"><Link to='/register' >SIGN UP FOR FREE <span><b>♡</b></span></Link></button>
+                        )
+                            :
+                            (
+                                <button className="bg-indigo-500 text-white py-4 px-12 rounded-full hover:bg-indigo-600"><Link to='/create' >POST A GREENY <span><b>♡</b></span></Link></button>
+                            )}
 
-            <section className='events-block'>
+                    </div>
+                </section>
+            </div>
+
+            <section className='text-center'>
                 <div className='events-header'>
-                    <h2>Go greeny. Get results.</h2>
-                    <h3>Join 1+ million members on the top digital green platform and stay toned, lose weight, get strong, reduce stress, and reach your goals.</h3>
+                    <h2 className='m-8 text-5xl font-bold tracking-wide'>Go greeny. Get results.</h2>
+                    <h3 className='text-2xl tracking-wide'>Join 1+ million members on the top digital green platform and stay toned, lose weight, get strong, reduce stress, and reach your goals.</h3>
                 </div>
-                {/* <div className='activities-item-grid'> */}
                 <Event />
-                {/* </div> */}
             </section>
-
-            <section className='greenies-block'>
-                <div className='greenies-header'>
-                    <h2>Unlimited Greenies.</h2>
-                    <h3>Never get bored. Get results with short & effective actions you can do anywhere.</h3>
-                </div>
-                <div className='greenies-grid'>
-                    <Greeny />
-                </div>
-            </section>
-
-            <Subscribe />
         </div >
 
     );

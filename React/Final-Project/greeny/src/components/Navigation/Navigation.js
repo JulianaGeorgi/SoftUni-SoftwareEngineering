@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { SocialButtons } from "../Buttons/SocialButtons";
 import { useAuth } from "../../contexts/AuthContext";
 import { Logout } from "../Logout/Logout";
 

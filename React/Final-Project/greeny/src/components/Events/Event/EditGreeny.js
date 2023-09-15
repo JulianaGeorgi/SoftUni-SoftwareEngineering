@@ -1,4 +1,4 @@
-import { TEInput, TERipple } from "tw-elements-react";
+import { TEInput } from "tw-elements-react";
 
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -53,17 +53,19 @@ export const EditGreeny = () => {
 
 
     return (
-        <section className="m-12 bg-light-green">
-            <div className="p-10 w-auto m-auto bg-champagne">
+        <section className="p-12 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200">
+            <div className="max-w-lg mx-auto bg-white border rounded-lg shadow-lg">
                 <form onSubmit={handleSubmit(onUpdateGreenySubmit)} noValidate>
-                    <fieldset>
-                        <legend className="mb-10 text-center">Create a Greeny</legend>
+                    <fieldset className="m-6">
+                        <legend className="mb-6 text-3xl text-gray-700 font-bold text-center">Edit Greeny</legend>
 
                         {/* AUTHOR */}
                         <div>
+                            <label htmlFor="author" className="block mb-2 font-medium text-gray-700">
+                                Author
+                            </label>
                             <TEInput
                                 type="text"
-                                label="Author"
                                 className="mb-4"
                                 id="author"
                                 required={true}
@@ -83,9 +85,11 @@ export const EditGreeny = () => {
 
                         {/* TITLE */}
                         <div>
+                            <label htmlFor="title" className="block mb-2 font-medium text-gray-700">
+                                Title
+                            </label>
                             <TEInput
                                 type="text"
-                                label="Title"
                                 className="mb-4"
                                 id="title"
                                 required={true}
@@ -105,16 +109,17 @@ export const EditGreeny = () => {
 
                         {/* CATEGORY */}
                         <div>
+                            <label htmlFor="category" className="block mb-2 font-medium text-gray-700">
+                                Category
+                            </label>
                             <   select
                                 id="select"
-                                label="Category"
                                 required={true}
-                                className="peer block min-h-[auto] w-full bg-champagne text-neutral-500 rounded border border-stone-300 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary motion-reduce:transition-none placeholder:opacity-0 disabled:bg-neutral-100 dark:disabled:bg-neutral-700 dark:read-only:bg-neutral-700 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary px-3 py-[0.32rem] leading-[1.6] mb-4"
+                                className="w-full bg-transparent border rounded border-stone-300 focus:border-primary px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
                                 {...register("category", {
                                     required: "Please choose a category of your Greeny."
                                 }
                                 )}>
-                                error={(errors.category)}
                                 <option value="">Choose category...</option>
                                 <option value="Reduce">Reduce</option>
                                 <option value="Reuse">Reuse</option>
@@ -128,9 +133,11 @@ export const EditGreeny = () => {
 
                         {/* IMAGE */}
                         <div>
+                            <label htmlFor="imageUrl" className="block mb-2 font-medium text-gray-700">
+                                Image link
+                            </label>
                             <TEInput
                                 type="url"
-                                label="Image link"
                                 className="mb-4"
                                 id="imageUrl"
                                 required={true}
@@ -150,6 +157,9 @@ export const EditGreeny = () => {
 
                         {/* CONTENT */}
                         <div>
+                            <label htmlFor="content" className="block mb-2 font-medium text-gray-700">
+                                Content
+                            </label>
                             <textarea
                                 placeholder="Write your Greeny here"
                                 rows="10"
@@ -176,34 +186,23 @@ export const EditGreeny = () => {
                     {/* FORM BUTTONS */}
                     <div className="flex flex-row justify-center gap-3">
                         <div className="mb-12 pb-1 pt-1 text-center">
-                            <TERipple rippleColor="light">
-                                <button
-                                    disabled={!isDirty || !isValid}
-                                    className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                                    type="submit"
-                                    style={{
-                                        background:
-                                            "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
-                                    }}
-                                >
-                                    Update
-                                </button>
-                            </TERipple>
+                            <button
+                                disabled={!isDirty || !isValid}
+                                className="px-10 py-2 text-white bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                                type="submit"
+                            >
+                                Update
+                            </button>
                         </div>
                         <div className="mb-12 pb-1 pt-1 text-center">
-                            <TERipple rippleColor="light">
-                                <button
-                                    onClick={() => navigate(-1)}
-                                    className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                                    type="button"
-                                    style={{
-                                        background:
-                                            "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
-                                    }}
-                                >
-                                    Go back
-                                </button>
-                            </TERipple>
+                            <button
+                                onClick={() => navigate(-1)}
+                                className="px-10 py-2 text-white bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                                type="button"
+                            >
+                                Go back
+                            </button>
+
                         </div>
                     </div>
 

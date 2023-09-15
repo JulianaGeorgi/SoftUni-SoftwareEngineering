@@ -7,8 +7,45 @@ export const Event = () => {
 
     return (
 
-        <div className='events-item-grid'>
-            {greenies.map((greeny) => (
+        <div>
+            <section className="bg-white dark:bg-gray-900">
+                <div className="container px-6 py-10 mx-auto">
+                    <h1 className="text-3xl font-semibold text-gray-800 tracking-wide capitalize lg:text-4xl dark:text-white">
+                        This Week's Featured Greenies
+                    </h1>
+                    <div className="grid grid-cols-4 gap-8 mt-12">
+                        {greenies.map((greeny) =>
+                        (
+                            <div className="flex flex-col gap-3" key={greeny.id}>
+                                <div className="w-full">
+                                    <img
+                                        className="object-cover h-1/2 w-full md:h-64 rounded-lg lg:w-64 max-w-s transition duration-300 ease-in-out hover:scale-110"
+                                        img alt={greeny.name}
+                                        src={greeny.imageUrl}
+                                    />
+                                </div>
+                                <div className="flex flex-col justify-start h-1/3">
+                                    <Link
+                                        to={`/greenies/${greeny.id}`}
+                                        className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
+                                    >
+                                        {greeny.title}
+                                    </Link>
+                                    <p className="text-sm text-gray-500 dark:text-gray-300">
+                                        On: {greeny.content}
+                                    </p>
+
+                                </div>
+                                <button className="px-10 py-2 text-white bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                                    <Link to={`/greenies/${greeny.id}`}>READ MORE <span><b>♡</b></span></Link>
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* {greenies.map((greeny) => (
                 <div className="event-item" key={greeny.id}>
                     <figure className="event-img">
                         <img alt={greeny.name} src={greeny.imageUrl} />
@@ -21,7 +58,7 @@ export const Event = () => {
                         <Link to={`/greenies/${greeny.id}`}>READ MORE <span><b>♡</b></span></Link>
                     </button>
                 </div>
-            ))}
+            ))} */}
 
             {/* <div className='event-item'>
                 <figure className='event-img'>

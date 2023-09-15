@@ -24,8 +24,8 @@ export const Login = () => {
     };
 
     return (
-        <section className="h-full bg-neutral-200 dark:bg-neutral-700">
-            <div className="flex-col h-full p-10 w-5/6 m-auto">
+        <section className="h-full bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 dark:bg-neutral-700">
+            <div className="flex-col h-full p-10 w-2/3 m-auto">
                 <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
                     <div className="w-full">
                         <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
@@ -93,18 +93,12 @@ export const Login = () => {
 
                                             {/* <!--Submit form --> */}
                                             <div className="mb-12 pb-1 pt-1 text-center">
-                                                <TERipple rippleColor="light" className="w-full">
-                                                    <button
-                                                        className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
-                                                        type="submit"
-                                                        style={{
-                                                            background:
-                                                                "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
-                                                        }}
-                                                    >
-                                                        Log in
-                                                    </button>
-                                                </TERipple>
+                                                <button
+                                                    className="px-10 py-2 text-white bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                                                    type="submit"
+                                                >
+                                                    Log in
+                                                </button>
 
                                                 {/* <!--Forgot password link--> */}
                                                 {/* <a href="#!">Forgot password?</a> */}
