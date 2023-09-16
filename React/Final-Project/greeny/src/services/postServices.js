@@ -1,5 +1,6 @@
 import { database } from "../firebase";
-import { ref, push, get, remove, update, child } from "firebase/database";
+import { push, get, remove, update, query, orderByChild } from "firebase/database";
+import { ref } from "firebase/database";
 
 export const postServices = () => {
 
@@ -45,14 +46,13 @@ export const postServices = () => {
     };
   }
 
-  const getGreenyByUserId = async (userId) => {
-    const greeniesRef = ref(database, "/greenies/");
+  const getGreeniesByUserId = async (userId) => {
+    const greeniesRef = ref(database, "/greenies");
 
     try {
       const snapshot = await get(greeniesRef);
       if (snapshot.exists()) {
         const greenyData = snapshot.val();
-
         const filteredDataArray = Object.keys(greenyData)
           .filter((key) => greenyData[key].ownerId === userId)
           .map((key) => ({ id: key, ...greenyData[key] }));
@@ -127,12 +127,27 @@ export const postServices = () => {
     remove(ref(database, "/greenies/" + greenyId));
   }
 
+  const getLatestGreenies = async () => {
+    const greeniesRef = query(ref(database, '/greenies'), orderByChild('timestamp'));
+
+    const snapshot = await get(greeniesRef);
+    const greeniesObject = snapshot.val();
+    const greeniesArray = Object.entries(greeniesObject).map(([id, data]) => ({
+      id,
+      ...data,
+    }));
+
+    const reversedArray = greeniesArray.reverse();
+    return reversedArray;
+  }
+
   return {
     getAllGreenies,
     getGreenyById,
-    getGreenyByUserId,
+    getGreeniesByUserId,
     publishPost,
     updateGreeny,
-    deleteGreeny
+    deleteGreeny,
+    getLatestGreenies
   }
 }

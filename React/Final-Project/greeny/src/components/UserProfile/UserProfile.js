@@ -8,21 +8,18 @@ import { LatestGreenySnippet } from "./LastestGreenySnippet";
 export const UserProfile = () => {
 
     const { currentUser } = useAuth();
-    const { greenies } = useGreeny();
+    const { greenies, latestGreenies } = useGreeny();
+
     const [currentUserGreenies, setCurrentUserGreenies] = useState([]);
 
     useEffect(() => {
         postServices()
-            .getGreenyByUserId(currentUser.uid)
-            .then((currentUserGreenies) => {
-                //   console.log(currentUserGreenies)
-                setCurrentUserGreenies([...currentUserGreenies]);
-                // console.log(currentUserGreenies)
-                // setIsLoading(false);
+            .getGreeniesByUserId(currentUser.uid)
+            .then((userGreenies) => {
+                setCurrentUserGreenies([...userGreenies]);
             })
             .catch((error) => {
                 console.error("API call error:", error);
-                // setIsLoading(false);
             });
     }, []);
 
@@ -330,8 +327,8 @@ export const UserProfile = () => {
                                 </aside>
 
                                 <ul className="list-none">
-                                {greenies.map((greeny) =>
-                                    (<LatestGreenySnippet key={greeny.id} greeny={greeny}/>
+                                    {latestGreenies.map((greeny) =>
+                                    (<LatestGreenySnippet key={greeny.id} greeny={greeny} />
                                     ))}
                                 </ul>
                             </section>
@@ -375,29 +372,35 @@ export const UserProfile = () => {
                                                 </div>
                                             </div>
                                             <hr className="border-gray-800" />
-                                            {currentUserGreenies.map((greeny) =>
-                                            (<UserGreenySnippet key={greeny.id} greeny={greeny} />
-                                            ))}
-                                            <hr className="border-gray-800" />
-                                            {/*show more*/}
-                                            <div className="flex">
-                                                <div className="flex-1 p-4">
-                                                    <h2 className="px-4 ml-2 w-48 font-bold text-blue-400">
-                                                        Show more
-                                                    </h2>
-                                                </div>
-                                            </div>
+
+                                            {currentUserGreenies.length === 0 ? (
+                                                <p className="px-4 ml-2 my-3 text-s font-bold text-gray-700">You have not posted any greenies</p>
+                                            ) : (
+                                                <>
+                                                    {currentUserGreenies.map((greeny) =>
+                                                    (<UserGreenySnippet key={greeny.id} greeny={greeny} />
+                                                    ))}
+                                                    < hr className="border-gray-800" />
+
+                                                    < div className="flex">
+                                                        <div className="flex-1 p-4">
+                                                            <h2 className="px-4 ml-2 w-48 font-bold text-blue-400">
+                                                                Show more
+                                                            </h2>
+                                                        </div>
+
+
+                                                    </div>
+                                                </>
+                                            )}
                                         </div>
-                                        {/*people suggetion to follow section*/}
-
-
                                     </div>
                                 </div>
                             </aside>
                         </div>
                     </main>
-                </div>
-            </div>
+                </div >
+            </div >
         </>
     )
 }

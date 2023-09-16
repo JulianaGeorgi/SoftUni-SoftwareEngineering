@@ -1,4 +1,5 @@
 
+
 export const LatestGreenySnippet = ({greeny}) => {
 
     return (
@@ -17,10 +18,7 @@ export const LatestGreenySnippet = ({greeny}) => {
                             </div>
                             <div className="ml-3">
                                 <p className="text-base leading-6 font-medium text-white">
-                                    {greeny.author}
-                                    <span className="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                        @ShonaDesign . 16 April
-                                    </span>
+                                    @{greeny.author}
                                 </p>
                             </div>
                         </div>

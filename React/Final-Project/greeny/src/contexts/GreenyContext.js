@@ -10,19 +10,27 @@ export function useGreeny() {
 export const GreenyProvider = ({ children }) => {
 
     const [greenies, setGreenies] = useState([]);
+    const [latestGreenies, setLatestGreenies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        postServices()
-            .getAllGreenies()
-            .then((allGreenies) => {
+        const fetchData = async () => {
+            try {
+                const [allGreenies, latestGreenies] = await Promise.all([
+                    postServices().getAllGreenies(),
+                    postServices().getLatestGreenies(),
+                ]);
+
                 setGreenies([...allGreenies]);
+                setLatestGreenies([...latestGreenies]);
                 setIsLoading(false);
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.error("API call error:", error);
                 setIsLoading(false);
-            });
+            }
+        };
+
+        fetchData();
     }, []);
 
     const createGreeny = (newGreenyData) => {
@@ -39,6 +47,7 @@ export const GreenyProvider = ({ children }) => {
 
     const value = {
         greenies,
+        latestGreenies,
         createGreeny,
         editGreeny,
         deleteGreeny

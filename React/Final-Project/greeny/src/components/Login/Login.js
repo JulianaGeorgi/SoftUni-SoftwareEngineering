@@ -17,7 +17,7 @@ export const Login = () => {
     const onLoginSubmitHandler = async ({ email, password }) => {
         try {
             await login(email, password);
-            navigate('/');
+            navigate('/profile');
         } catch (error) {
             alert(error);
         }
