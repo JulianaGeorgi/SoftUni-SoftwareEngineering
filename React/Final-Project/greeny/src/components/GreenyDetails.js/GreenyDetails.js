@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faComment, faCommentAlt, faComments } from '@fortawesome/free-solid-svg-icons';
 
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 
 import { postServices } from "../../services/postServices";
 import { useGreeny } from "../../contexts/GreenyContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 export const GreenyDetails = () => {
 
@@ -93,8 +96,14 @@ export const GreenyDetails = () => {
                     <div className="px-4 mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md text-lg leading-relaxed">
                         <p>{currentGreeny.content}</p>
                     </div>
+
+                    <div className="flex mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md">
+                        <p className="px-4"><FontAwesomeIcon icon={faHeart}/> Like</p>
+                        <p className="px-4"><FontAwesomeIcon icon={faComment} /> Comment</p>
+                    </div>
                 </main>
             )}
+
 
             {/* BUTTONS */}
             {isOwner && (

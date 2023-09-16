@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 export const LatestGreenySnippet = ({greeny}) => {
@@ -37,11 +38,13 @@ export const LatestGreenySnippet = ({greeny}) => {
                                     `url(${greeny.imageUrl})`
                             }}
                         >
+                            <Link to={`/greenies/${greeny.id}`}>
                             <img
                                 className="opacity-0 w-full h-full"
                                 src={greeny.imageUrl}
                                 alt=""
                             />
+                            </Link>
                         </div>
                     </div>
                     <div className="flex items-center py-4">

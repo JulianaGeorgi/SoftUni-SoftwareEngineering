@@ -13,13 +13,13 @@ export const Greeny = () => {
                     <h1 className="text-3xl font-semibold text-gray-800 tracking-wide capitalize lg:text-4xl dark:text-white">
                         This Week's Featured Greenies
                     </h1>
-                    <div className="grid grid-cols-4 gap-8 mt-12">
+                    <div className="grid grid-cols-4 gap-8 mt-12 max-md:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3">
                         {greenies.map((greeny) =>
                         (
                             <div className="flex flex-col gap-3" key={greeny.id}>
                                 <div className="w-full">
                                     <img
-                                        className="object-cover h-1/2 w-full md:h-64 rounded-lg lg:w-64 max-w-s transition duration-300 ease-in-out hover:scale-110"
+                                        className="object-cover h-1/2 w-full md:h-64 rounded-lg lg:w-64 max-w-s transition duration-300 ease-in-out hover:scale-110 sm:h-5/6"
                                         img alt={greeny.name}
                                         src={greeny.imageUrl}
                                     />

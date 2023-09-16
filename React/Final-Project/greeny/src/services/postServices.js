@@ -138,6 +138,7 @@ export const postServices = () => {
     }));
 
     const reversedArray = greeniesArray.reverse();
+
     return reversedArray;
   }
 
