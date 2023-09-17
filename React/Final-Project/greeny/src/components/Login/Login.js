@@ -64,10 +64,10 @@ export const Login = () => {
                                                         message: "Please enter a valid email."
                                                     }
                                                 })}
-                                                error={(errors.username)}
+                                                error={(errors.email)}
                                             ></TEInput>
 
-                                            {errors.username && (
+                                            {errors.email && (
                                                 <p className="text-sm text-red-600">{errors.email.message}</p>
                                             )}
 

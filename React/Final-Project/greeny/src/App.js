@@ -17,6 +17,7 @@ import { ScrollToTop } from './utils/ScrollToTop';
 import { AuthProvider } from './contexts/AuthContext';
 import { GreenyProvider } from './contexts/GreenyContext';
 import { UserProfile } from './components/UserProfile/UserProfile';
+import { CommentSection } from './components/GreenyDetails.js/CommentSection/CommentSection';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/greenies/:greenyId' element={<GreenyDetails />} />
               <Route path='/greenies/:greenyId/edit' element={<EditGreeny />} />
+              <Route path='/greenies/:greenyId/comments' element={<CommentSection />} />
               <Route path='/about' element={<About />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />

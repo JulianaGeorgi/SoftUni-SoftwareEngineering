@@ -357,7 +357,7 @@ export const UserProfile = () => {
                                         Show more Greenies
                                     </button>
                                     ) : (
-                                        <p>There are no more greenies.</p>
+                                        <p className="m-10">There are no more greenies.</p>
                                     )}
                                 </div>
                                 <aside className="w-2/5 h-12 position-relative">

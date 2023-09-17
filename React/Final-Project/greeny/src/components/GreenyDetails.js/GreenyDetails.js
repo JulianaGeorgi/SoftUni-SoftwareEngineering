@@ -9,15 +9,21 @@ import { postServices } from "../../services/postServices";
 import { useGreeny } from "../../contexts/GreenyContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { CommentSection } from "./CommentSection/CommentSection";
 
 export const GreenyDetails = () => {
 
     const { greenyId } = useParams();
     const { currentUser } = useAuth();
     const [currentGreeny, setCurrentGreeny] = useState({});
+    const [showCommmentSection, setShowCommentSection] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const { deleteGreeny } = useGreeny();
     const navigate = useNavigate();
+
+    const toggleCommentSection = () => {
+        setShowCommentSection(!showCommmentSection);
+    }
 
     const toggleDeleteModal = () => {
         setIsDeleteModalOpen(!isDeleteModalOpen);
@@ -96,16 +102,11 @@ export const GreenyDetails = () => {
                     <div className="px-4 mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md text-lg leading-relaxed">
                         <p>{currentGreeny.content}</p>
                     </div>
-
-                    <div className="flex mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md">
-                        <p className="px-4"><FontAwesomeIcon icon={faHeart}/> Like</p>
-                        <p className="px-4"><FontAwesomeIcon icon={faComment} /> Comment</p>
-                    </div>
                 </main>
             )}
 
 
-            {/* BUTTONS */}
+            {/* Edit and delete buttons */}
             {isOwner && (
                 <div className="flex flex-row justify-center gap-3">
                     <div className="mb-12 pb-1 pt-1 text-center">
@@ -125,6 +126,20 @@ export const GreenyDetails = () => {
                     </div>
                 </div>
             )}
+
+            {/* Likes and comments */}
+            {currentUser && (
+                <div className="flex mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md">
+                    <button className="px-4"><FontAwesomeIcon icon={faHeart} /> Like</button>
+                    <button
+                        onClick={toggleCommentSection}
+                        className="px-4">
+                        <FontAwesomeIcon icon={faComment} /> Comments
+                    </button>
+                </div>
+            )}
+            {showCommmentSection && <CommentSection />}
+
 
             {/* Delete Modal */}
             <DeleteModal
