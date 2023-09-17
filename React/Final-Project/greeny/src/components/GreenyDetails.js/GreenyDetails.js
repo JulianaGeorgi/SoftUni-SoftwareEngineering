@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faComment, faCommentAlt, faComments } from '@fortawesome/free-solid-svg-icons';
 
-import { DeleteModal } from "../DeleteModal/DeleteModal";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 import { postServices } from "../../services/postServices";
 import { useGreeny } from "../../contexts/GreenyContext";
 import { useAuth } from "../../contexts/AuthContext";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { formatTimestamp } from "../../utils/utils";
+
 import { CommentSection } from "./CommentSection/CommentSection";
+import { DeleteModal } from "../DeleteModal/DeleteModal";
 
 export const GreenyDetails = () => {
 
@@ -33,8 +35,8 @@ export const GreenyDetails = () => {
         async function getCurrentGreeny() {
             try {
                 const currentGreeny = await postServices().getGreenyById(greenyId);
-                const date = new Date(currentGreeny.timestamp);
-                const formattedDate = `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}-${date.getFullYear()}`;
+               const formattedDate= formatTimestamp(currentGreeny.timestamp);
+               
                 setCurrentGreeny({ ...currentGreeny, timestamp: formattedDate });
             } catch (error) {
                 console.error("Error fetching data:", error);
