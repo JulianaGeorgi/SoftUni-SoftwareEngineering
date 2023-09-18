@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 
 export const CommentContext = createContext();
 
@@ -13,7 +13,7 @@ export const CommentProvider = ({ children }) => {
 
     const setComments = (orderedCommentsByLatest) => {
         setAllComments([...orderedCommentsByLatest]);
-        setCommentsCount(allComments.length);
+        setCommentsCount(orderedCommentsByLatest.length);
     }
 
     const createComment = (newCommentData) => {

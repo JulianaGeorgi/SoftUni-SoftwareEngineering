@@ -6,22 +6,40 @@ import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 import { postServices } from "../../services/postServices";
+import { commentServices } from "../../services/commentServices";
 import { useGreeny } from "../../contexts/GreenyContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { useComment } from "../../contexts/CommentContext";
 import { formatTimestamp } from "../../utils/utils";
 
 import { CommentSection } from "./CommentSection/CommentSection";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
 
+
 export const GreenyDetails = () => {
 
     const { greenyId } = useParams();
     const { currentUser } = useAuth();
+    const { likesCount, editGreeny } = useGreeny();
+    const { setComments, commentsCount } = useComment();
+
     const [currentGreeny, setCurrentGreeny] = useState({});
+
     const [showCommmentSection, setShowCommentSection] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
     const { deleteGreeny } = useGreeny();
+
     const navigate = useNavigate();
+
+    const incrementLikeCount = async () => {
+        const currentLikesCount = currentGreeny.likesCount;
+
+        const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount);
+
+        editGreeny(updatedGreenyData, greenyId); // update state
+    }
+
 
     const toggleCommentSection = () => {
         setShowCommentSection(!showCommmentSection);
@@ -32,18 +50,30 @@ export const GreenyDetails = () => {
     };
 
     useEffect(() => {
-        async function getCurrentGreeny() {
+        async function fetchCurrentGreeny() {
             try {
                 const currentGreeny = await postServices().getGreenyById(greenyId);
-               const formattedDate= formatTimestamp(currentGreeny.timestamp);
-               
+                const formattedDate = formatTimestamp(currentGreeny.timestamp);
                 setCurrentGreeny({ ...currentGreeny, timestamp: formattedDate });
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         }
-        getCurrentGreeny();
-    }, [greenyId]);
+        fetchCurrentGreeny();
+    }, [currentGreeny]);
+
+    useEffect(() => {
+        async function fetchComments() {
+            try {
+                const allComments = await commentServices().getAllComments(greenyId);
+                const orderedCommentsByLatest = allComments.reverse();
+                setComments(orderedCommentsByLatest);
+            } catch (error) {
+                console.error("API call error:", error);
+            }
+        }
+        fetchComments();
+    }, []);
 
     const isOwner = currentUser && currentUser.uid === currentGreeny.ownerId;
 
@@ -130,16 +160,17 @@ export const GreenyDetails = () => {
             )}
 
             {/* Likes and comments */}
-            {currentUser && (
-                <div className="flex mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md">
-                    <button className="px-4"><FontAwesomeIcon icon={faHeart} /> Like</button>
-                    <button
-                        onClick={toggleCommentSection}
-                        className="px-4">
-                        <FontAwesomeIcon icon={faComment} /> Comments
-                    </button>
-                </div>
-            )}
+            <div className="flex mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md">
+                <button
+                    onClick={incrementLikeCount}
+                    className="px-4">
+                    <FontAwesomeIcon icon={faHeart} /> Like ({currentGreeny.likesCount})</button>
+                <button
+                    onClick={toggleCommentSection}
+                    className="px-4">
+                    <FontAwesomeIcon icon={faComment} /> Comments ({commentsCount})
+                </button>
+            </div>
             {showCommmentSection && <CommentSection />}
 
 

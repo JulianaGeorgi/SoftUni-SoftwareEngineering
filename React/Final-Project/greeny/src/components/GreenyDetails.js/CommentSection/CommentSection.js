@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import { useAuth } from "../../../contexts/AuthContext";
 import { useComment } from "../../../contexts/CommentContext";
+
 import { commentServices } from "../../../services/commentServices";
 
 import { Comment } from "./Comment";
@@ -17,33 +17,19 @@ export const CommentSection = () => {
         formState: { errors },
     } = useForm();
 
-    const { 
-        allComments, 
-        setComments, 
-        createComment, 
-        commentsCount 
+    const {
+        allComments,
+        createComment,
+        commentsCount
     } = useComment();
 
     const { currentUser } = useAuth();
 
-    const ownerId = currentUser.uid;
-    const username = currentUser.email;
+    const ownerId = currentUser && currentUser.uid;
+    const username = currentUser && currentUser.email;
 
     const { greenyId } = useParams();
 
-    useEffect(() => {
-        commentServices()
-            .getAllComments(greenyId)
-            .then((allComments) => {
-
-                const orderedCommentsByLatest = allComments.reverse();
-
-                setComments(orderedCommentsByLatest);
-            })
-            .catch((error) => {
-                console.error("API call error:", error);
-            });
-    }, []);
 
     const onCommentSubmitHandler = async (comment) => {
 
@@ -62,36 +48,38 @@ export const CommentSection = () => {
                         Comments ({commentsCount})
                     </h2>
                 </div>
-                <form className="mb-6" onClick={handleSubmit(onCommentSubmitHandler)}>
-                    <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                        <label htmlFor="comment" className="sr-only">
-                            Your comment
-                        </label>
-                        <textarea
-                            name="comment"
-                            type="text"
-                            id="comment"
-                            rows={6}
-                            className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                            placeholder="Write a comment..."
-                            required={true}
-                            {...register("comment", {
-                                required: "You cannot post an empty comment."
-                            })}
-                            errors={(errors.comment)}
-                        />
-                    </div>
-                    {errors.comment && (
-                        <p className="text-sm text-red-600">{errors.comment.message}</p>
-                    )}
-                    <button
-                        type="submit"
+                {currentUser && (
+                    <form className="mb-6" onClick={handleSubmit(onCommentSubmitHandler)}>
+                        <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                            <label htmlFor="comment" className="sr-only">
+                                Your comment
+                            </label>
+                            <textarea
+                                name="comment"
+                                type="text"
+                                id="comment"
+                                rows={6}
+                                className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                                placeholder="Write a comment..."
+                                required={true}
+                                {...register("comment", {
+                                    required: "You cannot post an empty comment."
+                                })}
+                                errors={(errors.comment)}
+                            />
+                        </div>
+                        {errors.comment && (
+                            <p className="text-sm text-red-600">{errors.comment.message}</p>
+                        )}
+                        <button
+                            type="submit"
 
-                        className="inline-flex items-center bg-blue-400 hover:bg-blue-500 mt-5 text-white font-bold py-2 px-8 rounded-full mr-8"
-                    >
-                        Post comment
-                    </button>
-                </form>
+                            className="inline-flex items-center bg-blue-400 hover:bg-blue-500 mt-5 text-white font-bold py-2 px-8 rounded-full mr-8"
+                        >
+                            Post comment
+                        </button>
+                    </form>
+                )}
                 {allComments.map((comment) =>
                 (
                     <Comment key={comment.id} comment={comment} />

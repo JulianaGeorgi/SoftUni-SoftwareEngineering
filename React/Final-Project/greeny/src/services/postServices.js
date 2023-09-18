@@ -81,6 +81,7 @@ export const postServices = () => {
       content: content,
       ownerId: ownerId,
       timestamp: timestamp,
+      likesCount: 0 
     });
 
     const newGreenyId = newGreenyRef.key;
@@ -123,6 +124,22 @@ export const postServices = () => {
     }
   };
 
+  const updateLikesCount = async (greenyId, currentLikesCount) => {
+    const greenyRef = ref(database, '/greenies/' + greenyId);
+
+    await update(greenyRef, {
+      likesCount: currentLikesCount + 1,
+    });
+
+    const updatedLikesCount = await get(greenyRef);
+    const updatedGreenyData = updatedLikesCount.val();
+    // console.log(updatedGreenyData)
+
+    const resultObj = { ...updatedGreenyData, id: greenyId }
+
+    return resultObj;
+  }
+
   const deleteGreeny = async (greenyId) => {
     remove(ref(database, "/greenies/" + greenyId));
   }
@@ -149,6 +166,7 @@ export const postServices = () => {
     publishPost,
     updateGreeny,
     deleteGreeny,
-    getLatestGreenies
+    getLatestGreenies,
+    updateLikesCount
   }
 }

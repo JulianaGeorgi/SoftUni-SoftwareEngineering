@@ -32,7 +32,7 @@ export const Greeny = () => {
                                         {greeny.title}
                                     </Link>
                                     <p className="text-sm text-gray-500 dark:text-gray-300">
-                                        On: {greeny.content}
+                                        {greeny.content}
                                     </p>
 
                                 </div>

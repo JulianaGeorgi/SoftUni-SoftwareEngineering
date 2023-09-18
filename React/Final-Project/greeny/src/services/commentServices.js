@@ -47,14 +47,12 @@ export const commentServices = () => {
         return resultObj;
     }
 
-    const deleteComment = async (commentId, greenyId ) => {
-        console.log(commentId)
-        // ref url https://greeny-5156d-default-rtdb.europe-west1.firebasedatabase.app/comments/-NeTtNPeKjpy16VrtIol/-NeYgXMa3jQSIcr7n2-l
+    const deleteComment = async (commentId, greenyId) => {
+
         const commentRef = ref(database, `/comments/${greenyId}/${commentId}`);
 
         try {
             await remove(commentRef);
-            console.log("Comment deleted successfully");
         } catch (error) {
             console.error("Error deleting comment:", error);
         }
