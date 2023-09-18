@@ -24,6 +24,7 @@ export const GreenyDetails = () => {
     const { setComments, commentsCount } = useComment();
 
     const [currentGreeny, setCurrentGreeny] = useState({});
+    const [hasLiked, setHasLiked] = useState(null); 
 
     const [showCommmentSection, setShowCommentSection] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -31,23 +32,6 @@ export const GreenyDetails = () => {
     const { deleteGreeny } = useGreeny();
 
     const navigate = useNavigate();
-
-    const incrementLikeCount = async () => {
-        const currentLikesCount = currentGreeny.likesCount;
-
-        const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount);
-
-        editGreeny(updatedGreenyData, greenyId); // update state
-    }
-
-
-    const toggleCommentSection = () => {
-        setShowCommentSection(!showCommmentSection);
-    }
-
-    const toggleDeleteModal = () => {
-        setIsDeleteModalOpen(!isDeleteModalOpen);
-    };
 
     useEffect(() => {
         async function fetchCurrentGreeny() {
@@ -62,6 +46,18 @@ export const GreenyDetails = () => {
         fetchCurrentGreeny();
     }, [currentGreeny]);
 
+    useEffect(()=> {
+        async function fetchHasLiked() {
+            try {
+                const userHasLiked = await postServices().checkIfHasLiked(greenyId, currentUser.uid);
+                setHasLiked(userHasLiked);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+        fetchHasLiked();
+    }, [greenyId, hasLiked]);
+
     useEffect(() => {
         async function fetchComments() {
             try {
@@ -74,6 +70,25 @@ export const GreenyDetails = () => {
         }
         fetchComments();
     }, []);
+
+    const onLikeClick = async () => {
+
+        const currentLikesCount = currentGreeny.likesCount;
+
+        const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount);
+        const userHasLiked= await postServices().storeLikes(greenyId, currentUser.uid);
+        setHasLiked(userHasLiked);
+
+        editGreeny(updatedGreenyData, greenyId); // update state
+    }
+
+    const toggleCommentSection = () => {
+        setShowCommentSection(!showCommmentSection);
+    }
+
+    const toggleDeleteModal = () => {
+        setIsDeleteModalOpen(!isDeleteModalOpen);
+    };
 
     const isOwner = currentUser && currentUser.uid === currentGreeny.ownerId;
 
@@ -162,7 +177,8 @@ export const GreenyDetails = () => {
             {/* Likes and comments */}
             <div className="flex mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md">
                 <button
-                    onClick={incrementLikeCount}
+                    onClick={onLikeClick}
+                    disabled={hasLiked}
                     className="px-4">
                     <FontAwesomeIcon icon={faHeart} /> Like ({currentGreeny.likesCount})</button>
                 <button
@@ -171,7 +187,7 @@ export const GreenyDetails = () => {
                     <FontAwesomeIcon icon={faComment} /> Comments ({commentsCount})
                 </button>
             </div>
-            {showCommmentSection && <CommentSection />}
+            {showCommmentSection && <CommentSection currentGreeny={currentGreeny}/>}
 
 
             {/* Delete Modal */}

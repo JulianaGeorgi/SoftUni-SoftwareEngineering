@@ -37,12 +37,7 @@ export const GreenyProvider = ({ children }) => {
 
     const editGreeny = (updatedGreenyData, greenyId) => {
         setGreenies(state => state.map(x => x.id === greenyId ? updatedGreenyData : x));
-        console.log(greenies)
     }
-
-    // const incrementLikes = () => {
-    //     setLikesCount(prevCount => prevCount + 1);
-    // }
 
     const value = {
         greenies,

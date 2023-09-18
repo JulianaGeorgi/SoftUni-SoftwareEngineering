@@ -2,13 +2,15 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import { useAuth } from "../../../contexts/AuthContext";
+import { useGreeny } from "../../../contexts/GreenyContext";
 import { useComment } from "../../../contexts/CommentContext";
 
 import { commentServices } from "../../../services/commentServices";
 
 import { Comment } from "./Comment";
+import { postServices } from "../../../services/postServices";
 
-export const CommentSection = () => {
+export const CommentSection = ({currentGreeny}) => {
 
     const {
         handleSubmit,
@@ -24,6 +26,7 @@ export const CommentSection = () => {
     } = useComment();
 
     const { currentUser } = useAuth();
+    const { editGreeny} = useGreeny();
 
     const ownerId = currentUser && currentUser.uid;
     const username = currentUser && currentUser.email;
@@ -33,9 +36,13 @@ export const CommentSection = () => {
 
     const onCommentSubmitHandler = async (comment) => {
 
-        const currentComment = await commentServices().submitComment(comment, username, ownerId, greenyId);
+        const currentCommentsCount = currentGreeny.commentsCount;
 
-        createComment(currentComment)
+        const currentComment = await commentServices().submitComment(comment, username, ownerId, greenyId);
+        const updatedGreenyData = await postServices().updateCommentsCount(greenyId, currentCommentsCount);
+
+        createComment(currentComment);
+        editGreeny(updatedGreenyData, greenyId);
 
         reset();
     }

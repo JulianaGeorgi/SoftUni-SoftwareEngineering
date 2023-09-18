@@ -54,7 +54,7 @@ export const LatestGreenySnippet = ({ greeny }) => {
                     </div>
                     <div className="flex items-center py-4">
                         <div className="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
-                            <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faComment} />{commentsCount}
+                            <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faComment} />{greeny.commentsCount}
                         </div>
                         <div className="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
                             <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faHeart} /> {greeny.likesCount}

@@ -1,5 +1,5 @@
 import { database } from "../firebase";
-import { push, get, remove, update, query, orderByChild } from "firebase/database";
+import { push, get, remove, update, query, orderByChild, set } from "firebase/database";
 import { ref } from "firebase/database";
 
 export const postServices = () => {
@@ -81,7 +81,8 @@ export const postServices = () => {
       content: content,
       ownerId: ownerId,
       timestamp: timestamp,
-      likesCount: 0 
+      likesCount: 0,
+      commentsCount: 0
     });
 
     const newGreenyId = newGreenyRef.key;
@@ -133,7 +134,21 @@ export const postServices = () => {
 
     const updatedLikesCount = await get(greenyRef);
     const updatedGreenyData = updatedLikesCount.val();
-    // console.log(updatedGreenyData)
+
+    const resultObj = { ...updatedGreenyData, id: greenyId }
+
+    return resultObj;
+  }
+
+  const updateCommentsCount = async (greenyId, currentCommentsCount) => {
+    const greenyRef = ref(database, '/greenies/' + greenyId);
+
+    await update(greenyRef, {
+      commentsCount: currentCommentsCount + 1,
+    });
+
+    const updatedCommentsCount = await get(greenyRef);
+    const updatedGreenyData = updatedCommentsCount.val();
 
     const resultObj = { ...updatedGreenyData, id: greenyId }
 
@@ -159,6 +174,37 @@ export const postServices = () => {
     return reversedArray;
   }
 
+  const checkIfHasLiked = async (greenyId, userId) => {
+    const userLikeRef = ref(database, 'likes/' + greenyId + '/' + userId);
+
+    // Check if the user has a value of true
+    return get(userLikeRef)
+        .then((snapshot) => {
+            if (snapshot.exists() && snapshot.val() === true) {
+                console.log('User has a value of true for this post.');
+                return true;
+            } else {
+                console.log('User does not have a value of true for this post.');
+                return false;
+            }
+        })
+        .catch((error) => {
+            console.error('Error checking user like status:', error);
+        });
+  }
+
+  const storeLikes = async (greenyId, userId) => {
+
+    const likesRef = ref(database, 'likes/' + greenyId + '/' + userId);
+
+    try {
+      await set(likesRef, true); // likesRef points to the specific path in the database where we associate the user with the greeny
+      console.log('User associated with greeny successfully.');
+    } catch (error) {
+      console.error('Error associating user with greeny:', error);
+    }
+  }
+
   return {
     getAllGreenies,
     getGreenyById,
@@ -167,6 +213,9 @@ export const postServices = () => {
     updateGreeny,
     deleteGreeny,
     getLatestGreenies,
-    updateLikesCount
+    updateLikesCount,
+    updateCommentsCount,
+    checkIfHasLiked,
+    storeLikes
   }
 }
