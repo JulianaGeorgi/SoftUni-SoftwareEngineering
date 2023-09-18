@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import { useAuth } from "../../../contexts/AuthContext";
+import { useComment } from "../../../contexts/CommentContext";
 import { commentServices } from "../../../services/commentServices";
 
 import { Comment } from "./Comment";
@@ -16,13 +17,19 @@ export const CommentSection = () => {
         formState: { errors },
     } = useForm();
 
-    const [allComments, setAllComments] = useState([]);
-    const [commentCounter, setCommentCounter] = useState(0);
+    const { 
+        allComments, 
+        setComments, 
+        createComment, 
+        commentsCount 
+    } = useComment();
 
     const { currentUser } = useAuth();
-    const { greenyId } = useParams();
+
     const ownerId = currentUser.uid;
     const username = currentUser.email;
+
+    const { greenyId } = useParams();
 
     useEffect(() => {
         commentServices()
@@ -31,9 +38,7 @@ export const CommentSection = () => {
 
                 const orderedCommentsByLatest = allComments.reverse();
 
-                setAllComments([...orderedCommentsByLatest]);
-
-                setCommentCounter(allComments.length);
+                setComments(orderedCommentsByLatest);
             })
             .catch((error) => {
                 console.error("API call error:", error);
@@ -44,9 +49,7 @@ export const CommentSection = () => {
 
         const currentComment = await commentServices().submitComment(comment, username, ownerId, greenyId);
 
-        setAllComments([currentComment, ...allComments]);
-
-        setCommentCounter(prevCount => prevCount + 1);
+        createComment(currentComment)
 
         reset();
     }
@@ -56,7 +59,7 @@ export const CommentSection = () => {
             <div className="max-w-2xl mx-auto px-4">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-                        Comments ({commentCounter})
+                        Comments ({commentsCount})
                     </h2>
                 </div>
                 <form className="mb-6" onClick={handleSubmit(onCommentSubmitHandler)}>
@@ -83,7 +86,7 @@ export const CommentSection = () => {
                     )}
                     <button
                         type="submit"
-                        
+
                         className="inline-flex items-center bg-blue-400 hover:bg-blue-500 mt-5 text-white font-bold py-2 px-8 rounded-full mr-8"
                     >
                         Post comment
@@ -91,7 +94,7 @@ export const CommentSection = () => {
                 </form>
                 {allComments.map((comment) =>
                 (
-                    <Comment key={comment.id} comment={comment}/>
+                    <Comment key={comment.id} comment={comment} />
                 ))}
 
                 {/* COMMENT REPLIES*/}

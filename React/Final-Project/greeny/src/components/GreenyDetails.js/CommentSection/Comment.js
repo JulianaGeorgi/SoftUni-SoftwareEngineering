@@ -1,8 +1,48 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { formatTimestamp } from "../../../utils/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+
+import { commentServices } from "../../../services/commentServices";
+import { useComment } from "../../../contexts/CommentContext";
+
+import { DeleteModal } from "../../DeleteModal/DeleteModal";
 
 export const Comment = ({ comment }) => {
 
+    const {greenyId} = useParams();
+    const {deleteComment} = useComment();
+
+    const [isDropDownCommentOpen, setIsDropDownCommentOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [selectedComment, setSelectedComment] = useState({});
+
     const formattedDate = formatTimestamp(comment.timestamp);
+
+    const toggleDropdownComment = () => {
+        setIsDropDownCommentOpen(!isDropDownCommentOpen);
+    }
+
+    const toggleDeleteModal = () => {
+        setIsDeleteModalOpen(!isDeleteModalOpen);
+        setSelectedComment({
+            commentId:comment.id,
+            greenyId: greenyId
+        })
+    };
+    
+    const handleDeleteConfirmed = async () => {
+
+        toggleDeleteModal();
+
+        const {commentId, greenyId} = selectedComment;
+
+        await commentServices().deleteComment(commentId, greenyId); // delete from db
+
+        deleteComment(commentId); // delete from state via context
+    }
+
 
     return (
         <article className="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
@@ -18,63 +58,56 @@ export const Comment = ({ comment }) => {
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                         <time pubdate="" dateTime="2022-02-08" title="February 8th, 2022">
-                           {formattedDate}
+                            {formattedDate}
                         </time>
                     </p>
                 </div>
-                <button
-                    id="dropdownComment1Button"
-                    data-dropdown-toggle="dropdownComment1"
-                    className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    type="button"
-                >
-                    <svg
-                        className="w-4 h-4"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 16 3"
+                <div className="relative inline-block text-left">
+                    <button
+                        onClick={toggleDropdownComment}
+                        id="dropdownComment1Button"
+                        // data-dropdown-toggle="dropdownComment1"
+                        className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     >
-                        <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                    </svg>
-                    <span className="sr-only">Comment settings</span>
-                </button>
-                {/* Dropdown menu */}
-                <div
-                    id="dropdownComment1"
-                    className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                >
-                    <ul
-                        className="py-1 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownMenuIconHorizontalButton"
-                    >
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Edit
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Remove
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Report
-                            </a>
-                        </li>
-                    </ul>
+                        <FontAwesomeIcon icon={faEllipsis} />
+
+                    </button>
+                    {/* Dropdown menu */}
+                    {isDropDownCommentOpen && (
+                        <div
+                            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            role="menu"
+                            aria-orientation="vertical"
+                            aria-labelledby="menu-button"
+                            tabIndex={-1}
+                        >
+                            <div className="py-1" role="none">
+                                {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
+                                <button
+                                    href="#"
+                                    className="text-gray-700 block px-4 py-2 text-sm hover:bg-blue-400 hover:text-white"
+                                    role="menuitem"
+                                    tabIndex={-1}
+                                    id="menu-item-0"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    onClick={toggleDeleteModal}
+                                    className="text-gray-700 block px-4 py-2 text-sm  hover:bg-blue-400 hover:text-white"
+                                    role="menuitem"
+                                    tabIndex={-1}
+                                    id="menu-item-1"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+
+                    )}
                 </div>
             </footer>
+
             <p className="text-gray-500 dark:text-gray-400">
                 {comment.comment}
             </p>
@@ -101,6 +134,12 @@ export const Comment = ({ comment }) => {
                     Reply
                 </button>
             </div>
+
+            <DeleteModal
+                isOpen={isDeleteModalOpen}
+                onClose={toggleDeleteModal}
+                onDelete={handleDeleteConfirmed}
+            />
         </article>
     )
 }

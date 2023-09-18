@@ -18,6 +18,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { GreenyProvider } from './contexts/GreenyContext';
 import { UserProfile } from './components/UserProfile/UserProfile';
 import { CommentSection } from './components/GreenyDetails.js/CommentSection/CommentSection';
+import { CommentProvider } from './contexts/CommentContext';
 
 
 function App() {
@@ -25,31 +26,33 @@ function App() {
   return (
     <AuthProvider>
       <GreenyProvider>
-        <div className="App">
-          <Navigation />
+        <CommentProvider>
+          <div className="App">
+            <Navigation />
 
-          <main>
-            <Routes>
+            <main>
+              <Routes>
 
-              <Route path='/' element={<Home />} />
-              <Route path='/greenies/:greenyId' element={<GreenyDetails />} />
-              <Route path='/greenies/:greenyId/edit' element={<EditGreeny />} />
-              <Route path='/greenies/:greenyId/comments' element={<CommentSection />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/greenies/:greenyId' element={<GreenyDetails />} />
+                <Route path='/greenies/:greenyId/edit' element={<EditGreeny />} />
+                <Route path='/greenies/:greenyId/comments' element={<CommentSection />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
 
-              <Route path='/create' element={<CreateGreeny />} />
+                <Route path='/create' element={<CreateGreeny />} />
 
-              <Route path='/logout' element={<Logout />} />
-              <Route path='/profile' element={<UserProfile/>} />
+                <Route path='/logout' element={<Logout />} />
+                <Route path='/profile' element={<UserProfile />} />
 
-            </Routes>
-            <ScrollToTop />
+              </Routes>
+              <ScrollToTop />
 
-          </main>
-          <Footer />
-        </div>
+            </main>
+            <Footer />
+          </div>
+        </CommentProvider>
       </GreenyProvider>
     </AuthProvider>
   );

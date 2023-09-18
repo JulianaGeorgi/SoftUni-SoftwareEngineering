@@ -1,5 +1,5 @@
 import { database } from "../firebase";
-import { ref, push, get } from "firebase/database";
+import { ref, push, get, remove } from "firebase/database";
 
 export const commentServices = () => {
 
@@ -47,8 +47,23 @@ export const commentServices = () => {
         return resultObj;
     }
 
+    const deleteComment = async (commentId, greenyId ) => {
+        console.log(commentId)
+        // ref url https://greeny-5156d-default-rtdb.europe-west1.firebasedatabase.app/comments/-NeTtNPeKjpy16VrtIol/-NeYgXMa3jQSIcr7n2-l
+        const commentRef = ref(database, `/comments/${greenyId}/${commentId}`);
+
+        try {
+            await remove(commentRef);
+            console.log("Comment deleted successfully");
+        } catch (error) {
+            console.error("Error deleting comment:", error);
+        }
+    }
+
+
     return {
         getAllComments,
-        submitComment
+        submitComment,
+        deleteComment
     }
 }
