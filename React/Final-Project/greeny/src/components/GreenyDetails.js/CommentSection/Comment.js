@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { formatTimestamp } from "../../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,17 +8,30 @@ import { commentServices } from "../../../services/commentServices";
 import { useComment } from "../../../contexts/CommentContext";
 
 import { DeleteModal } from "../../DeleteModal/DeleteModal";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export const Comment = ({ comment }) => {
 
     const {greenyId} = useParams();
     const {deleteComment} = useComment();
+    const { getUserProfile } = useAuth();
+
+    const [author, setAuthor] = useState(null);
 
     const [isDropDownCommentOpen, setIsDropDownCommentOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedComment, setSelectedComment] = useState({});
 
     const formattedDate = formatTimestamp(comment.timestamp);
+
+    useEffect(() => {
+        async function getGreenyOwnerPhoto() {
+            const commentOwnerId = comment.ownerId;
+            const authorData = await getUserProfile(commentOwnerId);
+            setAuthor(authorData);
+        }
+        getGreenyOwnerPhoto();
+    }, []);
 
     const toggleDropdownComment = () => {
         setIsDropDownCommentOpen(!isDropDownCommentOpen);
@@ -47,14 +60,23 @@ export const Comment = ({ comment }) => {
     return (
         <article className="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
             <footer className="flex justify-between items-center mb-2">
+                {author &&
                 <div className="flex items-center">
                     <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                    {author.profilePhotoUrl ? (
                         <img
                             className="mr-2 w-6 h-6 rounded-full"
-                            src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                            src={author.profilePhotoUrl}
                             alt="Michael Gough"
                         />
-                        {comment.username}
+                    ) : (
+                        <img
+                        className="mr-2 w-6 h-6 rounded-full"
+                        src="https://e1.pxfuel.com/desktop-wallpaper/940/647/desktop-wallpaper-the-best-16-default-pfp-aesthetic-kidcore-pfp-icon.jpg"
+                        alt="Michael Gough"
+                    />
+                    )}
+                        {author.username}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                         <time pubdate="" dateTime="2022-02-08" title="February 8th, 2022">
@@ -62,6 +84,7 @@ export const Comment = ({ comment }) => {
                         </time>
                     </p>
                 </div>
+                }
                 <div className="relative inline-block text-left">
                     <button
                         onClick={toggleDropdownComment}

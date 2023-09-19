@@ -2,11 +2,24 @@ import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 
-import { useComment } from "../../contexts/CommentContext"
+import { useComment } from "../../contexts/CommentContext";
+import { useAuth } from "../../contexts/AuthContext";
+import { useEffect, useState } from "react";
 
 export const LatestGreenySnippet = ({ greeny }) => {
 
-    const { commentsCount } = useComment();
+    // const { commentsCount } = useComment();
+    const { getUserProfile } = useAuth();
+    const [author, setAuthor] = useState(null);
+
+    useEffect(() => {
+        async function getGreenyOwnerPhoto() {
+            const greenyOwnerId = greeny.ownerId;
+            const authorData = await getUserProfile(greenyOwnerId);
+            setAuthor(authorData);
+        }
+        getGreenyOwnerPhoto();
+    }, [greeny]);
 
     return (
         <li>
@@ -14,20 +27,30 @@ export const LatestGreenySnippet = ({ greeny }) => {
             <article className="hover:bg-gray-800 transition duration-350 ease-in-out">
                 <div className="flex flex-shrink-0 p-4 pb-0">
                     <a href="#" className="flex-shrink-0 group block">
-                        <div className="flex items-center">
-                            <div>
-                                <img
-                                    className="inline-block h-10 w-10 rounded-full"
-                                    src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png"
-                                    alt=""
-                                />
+                        {author && (
+                            <div className="flex items-center">
+                                <div>
+                                    {author.profilePhotoUrl ? (
+                                        <img
+                                            className="inline-block h-10 w-10 rounded-full"
+                                            src={author.profilePhotoUrl}
+                                            alt=""
+                                        />
+                                    ) : (
+                                        <img
+                                            className="inline-block h-10 w-10 rounded-full"
+                                            src="images/dummy_avatar.jpg"
+                                            alt=""
+                                        />
+                                    )}
+                                </div>
+                                <div className="ml-3">
+                                    <p className="text-base leading-6 font-medium text-white">
+                                        @{greeny.author}
+                                    </p>
+                                </div>
                             </div>
-                            <div className="ml-3">
-                                <p className="text-base leading-6 font-medium text-white">
-                                    @{greeny.author}
-                                </p>
-                            </div>
-                        </div>
+                        )}
                     </a>
                 </div>
                 <div className="pl-16">

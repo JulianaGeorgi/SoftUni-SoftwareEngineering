@@ -19,12 +19,13 @@ import { DeleteModal } from "../DeleteModal/DeleteModal";
 export const GreenyDetails = () => {
 
     const { greenyId } = useParams();
-    const { currentUser } = useAuth();
-    const { likesCount, editGreeny } = useGreeny();
+    const { currentUser, getUserProfile } = useAuth();
+    const { editGreeny } = useGreeny();
     const { setComments, commentsCount } = useComment();
 
     const [currentGreeny, setCurrentGreeny] = useState({});
-    const [hasLiked, setHasLiked] = useState(null); 
+    const [hasLiked, setHasLiked] = useState(null);
+    const [author, setAuthor] = useState(null);
 
     const [showCommmentSection, setShowCommentSection] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -46,8 +47,18 @@ export const GreenyDetails = () => {
         fetchCurrentGreeny();
     }, [currentGreeny]);
 
-    useEffect(()=> {
-        async function fetchHasLiked() {
+
+    useEffect(() => {
+        async function getGreenyOwnerPhoto() {
+            const greenyOwnerId = currentGreeny.ownerId;
+            const authorData = await getUserProfile(greenyOwnerId);
+            setAuthor(authorData);
+        }
+        getGreenyOwnerPhoto();
+    }, []);
+
+    useEffect(() => {
+        async function fetchUserHasLiked() {
             try {
                 const userHasLiked = await postServices().checkIfHasLiked(greenyId, currentUser.uid);
                 setHasLiked(userHasLiked);
@@ -55,7 +66,7 @@ export const GreenyDetails = () => {
                 console.error("Error fetching data:", error);
             }
         }
-        fetchHasLiked();
+        fetchUserHasLiked();
     }, [greenyId, hasLiked]);
 
     useEffect(() => {
@@ -76,7 +87,7 @@ export const GreenyDetails = () => {
         const currentLikesCount = currentGreeny.likesCount;
 
         const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount);
-        const userHasLiked= await postServices().storeLikes(greenyId, currentUser.uid);
+        const userHasLiked = await postServices().storeLikes(greenyId, currentUser.uid);
         setHasLiked(userHasLiked);
 
         editGreeny(updatedGreenyData, greenyId); // update state
@@ -131,19 +142,28 @@ export const GreenyDetails = () => {
                             <h2 className="text-4xl font-semibold text-gray-100 leading-tight">
                                 {currentGreeny.title}
                             </h2>
-                            <div className="flex mt-3">
-                                <img
-                                    src="https://randomuser.me/api/portraits/men/97.jpg"
-                                    className="h-10 w-10 rounded-full mr-2 object-cover"
-                                />
-                                <div>
-                                    <p className="font-semibold text-gray-200 text-sm">
-                                        {" "}
-                                        {currentGreeny.author}{" "}
-                                    </p>
-                                    <p className="font-semibold text-gray-400 text-xs"> {currentGreeny.timestamp} </p>
+                            {author && (
+                                <div className="flex mt-3">
+                                    {author.profilePhotoUrl ? (
+                                        <img
+                                            src={author.profilePhotoUrl}
+                                            className="h-10 w-10 rounded-full mr-2 object-cover"
+                                        />
+                                    ) : (
+                                        <img
+                                            src="https://e1.pxfuel.com/desktop-wallpaper/940/647/desktop-wallpaper-the-best-16-default-pfp-aesthetic-kidcore-pfp-icon.jpg"
+                                            className="h-10 w-10 rounded-full mr-2 object-cover"
+                                        />
+                                    )}
+                                    <div>
+                                        <p className="font-semibold text-gray-200 text-sm">
+                                            {" "}
+                                            {currentGreeny.author}{" "}
+                                        </p>
+                                        <p className="font-semibold text-gray-400 text-xs"> {currentGreeny.timestamp} </p>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
                     <div className="px-4 mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md text-lg leading-relaxed">
@@ -187,7 +207,7 @@ export const GreenyDetails = () => {
                     <FontAwesomeIcon icon={faComment} /> Comments ({commentsCount})
                 </button>
             </div>
-            {showCommmentSection && <CommentSection currentGreeny={currentGreeny}/>}
+            {showCommmentSection && <CommentSection currentGreeny={currentGreeny} />}
 
 
             {/* Delete Modal */}

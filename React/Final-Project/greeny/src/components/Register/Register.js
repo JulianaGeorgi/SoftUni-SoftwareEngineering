@@ -9,13 +9,14 @@ import { useAuth } from "../../contexts/AuthContext";
 export const Register = () => {
 
     const navigate = useNavigate();
-    const { signup } = useAuth();
+    const { signup, updateUserProfile, saveUserData } = useAuth();
 
     const form = useForm(
         {
             mode: "onChange",
             defaultValues: {
                 name: "",
+                profilePhotoUrl: "",
                 email: "",
                 username: "",
                 password: "",
@@ -29,7 +30,9 @@ export const Register = () => {
 
     async function onRegisterSubmitHandler(formData) {
         try {
-            await signup(formData.email, formData.password);
+            const userId = await signup(formData.email, formData.password);
+            await updateUserProfile(formData.username, formData.profilePhotoUrl);
+            await saveUserData(userId, formData.username, formData.profilePhotoUrl);
             navigate('/');
         } catch (err) {
             alert(`Registration failed - ${err.code - err.message}`);
@@ -74,6 +77,26 @@ export const Register = () => {
                                                     })}
                                             ></TEInput>
                                             <p className="text-sm text-red-600">{errors.name?.message}</p>
+
+                                            {/* PROFILE PHOTO */}
+                                            <div className="mb-6">
+                                                <TEInput
+                                                    type="url"
+                                                    label="Profile photo link (optional)"
+                                                    className="mb-2"
+                                                    id="profilePhotoUrl"
+                                                    {...register("profilePhotoUrl", {
+                                                        pattern: {
+                                                            value: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/,
+                                                            message: "Invalid image URL."
+                                                        }
+                                                    })}
+                                                    error={(errors.profilePhotoUrl)}
+                                                />
+                                                {errors.profilePhotoUrl && (
+                                                    <p className="text-red-600 text-sm">{errors.profilePhotoUrl.message}</p>
+                                                )}
+                                            </div>
 
                                             {/* <!--EMAIL--> */}
                                             <TEInput
@@ -153,7 +176,7 @@ export const Register = () => {
                                             <div className="mb-12 pb-1 pt-1 text-center">
                                                 <div className="mb-12 pb-1 pt-1 text-center">
                                                     <button
-                                                    disabled={!isDirty || !isValid}
+                                                        disabled={!isDirty || !isValid}
                                                         className="px-10 py-2 text-white bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
                                                         type="submit"
                                                     >

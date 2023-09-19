@@ -89,7 +89,7 @@ export const CommentSection = ({currentGreeny}) => {
                 )}
                 {allComments.map((comment) =>
                 (
-                    <Comment key={comment.id} comment={comment} />
+                    <Comment key={comment.id} comment={comment}/>
                 ))}
 
                 {/* COMMENT REPLIES*/}

@@ -6,6 +6,8 @@ export const Navigation = () => {
 
     const { currentUser } = useAuth();
 
+    console.log(currentUser)
+
     return (
         <>
             {/* Main navigation container */}
@@ -61,14 +63,14 @@ export const Navigation = () => {
                             data-te-navbar-nav-ref=""
                         >
                             <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
-                                            <Link to="/"
-                                                className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
-                                                href="#"
-                                                data-te-nav-link-ref=""
-                                            >
-                                                Home
-                                            </Link>
-                                        </li>
+                                <Link to="/"
+                                    className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
+                                    href="#"
+                                    data-te-nav-link-ref=""
+                                >
+                                    Home
+                                </Link>
+                            </li>
                             {!currentUser ?
                                 (
                                     <div className="flex flex-row">
@@ -175,64 +177,75 @@ export const Navigation = () => {
                         </div>
                         {/* Second dropdown container - AVATAR */}
                         {currentUser && (
-                        <div
-                            className="relative"
-                            data-te-dropdown-ref=""
-                            data-te-dropdown-alignment="end"
-                        >
-                            {/* Second dropdown trigger */}
-                            <Link to={"/profile"}
-                                className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
-                                id="dropdownMenuButton2"
-                                role="button"
-                                data-te-dropdown-toggle-ref=""
-                                aria-expanded="false"
+                            <div
+                                className="relative"
+                                data-te-dropdown-ref=""
+                                data-te-dropdown-alignment="end"
                             >
-                                {/* User avatar */}
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/new/avatars/2.jpg"
-                                    className="rounded-full"
-                                    style={{ height: 25, width: 25 }}
-                                    alt=""
-                                    loading="lazy"
-                                />
-                            </Link>
-                            {/* Second dropdown menu */}
-                            <ul
-                                className="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
-                                aria-labelledby="dropdownMenuButton2"
-                                data-te-dropdown-menu-ref=""
-                            >
-                                {/* Second dropdown menu items */}
-                                <li>
-                                    <a
-                                        className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="#"
-                                        data-te-dropdown-item-ref=""
-                                    >
-                                        Action
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="#"
-                                        data-te-dropdown-item-ref=""
-                                    >
-                                        Another action
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="#"
-                                        data-te-dropdown-item-ref=""
-                                    >
-                                        Something else here
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                                {/* Second dropdown trigger */}
+                                <Link to={"/profile"}
+                                    className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
+                                    id="dropdownMenuButton2"
+                                    role="button"
+                                    data-te-dropdown-toggle-ref=""
+                                    aria-expanded="false"
+                                >
+                                    {/* User avatar */}
+                                    {(currentUser.photoURL) ? (
+                                        <img
+                                            src={currentUser.photoURL}
+                                            className="rounded-full"
+                                            style={{ height: 50, width: 50 }}
+                                            alt=""
+                                            loading="lazy"
+                                        />
+
+                                    ) : (
+                                        <img
+                                            src="https://e1.pxfuel.com/desktop-wallpaper/940/647/desktop-wallpaper-the-best-16-default-pfp-aesthetic-kidcore-pfp-icon.jpg"
+                                            className="rounded-full"
+                                            style={{ height: 50, width: 50 }}
+                                            alt=""
+                                            loading="lazy"
+                                        />
+                                    )}
+                                </Link>
+                                {/* Second dropdown menu */}
+                                <ul
+                                    className="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
+                                    aria-labelledby="dropdownMenuButton2"
+                                    data-te-dropdown-menu-ref=""
+                                >
+                                    {/* Second dropdown menu items */}
+                                    <li>
+                                        <a
+                                            className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                                            href="#"
+                                            data-te-dropdown-item-ref=""
+                                        >
+                                            Action
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                                            href="#"
+                                            data-te-dropdown-item-ref=""
+                                        >
+                                            Another action
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                                            href="#"
+                                            data-te-dropdown-item-ref=""
+                                        >
+                                            Something else here
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         )}
                     </div>
                 </div>
