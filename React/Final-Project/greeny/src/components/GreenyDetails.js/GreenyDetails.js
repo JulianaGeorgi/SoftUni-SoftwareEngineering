@@ -45,7 +45,7 @@ export const GreenyDetails = () => {
             }
         }
         fetchCurrentGreeny();
-    }, [greenyId]);
+    }, [greenyId, currentGreeny]);
 
     useEffect(() => {
         async function getGreenyOwnerPhoto() {

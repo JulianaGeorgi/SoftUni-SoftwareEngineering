@@ -139,21 +139,34 @@ export const postServices = () => {
     return resultObj;
   }
 
-  const updateCommentsCount = async (greenyId, currentCommentsCount) => {
+  const updateCommentsCount = async (greenyId, currentCommentsCount, action) => {
     const greenyRef = ref(database, '/greenies/' + greenyId);
-
+  
+    let updatedCount;
+  
+    if (action === 'increment') {
+      console.log(currentCommentsCount)
+      updatedCount = currentCommentsCount + 1;
+      console.log(updatedCount)
+    } else if (action === 'decrement') {
+      console.log(updatedCount)
+      updatedCount = currentCommentsCount - 1;
+    } else {
+      // No action specified, return current count
+      updatedCount = currentCommentsCount;
+    }
+  
     await update(greenyRef, {
-      commentsCount: currentCommentsCount + 1,
+      commentsCount: updatedCount,
     });
-
+  
     const updatedCommentsCount = await get(greenyRef);
     const updatedGreenyData = updatedCommentsCount.val();
-
-    const resultObj = { ...updatedGreenyData, id: greenyId }
-    console.log(`Greeny: ${resultObj}`)
-
+  
+    const resultObj = { ...updatedGreenyData, id: greenyId };
+  
     return resultObj;
-  }
+  };
 
   const deleteGreeny = async (greenyId) => {
     remove(ref(database, "/greenies/" + greenyId));

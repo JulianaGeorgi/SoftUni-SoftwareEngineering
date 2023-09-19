@@ -38,13 +38,13 @@ export const commentServices = () => {
         });
 
         const newCommentId = newCommentRef.key;
-        console.log(newCommentId)
+        // console.log(newCommentId)
 
         const commentSnapshot = await get(newCommentRef);
         const newCommentData = commentSnapshot.val();
 
         const resultObj = { ...newCommentData, id: newCommentId }
-        console.log(resultObj)
+        // console.log(resultObj)
 
         return resultObj;
     }

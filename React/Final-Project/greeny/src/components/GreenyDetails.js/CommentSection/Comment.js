@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
+import { postServices } from "../../../services/postServices";
 import { commentServices } from "../../../services/commentServices";
 import { useComment } from "../../../contexts/CommentContext";
 import { useAuth } from "../../../contexts/AuthContext";
@@ -54,9 +55,12 @@ export const Comment = ({ comment }) => {
 
         const { commentId, greenyId } = selectedComment;
 
-        await commentServices().deleteComment(commentId, greenyId); // delete from db
-
+        await commentServices().deleteComment(commentId, greenyId); // delete comment from db
         deleteComment(commentId); // delete from state via context
+
+        const res = await postServices().getGreenyById(greenyId);
+        const currentCommentsCount = res.commentsCount;
+        await postServices().updateCommentsCount(greenyId, currentCommentsCount, 'decrement'); // update comment count in the greeny object 
     }
 
 

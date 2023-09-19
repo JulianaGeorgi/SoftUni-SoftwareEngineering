@@ -38,7 +38,7 @@ export const CommentSection = ({currentGreeny}) => {
         const currentCommentsCount = currentGreeny.commentsCount;
 
         const currentComment = await commentServices().submitComment(comment, username, ownerId, greenyId); // save in db
-        const updatedGreenyData = await postServices().updateCommentsCount(greenyId, currentCommentsCount);
+        const updatedGreenyData = await postServices().updateCommentsCount(greenyId, currentCommentsCount, 'increment');
 
         createComment(currentComment); // update the state with allComments
         editGreeny(updatedGreenyData, greenyId); // update the state with all greenies
