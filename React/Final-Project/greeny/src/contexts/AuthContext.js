@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, useContext } from "react";
-import { push, get, remove, update, query, orderByChild, set } from "firebase/database";
+import { get, set } from "firebase/database";
 import { ref } from "firebase/database";
 import { database } from "../firebase";
 
@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }) => {
         return auth.signOut();
     }
 
+    // update the currentUser object 
     function updateUserProfile(username, profilePhotoUrl) {
         updateProfile(auth.currentUser, {
             displayName: username,
@@ -47,16 +48,19 @@ export const AuthProvider = ({ children }) => {
         });
     }
 
+    // save in db
     async function saveUserData(userId, username, profilePhotoUrl) {
 
         const userRef = ref(database, 'users/' + userId);
 
+        // console.log(profilePhotoUrl)
+
         try {
             await set(userRef, {
                 username: username,
-                profilePhotoUrl: profilePhotoUrl
+                photoURL: profilePhotoUrl
             }); // likesRef points to the specific path in the database where we associate the user with the greeny
-            console.log('User info saved successfully.');
+            // console.log('User info saved successfully.');
 
             //   const newGreenyId = userRef.key;
 
@@ -70,30 +74,28 @@ export const AuthProvider = ({ children }) => {
             return newUserData;
 
         } catch (error) {
-            console.error('Error saving user data:', error);
+            // console.error('Error saving user data:', error);
         }
     }
 
     async function getUserProfile(userId) {
-        const userRef = ref(database, "/users/" + userId);
+        const userRef = ref(database, "users/" + userId);
 
         try {
             const snapshot = await get(userRef);
-            if (snapshot.exists()) {
-                const userData = snapshot.val();
-                return userData;
-            } else {
-                console.log("User not found.");
+
+            if (!snapshot.exists()) {
                 return {};
             }
 
+            const userData = snapshot.val();
+            
+            return userData;
+
         } catch (error) {
-            console.error("Error fetching item:", error);
             return error;
         };
     }
-
-
 
     function resetPassword(email) {
         return sendPasswordResetEmail(auth, email);
@@ -114,7 +116,7 @@ export const AuthProvider = ({ children }) => {
             setPending(false);
         });
         return unsubscribe;
-    }, []);
+    }, [currentUser]);
 
     if (pending) {
         return <>Loading...</>

@@ -2,7 +2,6 @@ import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 
-import { useComment } from "../../contexts/CommentContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { useEffect, useState } from "react";
 
@@ -19,30 +18,22 @@ export const LatestGreenySnippet = ({ greeny }) => {
             setAuthor(authorData);
         }
         getGreenyOwnerPhoto();
-    }, [greeny]);
+    }, [getUserProfile, greeny.ownerId]);
 
     return (
         <li>
             {/*second tweet*/}
             <article className="hover:bg-gray-800 transition duration-350 ease-in-out">
                 <div className="flex flex-shrink-0 p-4 pb-0">
-                    <a href="#" className="flex-shrink-0 group block">
+                    <a href="/" className="flex-shrink-0 group block">
                         {author && (
                             <div className="flex items-center">
                                 <div>
-                                    {author.profilePhotoUrl ? (
                                         <img
                                             className="inline-block h-10 w-10 rounded-full"
-                                            src={author.profilePhotoUrl}
+                                            src={author.photoURL}
                                             alt=""
                                         />
-                                    ) : (
-                                        <img
-                                            className="inline-block h-10 w-10 rounded-full"
-                                            src="images/dummy_avatar.jpg"
-                                            alt=""
-                                        />
-                                    )}
                                 </div>
                                 <div className="ml-3">
                                     <p className="text-base leading-6 font-medium text-white">
@@ -76,10 +67,10 @@ export const LatestGreenySnippet = ({ greeny }) => {
                         </div>
                     </div>
                     <div className="flex items-center py-4">
-                        <div className="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-blue-400 transition duration-350 ease-in-out">
+                        <div className="flex-1 flex items-center text-white text-xs hover:text-blue-400 transition duration-350 ease-in-out">
                             <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faComment} />{greeny.commentsCount}
                         </div>
-                        <div className="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-green-400 transition duration-350 ease-in-out">
+                        <div className="flex-1 flex items-center text-white text-xs hover:text-green-400 transition duration-350 ease-in-out">
                             <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faHeart} /> {greeny.likesCount}
                         </div>
                         {/* <div className="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">

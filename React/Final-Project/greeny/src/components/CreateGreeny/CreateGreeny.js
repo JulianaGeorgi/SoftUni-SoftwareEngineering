@@ -1,4 +1,4 @@
-import { TEInput, TERipple } from "tw-elements-react";
+import { TEInput } from "tw-elements-react";
 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ export const CreateGreeny = () => {
         {
             mode: "onChange",
             defaultValues: {
-                author: "",
+                author: "", // TODO: autopopulate author with currentUser.displayName (username)
                 title: "",
                 imageUrl: "",
                 content: "",
@@ -37,10 +37,9 @@ export const CreateGreeny = () => {
         const formValues = getValues();
         const newGreeny = { ...formValues, ownerId: userId }
 
-        const newGreenyData = await postServices().publishPost(newGreeny);
+        const newGreenyData = await postServices().publishPost(newGreeny); // save in db
 
-        createGreeny(newGreenyData);
-        // setGreenies((oldGreenies) => [...oldGreenies, newGreenyData]);
+        createGreeny(newGreenyData); //update state
 
         navigate(`/greenies/${newGreenyData.id}`);
         //TODO: Add error handling

@@ -35,7 +35,7 @@ export const EditGreeny = () => {
         }
     );
 
-    const { register, getValues, reset, handleSubmit, formState } = form;
+    const { register, getValues, handleSubmit, formState } = form;
     const { errors, isDirty, isValid } = formState;
 
     const onUpdateGreenySubmit = async () => {

@@ -9,8 +9,10 @@ import { LatestGreenySnippet } from "./LastestGreenySnippet";
 export const UserProfile = () => {
 
     const { currentUser } = useAuth();
+
     const [currentUserGreenies, setCurrentUserGreenies] = useState([]);
     const [latestGreenies, setLatestGreenies] = useState([]);
+
     const batchSize = 2;
     const [loadedGreenies, setLoadedGreenies] = useState(batchSize);
 
@@ -23,7 +25,7 @@ export const UserProfile = () => {
             .catch((error) => {
                 console.error("API call error:", error);
             });
-    }, []);
+    }, [currentUser.uid]);
 
     useEffect(() => {
         postServices()
@@ -58,7 +60,7 @@ export const UserProfile = () => {
                                 {/* Nav*/}
                                 <nav className="mt-5 px-2">
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="group flex items-center px-2 py-2 text-base leading-6 font-semibold rounded-full bg-gray-800 text-blue-300"
                                     >
                                         <svg
@@ -77,7 +79,7 @@ export const UserProfile = () => {
                                         Home
                                     </a>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-semibold rounded-full hover:bg-gray-800 hover:text-blue-300"
                                     >
                                         <svg
@@ -94,7 +96,7 @@ export const UserProfile = () => {
                                         Explore
                                     </a>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                     >
                                         <svg
@@ -111,7 +113,7 @@ export const UserProfile = () => {
                                         Notifications
                                     </a>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                     >
                                         <svg
@@ -128,7 +130,7 @@ export const UserProfile = () => {
                                         Messages
                                     </a>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                     >
                                         <svg
@@ -145,7 +147,7 @@ export const UserProfile = () => {
                                         Bookmarks
                                     </a>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                     >
                                         <svg
@@ -162,7 +164,7 @@ export const UserProfile = () => {
                                         Lists
                                     </a>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                     >
                                         <svg
@@ -179,7 +181,7 @@ export const UserProfile = () => {
                                         Profile
                                     </a>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                     >
                                         <svg
@@ -214,12 +216,12 @@ export const UserProfile = () => {
                                         <div className="flex">
                                             <div className="flex-1 mx-2">
                                                 <h2 className="px-4 py-2 text-xl font-semibold text-grey-700">
-                                                    Home
+                                                {currentUser.displayName}'s Home
                                                 </h2>
                                             </div>
                                             <div className="flex-1 px-4 py-2 mx-2">
                                                 <a
-                                                    href=""
+                                                    href="/"
                                                     className=" text-2xl font-medium rounded-full text-grey-700 hover:bg-gray-800 hover:text-blue-300 float-right"
                                                 >
                                                     <svg
@@ -240,7 +242,7 @@ export const UserProfile = () => {
                                             <div className="m-2 w-10 py-1">
                                                 <img
                                                     className="inline-block h-10 w-10 rounded-full"
-                                                    src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png"
+                                                    src={currentUser.photoURL}
                                                     alt=""
                                                 />
                                             </div>
@@ -261,7 +263,7 @@ export const UserProfile = () => {
                                                 <div className="flex items-center">
                                                     <div className="flex-1 text-center px-1 py-1 m-2">
                                                         <a
-                                                            href="#"
+                                                            href="/"
                                                             className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                                         >
                                                             <svg
@@ -279,7 +281,7 @@ export const UserProfile = () => {
                                                     </div>
                                                     <div className="flex-1 text-center py-2 m-2">
                                                         <a
-                                                            href="#"
+                                                            href="/"
                                                             className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                                         >
                                                             <svg
@@ -298,7 +300,7 @@ export const UserProfile = () => {
                                                     </div>
                                                     <div className="flex-1 text-center py-2 m-2">
                                                         <a
-                                                            href="#"
+                                                            href="/"
                                                             className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                                         >
                                                             <svg
@@ -316,7 +318,7 @@ export const UserProfile = () => {
                                                     </div>
                                                     <div className="flex-1 text-center py-2 m-2">
                                                         <a
-                                                            href="#"
+                                                            href="/"
                                                             className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
                                                         >
                                                             <svg
@@ -359,12 +361,12 @@ export const UserProfile = () => {
                                     ) : (
                                         <p className="m-10">There are no more greenies.</p>
                                     )}
-                                </div>
-                                <aside className="w-2/5 h-12 position-relative">
-                                    {/*Aside menu (right side)*/}
-                                    <div style={{ maxWidth: 350 }}>
-                                        <div className="overflow-y-auto h-auto">
-                                            {/* <div className="relative text-gray-300 w-80 p-5">
+                            </div>
+                            <aside className="w-2/5 h-12 position-relative">
+                                {/*Aside menu (right side)*/}
+                                <div style={{ maxWidth: 350 }}>
+                                    <div className="overflow-y-auto h-auto">
+                                        {/* <div className="relative text-gray-300 w-80 p-5">
                                             <button type="submit" className="absolute ml-4 mt-3 mr-4">
                                                 <svg
                                                     className="h-4 w-4 fill-current"
@@ -387,43 +389,43 @@ export const UserProfile = () => {
                                                 type="search"
                                                 name="search"
                                                 placeholder="Search Twitter"
-                                                className=" bg-dim-700 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow rounded border-0"
+                                                className=" bg-dim-700 h-10 px-10 pr-5 w-full rounded-full text-sm focus:outline-none bg-purple-white shadow border-0"
                                             />
                                         </div> */}
-                                            {/*trending tweet section*/}
-                                            <div className="max-w-sm rounded-lg bg-dim-700 overflow-hidden shadow-lg m-4">
-                                                <div className="flex">
-                                                    <div className="flex-1 m-2">
-                                                        <h2 className="px-4 py-2 text-xl w-48 font-semibold text-grey-700">
-                                                            Your latest Greenies
-                                                        </h2>
-                                                    </div>
+                                        {/*trending tweet section*/}
+                                        <div className="max-w-sm rounded-lg bg-dim-700 overflow-hidden shadow-lg m-4">
+                                            <div className="flex">
+                                                <div className="flex-1 m-2">
+                                                    <h2 className="px-4 py-2 text-xl w-48 font-semibold text-grey-700">
+                                                        Your latest Greenies
+                                                    </h2>
                                                 </div>
-                                                <hr className="border-gray-800" />
-
-                                                {currentUserGreenies.length === 0 ? (
-                                                    <p className="px-4 ml-2 my-3 text-s font-bold text-gray-700">You have not posted any greenies</p>
-                                                ) : (
-                                                    <>
-                                                        {currentUserGreenies.map((greeny) =>
-                                                        (<UserGreenySnippet key={greeny.id} greeny={greeny} />
-                                                        ))}
-                                                        < hr className="border-gray-800" />
-
-                                                        < div className="flex">
-                                                            <div className="flex-1 p-4">
-                                                                <h2 className="px-4 ml-2 w-48 font-bold text-blue-400">
-                                                                    Show more
-                                                                </h2>
-                                                            </div>
-                                                        </div>
-                                                    </>
-                                                )}
                                             </div>
+                                            <hr className="border-gray-800" />
+
+                                            {currentUserGreenies.length === 0 ? (
+                                                <p className="px-4 ml-2 my-3 text-s font-bold text-gray-700">You have not posted any greenies</p>
+                                            ) : (
+                                                <>
+                                                    {currentUserGreenies.map((greeny) =>
+                                                    (<UserGreenySnippet key={greeny.id} greeny={greeny} />
+                                                    ))}
+                                                    < hr className="border-gray-800" />
+
+                                                    < div className="flex">
+                                                        <div className="flex-1 p-4">
+                                                            <h2 className="px-4 ml-2 w-48 font-bold text-blue-400">
+                                                                Show more
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )}
                                         </div>
                                     </div>
-                                </aside>
-                            </div>
+                                </div>
+                            </aside>
+                        </div>
                     </main>
                 </div >
             </div >

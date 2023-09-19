@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
+
 import { useAuth } from "../../contexts/AuthContext";
+
 import { Logout } from "../Logout/Logout";
 
 export const Navigation = () => {
 
     const { currentUser } = useAuth();
-
-    console.log(currentUser)
 
     return (
         <>
@@ -48,7 +48,7 @@ export const Navigation = () => {
                         {/* Logo */}
                         <Link to="/"
                             className="mb-4 ml-2 mr-5 mt-1.5 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0"
-                            href="#"
+                            href="/"
                         >
                             <img
                                 src="/images/greeny-low-resolution-logo-color-on-transparent-background-text-only.png"
@@ -65,7 +65,7 @@ export const Navigation = () => {
                             <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
                                 <Link to="/"
                                     className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
-                                    href="#"
+                                    href="/"
                                     data-te-nav-link-ref=""
                                 >
                                     Home
@@ -78,7 +78,7 @@ export const Navigation = () => {
                                         <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
                                             <Link to="/login"
                                                 className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
-                                                href="#"
+                                                href="/"
                                                 data-te-nav-link-ref=""
                                             >
                                                 Login
@@ -88,7 +88,7 @@ export const Navigation = () => {
                                         <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
                                             <Link to="/register"
                                                 className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                                                href="#"
+                                                href="/"
                                                 data-te-nav-link-ref=""
                                             >
                                                 Register
@@ -102,7 +102,7 @@ export const Navigation = () => {
                                         <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
                                             <Link to="/create"
                                                 className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                                                href="#"
+                                                href="/"
                                                 data-te-nav-link-ref=""
                                             >
                                                 Create Greeny
@@ -119,7 +119,7 @@ export const Navigation = () => {
                         {/* Cart Icon */}
                         <a
                             className="mr-4 text-neutral-600 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                            href="#"
+                            href="/"
                         >
                             <span className="[&>svg]:w-5">
                                 <svg
@@ -149,7 +149,7 @@ export const Navigation = () => {
                                 <li>
                                     <a
                                         className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="#"
+                                        href="/"
                                         data-te-dropdown-item-ref=""
                                     >
                                         Action
@@ -158,7 +158,7 @@ export const Navigation = () => {
                                 <li>
                                     <a
                                         className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="#"
+                                        href="/"
                                         data-te-dropdown-item-ref=""
                                     >
                                         Another action
@@ -167,7 +167,7 @@ export const Navigation = () => {
                                 <li>
                                     <a
                                         className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="#"
+                                        href="/"
                                         data-te-dropdown-item-ref=""
                                     >
                                         Something else here
@@ -191,24 +191,13 @@ export const Navigation = () => {
                                     aria-expanded="false"
                                 >
                                     {/* User avatar */}
-                                    {(currentUser.photoURL) ? (
-                                        <img
-                                            src={currentUser.photoURL}
-                                            className="rounded-full"
-                                            style={{ height: 50, width: 50 }}
-                                            alt=""
-                                            loading="lazy"
-                                        />
-
-                                    ) : (
-                                        <img
-                                            src="https://e1.pxfuel.com/desktop-wallpaper/940/647/desktop-wallpaper-the-best-16-default-pfp-aesthetic-kidcore-pfp-icon.jpg"
-                                            className="rounded-full"
-                                            style={{ height: 50, width: 50 }}
-                                            alt=""
-                                            loading="lazy"
-                                        />
-                                    )}
+                                    <img
+                                        src={currentUser.photoURL}
+                                        className="rounded-full"
+                                        style={{ height: 50, width: 50 }}
+                                        alt=""
+                                        loading="lazy"
+                                    />
                                 </Link>
                                 {/* Second dropdown menu */}
                                 <ul
@@ -220,7 +209,7 @@ export const Navigation = () => {
                                     <li>
                                         <a
                                             className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                            href="#"
+                                            href="/"
                                             data-te-dropdown-item-ref=""
                                         >
                                             Action
@@ -229,7 +218,7 @@ export const Navigation = () => {
                                     <li>
                                         <a
                                             className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                            href="#"
+                                            href="/"
                                             data-te-dropdown-item-ref=""
                                         >
                                             Another action
@@ -238,7 +227,7 @@ export const Navigation = () => {
                                     <li>
                                         <a
                                             className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                            href="#"
+                                            href="/"
                                             data-te-dropdown-item-ref=""
                                         >
                                             Something else here

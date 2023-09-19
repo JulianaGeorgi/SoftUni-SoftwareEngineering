@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { formatTimestamp } from "../../../utils/utils";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 import { commentServices } from "../../../services/commentServices";
 import { useComment } from "../../../contexts/CommentContext";
+import { useAuth } from "../../../contexts/AuthContext";
+
+import { formatTimestamp } from "../../../utils/utils";
 
 import { DeleteModal } from "../../DeleteModal/DeleteModal";
-import { useAuth } from "../../../contexts/AuthContext";
+
 
 export const Comment = ({ comment }) => {
 
-    const {greenyId} = useParams();
-    const {deleteComment} = useComment();
+    const { greenyId } = useParams();
+    const { deleteComment } = useComment();
     const { getUserProfile } = useAuth();
 
     const [author, setAuthor] = useState(null);
@@ -31,7 +34,7 @@ export const Comment = ({ comment }) => {
             setAuthor(authorData);
         }
         getGreenyOwnerPhoto();
-    }, []);
+    }, [comment.ownerId, getUserProfile]);
 
     const toggleDropdownComment = () => {
         setIsDropDownCommentOpen(!isDropDownCommentOpen);
@@ -40,16 +43,16 @@ export const Comment = ({ comment }) => {
     const toggleDeleteModal = () => {
         setIsDeleteModalOpen(!isDeleteModalOpen);
         setSelectedComment({
-            commentId:comment.id,
+            commentId: comment.id,
             greenyId: greenyId
         })
     };
-    
+
     const handleDeleteConfirmed = async () => {
 
         toggleDeleteModal();
 
-        const {commentId, greenyId} = selectedComment;
+        const { commentId, greenyId } = selectedComment;
 
         await commentServices().deleteComment(commentId, greenyId); // delete from db
 
@@ -61,29 +64,22 @@ export const Comment = ({ comment }) => {
         <article className="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
             <footer className="flex justify-between items-center mb-2">
                 {author &&
-                <div className="flex items-center">
-                    <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
-                    {author.profilePhotoUrl ? (
-                        <img
-                            className="mr-2 w-6 h-6 rounded-full"
-                            src={author.profilePhotoUrl}
-                            alt="Michael Gough"
-                        />
-                    ) : (
-                        <img
-                        className="mr-2 w-6 h-6 rounded-full"
-                        src="https://e1.pxfuel.com/desktop-wallpaper/940/647/desktop-wallpaper-the-best-16-default-pfp-aesthetic-kidcore-pfp-icon.jpg"
-                        alt="Michael Gough"
-                    />
-                    )}
-                        {author.username}
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                        <time pubdate="" dateTime="2022-02-08" title="February 8th, 2022">
-                            {formattedDate}
-                        </time>
-                    </p>
-                </div>
+                    <div className="flex items-center">
+                        <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+
+                            <img
+                                className="mr-2 w-6 h-6 rounded-full"
+                                src={author.photoURL}
+                                alt="Michael Gough"
+                            />
+                            {author.username}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                            <time pubdate="" dateTime="2022-02-08" title="February 8th, 2022">
+                                {formattedDate}
+                            </time>
+                        </p>
+                    </div>
                 }
                 <div className="relative inline-block text-left">
                     <button

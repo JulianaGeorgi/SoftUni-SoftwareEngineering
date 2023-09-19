@@ -15,7 +15,7 @@ export const Register = () => {
         {
             mode: "onChange",
             defaultValues: {
-                name: "",
+                // name: "",
                 profilePhotoUrl: "",
                 email: "",
                 username: "",
@@ -31,8 +31,13 @@ export const Register = () => {
     async function onRegisterSubmitHandler(formData) {
         try {
             const userId = await signup(formData.email, formData.password);
-            await updateUserProfile(formData.username, formData.profilePhotoUrl);
-            await saveUserData(userId, formData.username, formData.profilePhotoUrl);
+
+            if (!formData.profilePhotoUrl) {
+                formData.profilePhotoUrl = "https://e1.pxfuel.com/desktop-wallpaper/940/647/desktop-wallpaper-the-best-16-default-pfp-aesthetic-kidcore-pfp-icon.jpg";
+            }
+
+            await updateUserProfile(formData.username, formData.profilePhotoUrl); // update the currentUser object
+            await saveUserData(userId, formData.username, formData.profilePhotoUrl); // update in db
             navigate('/');
         } catch (err) {
             alert(`Registration failed - ${err.code - err.message}`);
@@ -66,7 +71,7 @@ export const Register = () => {
                                         <form onSubmit={handleSubmit(onRegisterSubmitHandler)} noValidate>
 
                                             {/* <!--NAME--> */}
-                                            <TEInput
+                                            {/* <TEInput
                                                 type="text"
                                                 label="Name"
                                                 className="mb-4"
@@ -76,27 +81,7 @@ export const Register = () => {
                                                         required: "Name is required.",
                                                     })}
                                             ></TEInput>
-                                            <p className="text-sm text-red-600">{errors.name?.message}</p>
-
-                                            {/* PROFILE PHOTO */}
-                                            <div className="mb-6">
-                                                <TEInput
-                                                    type="url"
-                                                    label="Profile photo link (optional)"
-                                                    className="mb-2"
-                                                    id="profilePhotoUrl"
-                                                    {...register("profilePhotoUrl", {
-                                                        pattern: {
-                                                            value: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/,
-                                                            message: "Invalid image URL."
-                                                        }
-                                                    })}
-                                                    error={(errors.profilePhotoUrl)}
-                                                />
-                                                {errors.profilePhotoUrl && (
-                                                    <p className="text-red-600 text-sm">{errors.profilePhotoUrl.message}</p>
-                                                )}
-                                            </div>
+                                            <p className="text-sm text-red-600">{errors.name?.message}</p> */}
 
                                             {/* <!--EMAIL--> */}
                                             <TEInput
@@ -132,6 +117,27 @@ export const Register = () => {
                                                     })}
                                             ></TEInput>
                                             <p className="text-sm text-red-600">{errors.username?.message}</p>
+
+                                             {/* PROFILE PHOTO */}
+                                             <div className="mb-6">
+                                                <TEInput
+                                                    type="url"
+                                                    label="Profile photo link (optional)"
+                                                    className="mb-2"
+                                                    id="profilePhotoUrl"
+                                                    {...register("profilePhotoUrl", {
+                                                        pattern: {
+                                                            value: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/,
+                                                            message: "Invalid image URL."
+                                                        }
+                                                    })}
+                                                    error={(errors.profilePhotoUrl)}
+                                                />
+                                                {errors.profilePhotoUrl && (
+                                                    <p className="text-red-600 text-sm">{errors.profilePhotoUrl.message}</p>
+                                                )}
+                                            </div>
+
 
                                             {/* <!--PASS--> */}
                                             <TEInput
@@ -211,7 +217,7 @@ export const Register = () => {
 
                                 {/* <!-- Right column container with background image--> */}
                                 <div
-                                    class="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none bg-forest bg-cover xxl:bg-cover bg-center"
+                                    className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none bg-forest bg-cover xxl:bg-cover bg-center"
                                 >
                                 </div>
                             </div>

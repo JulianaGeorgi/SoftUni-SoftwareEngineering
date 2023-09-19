@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
+import { commentServices } from "../services/commentServices";
 
 export const CommentContext = createContext();
 
@@ -11,13 +13,23 @@ export const CommentProvider = ({ children }) => {
     const [allComments, setAllComments] = useState([]);
     const [commentsCount, setCommentsCount] = useState(0);
 
-    const setComments = (orderedCommentsByLatest) => {
-        setAllComments([...orderedCommentsByLatest]);
-        setCommentsCount(orderedCommentsByLatest.length);
-    }
+    useEffect(() => {
+        commentServices()
+            .getAllComments()
+            .then((allComments) => {
+                setAllComments([...allComments]);
+            })
+            .catch((error) => {
+            });
+    }, []);
+
+    // const setComments = (orderedCommentsByLatest) => {
+    //     setAllComments([...orderedCommentsByLatest]);
+    //     setCommentsCount(orderedCommentsByLatest.length);
+    // }
 
     const createComment = (newCommentData) => {
-        setAllComments((oldComments) => [newCommentData, ...oldComments,]);
+        setAllComments((oldComments) => [newCommentData, ...oldComments]);
         setCommentsCount(prevCount => prevCount + 1);
     }
 
@@ -33,9 +45,11 @@ export const CommentProvider = ({ children }) => {
     const value = {
         allComments,
         commentsCount,
-        setComments,
+        // setComments,
         createComment,
-        deleteComment
+        deleteComment,
+        setAllComments,
+        setCommentsCount
     }
 
     return (

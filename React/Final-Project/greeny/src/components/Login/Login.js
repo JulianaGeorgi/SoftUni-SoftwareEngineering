@@ -49,7 +49,7 @@ export const Login = () => {
 
                                         <form onSubmit={handleSubmit(onLoginSubmitHandler)}>
 
-                                            {/* <!--USERNAME--> */}
+                                            {/* <!--EMAIL--> */}
                                             <TEInput
                                                 name="email"
                                                 type="text"

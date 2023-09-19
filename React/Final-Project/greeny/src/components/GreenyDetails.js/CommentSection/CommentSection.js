@@ -33,16 +33,15 @@ export const CommentSection = ({currentGreeny}) => {
 
     const { greenyId } = useParams();
 
-
     const onCommentSubmitHandler = async (comment) => {
 
         const currentCommentsCount = currentGreeny.commentsCount;
 
-        const currentComment = await commentServices().submitComment(comment, username, ownerId, greenyId);
+        const currentComment = await commentServices().submitComment(comment, username, ownerId, greenyId); // save in db
         const updatedGreenyData = await postServices().updateCommentsCount(greenyId, currentCommentsCount);
 
-        createComment(currentComment);
-        editGreeny(updatedGreenyData, greenyId);
+        createComment(currentComment); // update the state with allComments
+        editGreeny(updatedGreenyData, greenyId); // update the state with all greenies
 
         reset();
     }
@@ -88,8 +87,7 @@ export const CommentSection = ({currentGreeny}) => {
                     </form>
                 )}
                 {allComments.map((comment) =>
-                (
-                    <Comment key={comment.id} comment={comment}/>
+                (<Comment key={comment.id} comment={comment}/>
                 ))}
 
                 {/* COMMENT REPLIES*/}

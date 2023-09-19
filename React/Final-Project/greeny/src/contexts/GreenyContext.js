@@ -10,20 +10,18 @@ export function useGreeny() {
 export const GreenyProvider = ({ children }) => {
 
     const [greenies, setGreenies] = useState([]);
-    const [likesCount, setLikesCount] = useState(0);
-    
-    const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         postServices()
             .getAllGreenies()
             .then((allGreenies) => {
                 setGreenies([...allGreenies]);
-                setIsLoading(false);
+                // setIsLoading(false);
             })
             .catch((error) => {
                 console.error("API call error:", error);
-                setIsLoading(false);
+                // setIsLoading(false);
             });
     }, []);
 
@@ -44,8 +42,6 @@ export const GreenyProvider = ({ children }) => {
         createGreeny,
         editGreeny,
         deleteGreeny, 
-        likesCount,
-
     }
 
     return (

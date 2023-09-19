@@ -36,35 +36,34 @@ export const postServices = () => {
         const greenyData = snapshot.val();
         return greenyData;
       } else {
-        console.log("Greeny not found.");
+        // console.log("Greeny not found.");
         return {};
       }
 
     } catch (error) {
-      console.error("Error fetching item:", error);
+      // console.error("Error fetching item:", error);
       return error;
     };
   }
 
   const getGreeniesByUserId = async (userId) => {
+
     const greeniesRef = ref(database, "/greenies");
 
     try {
       const snapshot = await get(greeniesRef);
-      if (snapshot.exists()) {
-        const greenyData = snapshot.val();
-        const filteredDataArray = Object.keys(greenyData)
-          .filter((key) => greenyData[key].ownerId === userId)
-          .map((key) => ({ id: key, ...greenyData[key] }));
-        return filteredDataArray;
 
-      } else {
-        console.log("Greeny not found.");
-        return {};
+      if (!snapshot.exists()) {
+        return [];
       }
 
+      const greenyData = snapshot.val();
+      const filteredDataArray = Object.keys(greenyData)
+        .filter((key) => greenyData[key].ownerId === userId)
+        .map((key) => ({ id: key, ...greenyData[key] }));
+      return filteredDataArray;
+
     } catch (error) {
-      console.error("Error fetching item:", error);
       return error;
     };
   }
@@ -151,6 +150,7 @@ export const postServices = () => {
     const updatedGreenyData = updatedCommentsCount.val();
 
     const resultObj = { ...updatedGreenyData, id: greenyId }
+    console.log(`Greeny: ${resultObj}`)
 
     return resultObj;
   }
@@ -160,18 +160,30 @@ export const postServices = () => {
   }
 
   const getLatestGreenies = async () => {
-    const greeniesRef = query(ref(database, '/greenies'), orderByChild('timestamp'));
 
-    const snapshot = await get(greeniesRef);
-    const greeniesObject = snapshot.val();
-    const greeniesArray = Object.entries(greeniesObject).map(([id, data]) => ({
-      id,
-      ...data,
-    }));
+    const greeniesRef = query(ref(database, '/greenies'), orderByChild('timestamp')); //TODO: verify that the orderByChild works at all 
 
-    const reversedArray = greeniesArray.reverse();
+    try {
+      const snapshot = await get(greeniesRef);
+      const greeniesObject = snapshot.val();
 
-    return reversedArray;
+      // Check for a case where there are no greenies
+      if (!greeniesObject) {
+        return [];
+      }
+
+      const greeniesArray = Object.entries(greeniesObject).map(([id, data]) => ({
+        id,
+        ...data,
+      }));
+
+      const reversedArray = greeniesArray.reverse();
+
+      return reversedArray;
+
+    } catch (error) {
+      return error;
+    }
   }
 
   const checkIfHasLiked = async (greenyId, userId) => {
@@ -179,18 +191,18 @@ export const postServices = () => {
 
     // Check if the user has a value of true
     return get(userLikeRef)
-        .then((snapshot) => {
-            if (snapshot.exists() && snapshot.val() === true) {
-                console.log('User has a value of true for this post.');
-                return true;
-            } else {
-                console.log('User does not have a value of true for this post.');
-                return false;
-            }
-        })
-        .catch((error) => {
-            console.error('Error checking user like status:', error);
-        });
+      .then((snapshot) => {
+        if (snapshot.exists() && snapshot.val() === true) {
+          // console.log('User has a value of true for this post.');
+          return true;
+        } else {
+          // console.log('User does not have a value of true for this post.');
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error('Error checking user like status:', error);
+      });
   }
 
   const storeLikes = async (greenyId, userId) => {
@@ -199,9 +211,8 @@ export const postServices = () => {
 
     try {
       await set(likesRef, true); // likesRef points to the specific path in the database where we associate the user with the greeny
-      console.log('User associated with greeny successfully.');
+      return true;
     } catch (error) {
-      console.error('Error associating user with greeny:', error);
     }
   }
 
