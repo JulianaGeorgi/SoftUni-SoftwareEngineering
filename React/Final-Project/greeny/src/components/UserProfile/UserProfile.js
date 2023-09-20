@@ -48,9 +48,9 @@ export const UserProfile = () => {
     return (
         <>
             {/* component */}
-            <div className="position-relative p-12 h-auto bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100">
+            <div className="position-relative p-12 h-auto bg-white">
                 <div className="flex justify-center">
-                    <header className="text-grey-700 py-4 h-auto">
+                    <header className="text-gray-800 py-4 h-auto">
                         {/* Navbar (left side) */}
                         <div style={{ width: 275 }}>
                             <div
@@ -61,7 +61,7 @@ export const UserProfile = () => {
                                 <nav className="mt-5 px-2">
                                     <a
                                         href="/"
-                                        className="group flex items-center px-2 py-2 text-base leading-6 font-semibold rounded-full bg-gray-800 text-blue-300"
+                                        className="group flex items-center px-2 py-2 text-base leading-6 font-semibold rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg
                                             className="mr-4 h-6 w-6 "
@@ -80,7 +80,7 @@ export const UserProfile = () => {
                                     </a>
                                     <a
                                         href="/"
-                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-semibold rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-semibold rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg
                                             className="mr-4 h-6 w-6"
@@ -97,7 +97,7 @@ export const UserProfile = () => {
                                     </a>
                                     <a
                                         href="/"
-                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg
                                             className="mr-4 h-6 w-6"
@@ -114,7 +114,7 @@ export const UserProfile = () => {
                                     </a>
                                     <a
                                         href="/"
-                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg
                                             className="mr-4 h-6 w-6"
@@ -131,7 +131,7 @@ export const UserProfile = () => {
                                     </a>
                                     <a
                                         href="/"
-                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg
                                             className="mr-4 h-6 w-6"
@@ -148,7 +148,7 @@ export const UserProfile = () => {
                                     </a>
                                     <a
                                         href="/"
-                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg
                                             className="mr-4 h-6 w-6"
@@ -165,7 +165,7 @@ export const UserProfile = () => {
                                     </a>
                                     <a
                                         href="/"
-                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg
                                             className="mr-4 h-6 w-6"
@@ -182,7 +182,7 @@ export const UserProfile = () => {
                                     </a>
                                     <a
                                         href="/"
-                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                        className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg
                                             className="mr-4 h-6 w-6"
@@ -197,7 +197,7 @@ export const UserProfile = () => {
                                         </svg>
                                         More
                                     </a>
-                                    <button className="bg-blue-400 hover:bg-blue-500 w-full mt-5 text-white font-bold py-2 px-4 rounded-full">
+                                    <button className="bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 w-full mt-5 text-white font-bold py-2 px-4 rounded-full">
                                         Greenit
                                     </button>
                                 </nav>
@@ -208,7 +208,7 @@ export const UserProfile = () => {
                         <div className="flex" style={{ width: 990 }}>
                             <div className="flex flex-col">
                                 <section
-                                    className="w-full border border-y-0 border-gray-800"
+                                    className="w-full border rounded border-y-0 border-grey-800"
                                     style={{ maxWidth: 600 }}
                                 >
                                     {/*Content (Center)*/}
@@ -222,7 +222,7 @@ export const UserProfile = () => {
                                             <div className="flex-1 px-4 py-2 mx-2">
                                                 <a
                                                     href="/"
-                                                    className=" text-2xl font-medium rounded-full text-grey-700 hover:bg-gray-800 hover:text-blue-300 float-right"
+                                                    className=" text-2xl font-medium rounded-full text-grey-700 hover:bg-indigo-500 hover:text-white float-right"
                                                 >
                                                     <svg
                                                         className="m-2 h-6 w-6"
@@ -236,7 +236,7 @@ export const UserProfile = () => {
                                                 </a>
                                             </div>
                                         </div>
-                                        <hr className="border-gray-800" />
+                                        <hr className="border-grey-400" />
                                         {/*middle creat tweet*/}
                                         <div className="flex">
                                             <div className="m-2 w-10 py-1">
@@ -264,7 +264,7 @@ export const UserProfile = () => {
                                                     <div className="flex-1 text-center px-1 py-1 m-2">
                                                         <a
                                                             href="/"
-                                                            className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                                            className="mt-1 group flex items-center text-indigo-500 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                                         >
                                                             <svg
                                                                 className="text-center h-7 w-6"
@@ -282,7 +282,7 @@ export const UserProfile = () => {
                                                     <div className="flex-1 text-center py-2 m-2">
                                                         <a
                                                             href="/"
-                                                            className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                                            className="mt-1 group flex items-center text-indigo-500 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                                         >
                                                             <svg
                                                                 className="text-center h-7 w-6"
@@ -301,7 +301,7 @@ export const UserProfile = () => {
                                                     <div className="flex-1 text-center py-2 m-2">
                                                         <a
                                                             href="/"
-                                                            className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                                            className="mt-1 group flex items-center text-indigo-500 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                                         >
                                                             <svg
                                                                 className="text-center h-7 w-6"
@@ -319,7 +319,7 @@ export const UserProfile = () => {
                                                     <div className="flex-1 text-center py-2 m-2">
                                                         <a
                                                             href="/"
-                                                            className="mt-1 group flex items-center text-blue-400 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300"
+                                                            className="mt-1 group flex items-center text-indigo-500 px-2 py-2 text-base leading-6 font-medium rounded-full hover:bg-indigo-500 hover:text-white"
                                                         >
                                                             <svg
                                                                 className="text-center h-7 w-6"
@@ -337,12 +337,12 @@ export const UserProfile = () => {
                                                 </div>
                                             </div>
                                             <div className="flex-1">
-                                                <button className="bg-blue-400 hover:bg-blue-500 mt-5 text-white font-bold py-2 px-8 rounded-full mr-8 float-right">
+                                                <button className="bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 mt-5 text-white font-bold py-2 px-8 rounded-full mr-8 float-right">
                                                     Greenit
                                                 </button>
                                             </div>
                                         </div>
-                                        <hr className="border-gray-800 border-4" />
+                                        <hr className="border-grey-400 rounded border-4" />
                                     </aside>
 
                                     <ul className="list-none">
@@ -401,7 +401,7 @@ export const UserProfile = () => {
                                                     </h2>
                                                 </div>
                                             </div>
-                                            <hr className="border-gray-800" />
+                                            <hr className="border-grey-400" />
 
                                             {currentUserGreenies.length === 0 ? (
                                                 <p className="px-4 ml-2 my-3 text-s font-bold text-gray-700">You have not posted any greenies</p>
@@ -410,7 +410,7 @@ export const UserProfile = () => {
                                                     {currentUserGreenies.map((greeny) =>
                                                     (<UserGreenySnippet key={greeny.id} greeny={greeny} />
                                                     ))}
-                                                    < hr className="border-gray-800" />
+                                                    < hr className="border-grey-400" />
 
                                                     < div className="flex">
                                                         <div className="flex-1 p-4">

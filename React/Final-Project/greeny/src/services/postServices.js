@@ -124,11 +124,25 @@ export const postServices = () => {
     }
   };
 
-  const updateLikesCount = async (greenyId, currentLikesCount) => {
+  const updateLikesCount = async (greenyId, currentLikesCount, action) => {
     const greenyRef = ref(database, '/greenies/' + greenyId);
 
+    let updatedCount;
+
+    if (action === 'increment') {
+      console.log(currentLikesCount)
+      updatedCount = currentLikesCount + 1;
+      console.log(updatedCount)
+    } else if (action === 'decrement') {
+      console.log(updatedCount)
+      updatedCount = currentLikesCount - 1;
+    } else {
+      // No action specified, return current count
+      updatedCount = currentLikesCount;
+    }
+
     await update(greenyRef, {
-      likesCount: currentLikesCount + 1,
+      likesCount: updatedCount,
     });
 
     const updatedLikesCount = await get(greenyRef);
@@ -141,9 +155,9 @@ export const postServices = () => {
 
   const updateCommentsCount = async (greenyId, currentCommentsCount, action) => {
     const greenyRef = ref(database, '/greenies/' + greenyId);
-  
+
     let updatedCount;
-  
+
     if (action === 'increment') {
       console.log(currentCommentsCount)
       updatedCount = currentCommentsCount + 1;
@@ -155,16 +169,16 @@ export const postServices = () => {
       // No action specified, return current count
       updatedCount = currentCommentsCount;
     }
-  
+
     await update(greenyRef, {
       commentsCount: updatedCount,
     });
-  
+
     const updatedCommentsCount = await get(greenyRef);
     const updatedGreenyData = updatedCommentsCount.val();
-  
+
     const resultObj = { ...updatedGreenyData, id: greenyId };
-  
+
     return resultObj;
   };
 
@@ -218,14 +232,22 @@ export const postServices = () => {
       });
   }
 
-  const storeLikes = async (greenyId, userId) => {
+  const storeLikes = async (greenyId, userId, action) => {
 
     const likesRef = ref(database, 'likes/' + greenyId + '/' + userId);
 
     try {
-      await set(likesRef, true); // likesRef points to the specific path in the database where we associate the user with the greeny
-      return true;
+      if (action === 'increment') {
+        // Set to true if the action is to increment
+        await set(likesRef, true);
+        return true;
+      } else if (action === 'decrement') {
+        // Set to false if the action is to decrement
+        await set(likesRef, false);
+        return false;
+      }
     } catch (error) {
+      // Handle the error here
     }
   }
 

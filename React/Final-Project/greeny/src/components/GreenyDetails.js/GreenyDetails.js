@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import { postServices } from "../../services/postServices";
 import { commentServices } from "../../services/commentServices";
@@ -21,7 +20,7 @@ export const GreenyDetails = () => {
     const { greenyId } = useParams();
     const { currentUser, getUserProfile } = useAuth();
     const { editGreeny } = useGreeny();
-    const { setAllComments,setCommentsCount, commentsCount } = useComment();
+    const { setAllComments, setCommentsCount, commentsCount } = useComment();
 
     const [currentGreeny, setCurrentGreeny] = useState({});
     const [hasLiked, setHasLiked] = useState(null);
@@ -88,16 +87,31 @@ export const GreenyDetails = () => {
     }, [greenyId, setAllComments, setCommentsCount]);
 
     const onLikeClick = async () => {
-
+        console.log("on like click")
+        const action = "increment";
         const currentLikesCount = currentGreeny.likesCount;
 
-        const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount); // update property likesCounter in the greeny object in the db
+        const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount, action); // update property likesCounter in the greeny object in the db
         editGreeny(updatedGreenyData, greenyId); // update state with the new likes count of the greeny
         setCurrentGreeny(prevState => {
             return { ...prevState, likesCount: updatedGreenyData.likesCount } // update currentGreeny state
         });
 
-        const userHasLiked = await postServices().storeLikes(greenyId, currentUser.uid);
+        const userHasLiked = await postServices().storeLikes(greenyId, currentUser.uid, action);
+        setHasLiked(userHasLiked);
+    }
+
+    const onUnlikeClick = async () => {
+        const action = "decrement";
+        const currentLikesCount = currentGreeny.likesCount;
+
+        const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount, action); // update property likesCounter in the greeny object in the db
+        editGreeny(updatedGreenyData, greenyId); // update state with the new likes count of the greeny
+        setCurrentGreeny(prevState => {
+            return { ...prevState, likesCount: updatedGreenyData.likesCount } // update currentGreeny state
+        });
+
+        const userHasLiked = await postServices().storeLikes(greenyId, currentUser.uid, action);
         setHasLiked(userHasLiked);
     }
 
@@ -198,14 +212,21 @@ export const GreenyDetails = () => {
             {/* Likes and comments */}
             <div className="flex mb-12 mx-auto lg:px-0 mt-12 text-gray-700 max-w-screen-md">
                 <button
-                    onClick={onLikeClick}
-                    disabled={hasLiked || !currentUser}
-                    className="px-4">
-                    <FontAwesomeIcon icon={faHeart} /> Like ({currentGreeny.likesCount})</button>
+                    onClick={hasLiked ? onUnlikeClick : onLikeClick}
+                    disabled={!currentUser}
+                    className="px-4"
+                >
+                    <FontAwesomeIcon
+                        className={hasLiked ? 'text-red-400' : 'text-indigo-500'}
+                        icon={faHeart}
+                    /> {currentGreeny.likesCount} likes
+                </button>
+
+
                 <button
                     onClick={toggleCommentSection}
                     className="px-4">
-                    <FontAwesomeIcon icon={faComment} /> Comments ({commentsCount})
+                    <FontAwesomeIcon className="text-indigo-500" icon={faComment} /> {commentsCount} comments
                 </button>
             </div>
             {showCommmentSection && <CommentSection currentGreeny={currentGreeny} />}
@@ -217,6 +238,6 @@ export const GreenyDetails = () => {
                 onClose={toggleDeleteModal}
                 onDelete={handleDeleteConfirmed}
             />
-        </div>
+        </div >
     );
 };

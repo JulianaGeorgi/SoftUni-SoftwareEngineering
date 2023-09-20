@@ -23,7 +23,7 @@ export const LatestGreenySnippet = ({ greeny }) => {
     return (
         <li>
             {/*second tweet*/}
-            <article className="hover:bg-gray-800 transition duration-350 ease-in-out">
+            <article className="hover:bg-frog transition duration-350 ease-in-out">
                 <div className="flex flex-shrink-0 p-4 pb-0">
                     <a href="/" className="flex-shrink-0 group block">
                         {author && (
@@ -36,7 +36,7 @@ export const LatestGreenySnippet = ({ greeny }) => {
                                         />
                                 </div>
                                 <div className="ml-3">
-                                    <p className="text-base leading-6 font-medium text-white">
+                                    <p className="text-base leading-6 font-medium text-gray-800">
                                         @{greeny.author}
                                     </p>
                                 </div>
@@ -45,7 +45,7 @@ export const LatestGreenySnippet = ({ greeny }) => {
                     </a>
                 </div>
                 <div className="pl-16">
-                    <p className="text-base width-auto font-medium text-white flex-shrink">
+                    <p className="text-base width-auto font-medium text-gray-800 flex-shrink">
                         {greeny.content}
                     </p>
                     <div className="md:flex-shrink pr-6 pt-3">
@@ -67,10 +67,10 @@ export const LatestGreenySnippet = ({ greeny }) => {
                         </div>
                     </div>
                     <div className="flex items-center py-4">
-                        <div className="flex-1 flex items-center text-white text-xs hover:text-blue-400 transition duration-350 ease-in-out">
+                        <div className="flex-1 flex items-center text-gray-800 text-xs hover:text-indigo-500 transition duration-350 ease-in-out">
                             <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faComment} />{greeny.commentsCount}
                         </div>
-                        <div className="flex-1 flex items-center text-white text-xs hover:text-green-400 transition duration-350 ease-in-out">
+                        <div className="flex-1 flex items-center text-gray-800 text-xs hover:text-red-400 transition duration-350 ease-in-out">
                             <FontAwesomeIcon className="w-5 h-5 mr-2" icon={faHeart} /> {greeny.likesCount}
                         </div>
                         {/* <div className="flex-1 flex items-center text-white text-xs text-gray-400 hover:text-red-600 transition duration-350 ease-in-out">
@@ -99,7 +99,7 @@ export const LatestGreenySnippet = ({ greeny }) => {
                         </div> */}
                     </div>
                 </div>
-                <hr className="border-gray-800" />
+                <hr className="border-grey-400" />
             </article>
         </li>
     )
