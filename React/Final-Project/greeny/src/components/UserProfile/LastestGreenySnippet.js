@@ -1,15 +1,19 @@
-import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 
+import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
 import { useAuth } from "../../contexts/AuthContext";
-import { useEffect, useState } from "react";
+
+import { sliceText } from "../../utils/utils";
 
 export const LatestGreenySnippet = ({ greeny }) => {
 
-    // const { commentsCount } = useComment();
     const { getUserProfile } = useAuth();
     const [author, setAuthor] = useState(null);
+
+    const greenyContentSnippet = sliceText(greeny.content);
 
     useEffect(() => {
         async function getGreenyOwnerPhoto() {
@@ -46,7 +50,7 @@ export const LatestGreenySnippet = ({ greeny }) => {
                 </div>
                 <div className="pl-16">
                     <p className="text-base width-auto font-medium text-gray-800 flex-shrink">
-                        {greeny.content}
+                        {greenyContentSnippet}
                     </p>
                     <div className="md:flex-shrink pr-6 pt-3">
                         <div

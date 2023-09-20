@@ -8,19 +8,19 @@ import { About } from './components/About/About';
 import { Register } from './components/Register/Register';
 import { Login } from './components/Login/Login';
 import { Logout } from './components/Logout/Logout';
-import { Greeny } from './components/Greeny/Greeny';
+import { GreeniesGrid } from './components/GreeniesGrid/GreeniesGrid';
 import { CreateGreeny } from './components/CreateGreeny/CreateGreeny';
 import { GreenyDetails } from './components/GreenyDetails.js/GreenyDetails';
 import { EditGreeny } from './components/EditGreeny/EditGreeny';
-
-import { ScrollToTop } from './utils/ScrollToTop';
+import { UserProfile } from './components/UserProfile/UserProfile';
+import { CommentSection } from './components/GreenyDetails.js/CommentSection/CommentSection';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { GreenyProvider } from './contexts/GreenyContext';
-import { UserProfile } from './components/UserProfile/UserProfile';
-import { CommentSection } from './components/GreenyDetails.js/CommentSection/CommentSection';
 import { CommentProvider } from './contexts/CommentContext';
+
 import { allGreeniesTitle } from './utils/constants';
+import { ScrollToTop } from './utils/ScrollToTop';
 
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
               <Routes>
 
                 <Route path='/' element={<Home />} />
-                <Route path='/allgreenies' element={<Greeny title={allGreeniesTitle}/>} />
+                <Route path='/allgreenies' element={<GreeniesGrid title={allGreeniesTitle}/>} />
                 <Route path='/greenies/:greenyId' element={<GreenyDetails />} />
                 <Route path='/greenies/:greenyId/edit' element={<EditGreeny />} />
                 <Route path='/greenies/:greenyId/comments' element={<CommentSection />} />

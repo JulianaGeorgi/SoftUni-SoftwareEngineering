@@ -9,11 +9,24 @@ export function formatTimestamp(timestamp) {
     return `${month}. ${day}, ${year}`;
 }
 
-export function sliceText(string) {
-
-    if (string.length > 50) {
-        const slicedText = string.slice(0, 200);
-        return sliceText;
+export function sliceText(text) {
+    const ellipsis = "...";
+    let maxCharCount = 200;
+    if (text.length > maxCharCount) {
+        maxCharCount = text.substring(0, maxCharCount).lastIndexOf(' ');
+        console.log(maxCharCount)
     }
+    return text.length > maxCharCount ? text.substring(0, maxCharCount) + ellipsis : text;
+}
 
+export function toTitleCase(str) {
+    const titleCase = str
+        .toLowerCase()
+        .split(' ')
+        .map(word => {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(' ');
+
+    return titleCase;
 }

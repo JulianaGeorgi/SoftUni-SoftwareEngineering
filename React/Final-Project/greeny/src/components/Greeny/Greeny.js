@@ -1,58 +1,47 @@
 import { Link } from "react-router-dom";
-import { useGreeny } from "../../contexts/GreenyContext";
-import { sliceText } from "../../utils/utils";
+import { sliceText, toTitleCase } from "../../utils/utils";
 
-export const Greeny = ({ title }) => {
+export const Greeny = ({ greeny }) => {
 
-    const { greenies } = useGreeny();
-    console.log(greenies.content)
+    // console.log(greeny.content)
 
-    // const slicedText = sliceText(greenies.content);
-    // console.log(slicedText)
+    const greenyContentSnippet = sliceText(greeny.content);
+    const greenyFormattedTitle = toTitleCase(greeny.title)
 
     return (
+        <>
 
-        <div>
-            <section className="bg-white dark:bg-gray-900">
-                <div className="container px-6 py-10 mx-auto">
-                    <h1 className="text-3xl font-semibold text-gray-800 tracking-wide capitalize lg:text-4xl dark:text-white">
-                        {title}
-                    </h1>
-                    <div className="grid grid-cols-4 gap-8 mt-12 max-md:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3">
-                        {greenies.map((greeny) =>
-                        (
-                            <div className="flex flex-col gap-3" key={greeny.id}>
-                                <div className="w-full">
-                                    <Link to={`/greenies/${greeny.id}`}>
-                                        <img
-                                            className="object-cover h-1/2 w-full md:h-64 rounded-lg lg:w-64 max-w-s transition duration-300 ease-in-out hover:scale-110 sm:h-5/6"
-                                            img alt={greeny.name}
-                                            src={greeny.imageUrl}
-                                        />
-                                    </Link>
-                                </div>
-                                <div className="flex flex-col justify-start h-1/3">
-                                    <Link
-                                        to={`/greenies/${greeny.id}`}
-                                        className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
-                                    >
-                                        {greeny.title}
-                                    </Link>
-                                    <p className="text-sm text-gray-500 dark:text-gray-300">
-                                        {greeny.content}
-                                    </p>
-
-                                </div>
-                                <button className="px-10 py-2 text-white bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
-                                    <Link to={`/greenies/${greeny.id}`}>READ MORE <span><b>♡</b></span></Link>
-                                </button>
-                            </div>
-                        ))}
-                    </div>
+            <div className="flex flex-col gap-3" key={greeny.id}>
+                <div className="w-full">
+                    <Link to={`/greenies/${greeny.id}`}>
+                        <img
+                            className="object-cover h-1/2 w-full md:h-64 rounded-lg lg:w-64 max-w-s transition duration-300 ease-in-out hover:scale-110 sm:h-5/6"
+                            img alt={greeny.name}
+                            src={greeny.imageUrl}
+                        />
+                    </Link>
                 </div>
-            </section>
+                <div className="flex flex-col justify-start h-1/3">
+                    <Link
+                        to={`/greenies/${greeny.id}`}
+                        className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
+                    >
+                        {greenyFormattedTitle}
+                    </Link>
+                    <p className="text-sm text-gray-500 dark:text-gray-300">
+                        {greenyContentSnippet}
+                    </p>
 
-            {/* {greenies.map((greeny) => (
+                </div>
+                <button className="px-10 py-2 text-white bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                    <Link to={`/greenies/${greeny.id}`}>READ MORE <span><b>♡</b></span></Link>
+                </button>
+            </div>
+        </>)
+}
+
+
+{/* {greenies.map((greeny) => (
                 <div className="event-item" key={greeny.id}>
                     <figure className="event-img">
                         <img alt={greeny.name} src={greeny.imageUrl} />
@@ -67,7 +56,7 @@ export const Greeny = ({ title }) => {
                 </div>
             ))} */}
 
-            {/* <div className='event-item'>
+{/* <div className='event-item'>
                 <figure className='event-img'>
                     <img alt='community cleaning streets' src='https://hips.hearstapps.com/hmg-prod/images/plant-for-the-earth-royalty-free-image-1635783818.jpg' />
                 </figure>
@@ -121,7 +110,3 @@ export const Greeny = ({ title }) => {
                 </div>
                 <button className="inline-block bg-watermelon-red text-m text-white py-3 px-10 rounded-full shadow-md hover:bg-gradient-to-r from-cyan-500 to-blue-500"><Link to='#' >PARTICIPATE <span><b>♡</b></span></Link></button>
             </div> */}
-
-        </div>
-    )
-}
