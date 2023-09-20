@@ -8,3 +8,12 @@ export function formatTimestamp(timestamp) {
 
     return `${month}. ${day}, ${year}`;
 }
+
+export function sliceText(string) {
+
+    if (string.length > 50) {
+        const slicedText = string.slice(0, 200);
+        return sliceText;
+    }
+
+}

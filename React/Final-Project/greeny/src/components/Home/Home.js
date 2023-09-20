@@ -4,6 +4,8 @@ import { Greeny } from '../Greeny/Greeny';
 
 import { useAuth } from '../../contexts/AuthContext';
 
+import { featuredGreeniesTitle } from '../../utils/constants';
+
 export const Home = () => {
 
     const { currentUser } = useAuth();
@@ -37,7 +39,7 @@ export const Home = () => {
                     <h2 className='m-8 text-5xl font-bold tracking-wide'>Go greeny. Get results.</h2>
                     <h3 className='text-2xl tracking-wide'>Join 1+ million members on the top digital green platform and stay toned, lose weight, get strong, reduce stress, and reach your goals.</h3>
                 </div>
-                <Greeny />
+                <Greeny title={featuredGreeniesTitle}/>
             </section>
         </div >
 

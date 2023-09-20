@@ -48,7 +48,11 @@ export const UserProfile = () => {
     return (
         <>
             {/* component */}
+            <div className="bg-frog">
+                <h2 className="px-4 py-2 text-xl font-semibold text-grey-700">{currentUser.displayName}'s Home</h2>
+            </div>
             <div className="position-relative p-12 h-auto bg-white">
+
                 <div className="flex justify-center">
                     <header className="text-gray-800 py-4 h-auto">
                         {/* Navbar (left side) */}
@@ -216,7 +220,7 @@ export const UserProfile = () => {
                                         <div className="flex">
                                             <div className="flex-1 mx-2">
                                                 <h2 className="px-4 py-2 text-xl font-semibold text-grey-700">
-                                                {currentUser.displayName}'s Home
+                                                    Latest Greenies
                                                 </h2>
                                             </div>
                                             <div className="flex-1 px-4 py-2 mx-2">
@@ -251,7 +255,7 @@ export const UserProfile = () => {
                                                     className=" bg-transparent text-gray-400 font-medium text-lg w-full"
                                                     rows={2}
                                                     cols={50}
-                                                    placeholder="What's happening?"
+                                                    placeholder="Post a Greeny..."
                                                     defaultValue={""}
                                                 />
                                             </div>
