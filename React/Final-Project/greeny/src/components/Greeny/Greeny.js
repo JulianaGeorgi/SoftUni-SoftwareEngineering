@@ -3,8 +3,6 @@ import { sliceText, toTitleCase } from "../../utils/utils";
 
 export const Greeny = ({ greeny }) => {
 
-    // console.log(greeny.content)
-
     const greenyContentSnippet = sliceText(greeny.content);
     const greenyFormattedTitle = toTitleCase(greeny.title)
 

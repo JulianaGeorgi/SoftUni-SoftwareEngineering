@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+
 import { PrivateRoutes } from './components/PrivateRoutes/PrivateRoutes';
 
 import { Navigation } from './components/Navigation/Navigation';
@@ -41,15 +42,16 @@ function App() {
                   <Route path='/greenies/:greenyId/edit' element={<EditGreeny />} />
                   <Route path='/logout' element={<Logout />} />
                   <Route path='/profile' element={<UserProfile />} />
+                  <Route path='/register' element={<Register />} />
                 </Route>
 
                 <Route path='/' element={<Home />} />
-                <Route path='/allgreenies' element={<GreeniesGrid title={allGreeniesTitle} />} />
+                <Route path='/greenies' element={<GreeniesGrid title={allGreeniesTitle} />} />
                 <Route path='/greenies/:greenyId' element={<GreenyDetails />} />
                 <Route path='/greenies/:greenyId/comments' element={<CommentSection />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
+
 
               </Routes>
               <ScrollToTop />

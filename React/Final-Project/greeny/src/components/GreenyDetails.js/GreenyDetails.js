@@ -88,7 +88,6 @@ export const GreenyDetails = () => {
     }, [greenyId, setAllComments, setCommentsCount]);
 
     const onLikeClick = async () => {
-        console.log("on like click")
         const action = "increment";
         const currentLikesCount = currentGreeny.likesCount;
 
