@@ -14,7 +14,6 @@ export function sliceText(text) {
     let maxCharCount = 200;
     if (text.length > maxCharCount) {
         maxCharCount = text.substring(0, maxCharCount).lastIndexOf(' ');
-        console.log(maxCharCount)
     }
     return text.length > maxCharCount ? text.substring(0, maxCharCount) + ellipsis : text;
 }

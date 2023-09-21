@@ -97,14 +97,17 @@ export const AuthProvider = ({ children }) => {
         };
     }
 
+    //TODO
     function resetPassword(email) {
         return sendPasswordResetEmail(auth, email);
     }
 
+    //TODO
     function updateEmail(email) {
         return currentUser.updateEmail(email);
     }
 
+    //TODO
     function updatePassword(password) {
         return currentUser.updatePassword(password);
     }
@@ -113,6 +116,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setCurrentUser(user);
+            console.log(user)
             setPending(false);
         });
         return unsubscribe;

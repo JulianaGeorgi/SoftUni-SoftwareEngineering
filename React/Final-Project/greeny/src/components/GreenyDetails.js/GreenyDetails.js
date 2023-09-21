@@ -6,6 +6,7 @@ import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import { postServices } from "../../services/postServices";
 import { commentServices } from "../../services/commentServices";
+import { likeServices } from "../../services/likeServices";
 import { useGreeny } from "../../contexts/GreenyContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { useComment } from "../../contexts/CommentContext";
@@ -59,7 +60,7 @@ export const GreenyDetails = () => {
         async function fetchUserHasLiked() {
             try {
                 if (currentUser) {
-                    const userHasLiked = await postServices().checkIfHasLiked(greenyId, currentUser.uid);
+                    const userHasLiked = await likeServices().checkIfHasLiked(greenyId, currentUser.uid);
                     setHasLiked(userHasLiked);
                 }
             } catch (error) {
@@ -91,13 +92,13 @@ export const GreenyDetails = () => {
         const action = "increment";
         const currentLikesCount = currentGreeny.likesCount;
 
-        const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount, action); // update property likesCounter in the greeny object in the db
+        const updatedGreenyData = await likeServices().updateLikesCount(greenyId, currentLikesCount, action); // update property likesCounter in the greeny object in the db
         editGreeny(updatedGreenyData, greenyId); // update state with the new likes count of the greeny
         setCurrentGreeny(prevState => {
             return { ...prevState, likesCount: updatedGreenyData.likesCount } // update currentGreeny state
         });
 
-        const userHasLiked = await postServices().storeLikes(greenyId, currentUser.uid, action);
+        const userHasLiked = await likeServices().storeLikes(greenyId, currentUser.uid, action);
         setHasLiked(userHasLiked);
     }
 
@@ -105,13 +106,13 @@ export const GreenyDetails = () => {
         const action = "decrement";
         const currentLikesCount = currentGreeny.likesCount;
 
-        const updatedGreenyData = await postServices().updateLikesCount(greenyId, currentLikesCount, action); // update property likesCounter in the greeny object in the db
+        const updatedGreenyData = await likeServices().updateLikesCount(greenyId, currentLikesCount, action); // update property likesCounter in the greeny object in the db
         editGreeny(updatedGreenyData, greenyId); // update state with the new likes count of the greeny
         setCurrentGreeny(prevState => {
             return { ...prevState, likesCount: updatedGreenyData.likesCount } // update currentGreeny state
         });
 
-        const userHasLiked = await postServices().storeLikes(greenyId, currentUser.uid, action);
+        const userHasLiked = await likeServices().storeLikes(greenyId, currentUser.uid, action);
         setHasLiked(userHasLiked);
     }
 
