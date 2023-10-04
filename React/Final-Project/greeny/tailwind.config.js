@@ -44,6 +44,7 @@ module.exports = {
         "forest": "url('https://shopprogression.com/wp-content/uploads/2022/08/i.shgcdn-scaled.webp')",
         "scientist": "url('https://studenthub.africa/app/uploads/careers/M5usarbpr7lZHAcpTUKGgSS5sbhm3bpD.jpg')",
         "earthDay": "url(https://www.yardi.com/blog/wp-content/uploads/sites/15/2022/04/rsz_adobestock_332835800.jpg)",
+        "not-found": "url(https://grist.org/wp-content/uploads/2022/03/GettyImages-1072438388.jpg)"
       }
 
     },
