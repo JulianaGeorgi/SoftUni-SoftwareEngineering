@@ -1,11 +1,12 @@
-import { useParams, Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useParams, Outlet, useNavigate } from 'react-router-dom';
 
-import { useAuth } from '../../../contexts/AuthContext';
-import { postServices } from '../../../services/postServices';
+import { useAuth } from '../../contexts/AuthContext';
+import { postServices } from '../../services/postServices';
+
 import { Loading } from './Loading';
 
-export const GreenyOwner = ({
+export const GreenyOwnerGuard = ({
     children,
 }) => {
     const { greenyId } = useParams();
@@ -27,7 +28,6 @@ export const GreenyOwner = ({
     }, [currentUser, greenyId, navigate])
 
     if (isLoading) {
-        // Render a loading indicator or null if you want to render nothing
         return <Loading/>;
     }
 

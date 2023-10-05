@@ -13,7 +13,7 @@ import {
     updateProfile
 } from "firebase/auth";
 
-import { Loading } from "../components/common/GreenyOwner/Loading";
+import { Loading } from "../components/common/Loading";
 
 // creating the context
 export const AuthContext = createContext(); // returns a context object - does not hold any info!!
