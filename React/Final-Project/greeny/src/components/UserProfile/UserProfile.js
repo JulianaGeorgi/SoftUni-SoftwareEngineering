@@ -83,7 +83,7 @@ export const UserProfile = () => {
                                         Home
                                     </a>
                                     <a
-                                        href="/"
+                                        href="/greenies/explore"
                                         className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-semibold rounded-full hover:bg-indigo-500 hover:text-white"
                                     >
                                         <svg

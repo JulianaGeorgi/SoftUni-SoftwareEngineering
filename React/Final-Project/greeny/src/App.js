@@ -23,6 +23,7 @@ import { GreenyProvider } from './contexts/GreenyContext';
 import { CommentProvider } from './contexts/CommentContext';
 
 import { ScrollToTop } from './utils/ScrollToTop';
+import { MultiFilter } from './components/common/MultiFilter';
 
 
 
@@ -47,16 +48,18 @@ function App() {
                   } />
                   <Route path='/logout' element={<Logout />} />
                   <Route path='/profile' element={<UserProfile />} />
-                  <Route path='/register' element={<Register />} />
+
                 </Route>
 
                 <Route path='/' element={<Home />} />
                 <Route path='/greenies' element={<GreeniesGrid />} />
+                <Route path='/greenies/explore' element={<MultiFilter/>} />
                 <Route path='/greenies/:greenyId' element={<GreenyDetails />} >
                   <Route path='comments' element={<CommentSection />} />
                 </Route>
                 <Route path='/about' element={<About />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
 
 
               </Routes>
