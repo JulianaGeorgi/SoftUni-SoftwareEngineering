@@ -22,7 +22,6 @@ import { AuthProvider } from './contexts/AuthContext';
 import { GreenyProvider } from './contexts/GreenyContext';
 import { CommentProvider } from './contexts/CommentContext';
 
-import { allGreeniesTitle } from './utils/constants';
 import { ScrollToTop } from './utils/ScrollToTop';
 
 
@@ -52,7 +51,7 @@ function App() {
                 </Route>
 
                 <Route path='/' element={<Home />} />
-                <Route path='/greenies' element={<GreeniesGrid title={allGreeniesTitle} />} />
+                <Route path='/greenies' element={<GreeniesGrid />} />
                 <Route path='/greenies/:greenyId' element={<GreenyDetails />} >
                   <Route path='comments' element={<CommentSection />} />
                 </Route>
