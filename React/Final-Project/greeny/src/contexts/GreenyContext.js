@@ -10,6 +10,7 @@ export function useGreeny() {
 export const GreenyProvider = ({ children }) => {
 
     const [greenies, setGreenies] = useState([]);
+    const [searchInput, setSearchInput] = useState("");
     // const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -41,7 +42,9 @@ export const GreenyProvider = ({ children }) => {
         greenies,
         createGreeny,
         editGreeny,
-        deleteGreeny, 
+        deleteGreeny,
+        setSearchInput, 
+        searchInput
     }
 
     return (

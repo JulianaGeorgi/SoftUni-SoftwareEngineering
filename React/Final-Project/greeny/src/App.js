@@ -2,6 +2,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
 import { PrivateRoutes } from './components/PrivateRoutes/PrivateRoutes';
+import { GreenyOwnerGuard } from './components/common/GreenyOwnerGuard';
 
 import { Navigation } from './components/Navigation/Navigation';
 import { Home } from './components/Home/Home';
@@ -23,7 +24,7 @@ import { CommentProvider } from './contexts/CommentContext';
 
 import { allGreeniesTitle } from './utils/constants';
 import { ScrollToTop } from './utils/ScrollToTop';
-import { GreenyOwnerGuard } from './components/common/GreenyOwnerGuard';
+
 
 
 function App() {
@@ -52,8 +53,9 @@ function App() {
 
                 <Route path='/' element={<Home />} />
                 <Route path='/greenies' element={<GreeniesGrid title={allGreeniesTitle} />} />
-                <Route path='/greenies/:greenyId' element={<GreenyDetails />} />
-                <Route path='/greenies/:greenyId/comments' element={<CommentSection />} />
+                <Route path='/greenies/:greenyId' element={<GreenyDetails />} >
+                  <Route path='comments' element={<CommentSection />} />
+                </Route>
                 <Route path='/about' element={<About />} />
                 <Route path='/login' element={<Login />} />
 

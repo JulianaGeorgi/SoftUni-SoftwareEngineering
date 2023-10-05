@@ -117,6 +117,7 @@ export const GreenyDetails = () => {
 
     const toggleCommentSection = () => {
         setShowCommentSection(!showCommmentSection);
+        console.log(showCommmentSection)
     }
 
     const toggleDeleteModal = () => {
@@ -231,7 +232,6 @@ export const GreenyDetails = () => {
             </div>
             {showCommmentSection && <CommentSection currentGreeny={currentGreeny} />}
 
-
             {/* Delete Modal */}
             <DeleteModal
                 isOpen={isDeleteModalOpen}
@@ -241,3 +241,5 @@ export const GreenyDetails = () => {
         </div >
     );
 };
+
+//TODO: Comments do not appear after a page refresh - persist the state in localStorage?
