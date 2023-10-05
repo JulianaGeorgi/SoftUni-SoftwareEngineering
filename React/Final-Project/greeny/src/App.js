@@ -23,6 +23,7 @@ import { CommentProvider } from './contexts/CommentContext';
 
 import { allGreeniesTitle } from './utils/constants';
 import { ScrollToTop } from './utils/ScrollToTop';
+import { GreenyOwner } from './components/common/GreenyOwner/GreenyOwner';
 
 
 function App() {
@@ -39,7 +40,11 @@ function App() {
 
                 <Route element={<PrivateRoutes />}>
                   <Route path='/create' element={<CreateGreeny />} />
-                  <Route path='/greenies/:greenyId/edit' element={<EditGreeny />} />
+                  <Route path='/greenies/:greenyId/edit' element={
+                    <GreenyOwner>
+                      <EditGreeny/>
+                    </GreenyOwner>
+                  } />
                   <Route path='/logout' element={<Logout />} />
                   <Route path='/profile' element={<UserProfile />} />
                   <Route path='/register' element={<Register />} />

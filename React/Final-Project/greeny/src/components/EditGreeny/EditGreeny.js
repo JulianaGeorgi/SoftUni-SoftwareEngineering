@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useGreeny } from "../../contexts/GreenyContext";
 import { postServices } from "../../services/postServices";
-import { useEffect } from "react";
 
 
 export const EditGreeny = () => {
@@ -23,16 +22,16 @@ export const EditGreeny = () => {
 
 
     //TODO: do it with a guard
-    useEffect(()=>{
-        async function checkifIsOwner (){
-            const currentGreeny = await postServices().getGreenyById(id);
-            const isOwner = currentUser && currentUser.uid === currentGreeny.ownerId;
-            if (!isOwner){
-                navigate("/")
-            }
-        }
-        checkifIsOwner();
-    }, [currentUser, id, navigate])
+    // useEffect(()=>{
+    //     async function checkifIsOwner (){
+    //         const currentGreeny = await postServices().getGreenyById(id);
+    //         const isOwner = currentUser && currentUser.uid === currentGreeny.ownerId;
+    //         if (!isOwner){
+    //             navigate("/")
+    //         }
+    //     }
+    //     checkifIsOwner();
+    // }, [currentUser, id, navigate])
 
     // const isOwner = currentUser && currentUser.uid === currentGreeny.ownerId;
 

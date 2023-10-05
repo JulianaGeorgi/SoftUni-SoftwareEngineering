@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState, useContext } from "react";
+
 import { get, set } from "firebase/database";
 import { ref } from "firebase/database";
 import { database } from "../firebase";
@@ -12,6 +13,8 @@ import {
     updateProfile
 } from "firebase/auth";
 
+import { Loading } from "../components/common/GreenyOwner/Loading";
+
 // creating the context
 export const AuthContext = createContext(); // returns a context object - does not hold any info!!
 
@@ -24,7 +27,7 @@ export function useAuth() {
 export const AuthProvider = ({ children }) => {
 
     const [currentUser, setCurrentUser] = useState(null);
-    const [pending, setPending] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     async function signup(email, password) {
@@ -116,13 +119,13 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setCurrentUser(user);
-            setPending(false);
+            setIsLoading(false);
         });
         return unsubscribe;
     }, [currentUser]);
 
-    if (pending) {
-        return <>Loading...</>
+    if (isLoading) {
+        return <Loading/>
     }
 
     // the values that we want to pass to all the components reading the context
