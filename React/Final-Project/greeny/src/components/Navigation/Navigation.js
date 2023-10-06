@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { useAuth } from "../../contexts/AuthContext";
 
-import { Logout } from "../Logout/Logout";
+import ProfileDropDownMenu from "./ProfileDropDownMenu";
 
 export const Navigation = () => {
 
@@ -115,7 +115,6 @@ export const Navigation = () => {
                                                 Create Greeny
                                             </Link>
                                         </li>
-                                        <Logout />
                                     </div>
                                 )
                             }
@@ -182,66 +181,10 @@ export const Navigation = () => {
                                 </li>
                             </ul>
                         </div>
+
                         {/* Second dropdown container - AVATAR */}
                         {currentUser && (
-                            <div
-                                className="relative"
-                                data-te-dropdown-ref=""
-                                data-te-dropdown-alignment="end"
-                            >
-                                {/* Second dropdown trigger */}
-                                <Link to={"/profile"}
-                                    className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
-                                    id="dropdownMenuButton2"
-                                    role="button"
-                                    data-te-dropdown-toggle-ref=""
-                                    aria-expanded="false"
-                                >
-                                    {/* User avatar */}
-                                    <img
-                                        src={currentUser.photoURL}
-                                        className="rounded-full"
-                                        style={{ height: 50, width: 50 }}
-                                        alt=""
-                                        loading="lazy"
-                                    />
-                                </Link>
-                                {/* Second dropdown menu */}
-                                <ul
-                                    className="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
-                                    aria-labelledby="dropdownMenuButton2"
-                                    data-te-dropdown-menu-ref=""
-                                >
-                                    {/* Second dropdown menu items */}
-                                    <li>
-                                        <a
-                                            className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                            href="/"
-                                            data-te-dropdown-item-ref=""
-                                        >
-                                            Action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                            href="/"
-                                            data-te-dropdown-item-ref=""
-                                        >
-                                            Another action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                            href="/"
-                                            data-te-dropdown-item-ref=""
-                                        >
-                                            Something else here
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ProfileDropDownMenu currentUser={currentUser} />
                         )}
                     </div>
                 </div>

@@ -117,7 +117,6 @@ export const GreenyDetails = () => {
 
     const toggleCommentSection = () => {
         setShowCommentSection(!showCommmentSection);
-        console.log(showCommmentSection)
     }
 
     const toggleDeleteModal = () => {

@@ -15,7 +15,7 @@ export const Footer = () => {
                             </h2>
                             <div className="flex flex-col gap-2 mx-auto my-6 space-y-3 md:space-y-0 md:flex-row">
                                 <input
-                                    id="email"
+                                    id="newsLetterEmail"
                                     type="text"
                                     className="w-1/2 px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
                                     placeholder="Email Address"

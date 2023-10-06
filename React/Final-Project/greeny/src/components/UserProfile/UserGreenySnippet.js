@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 export const UserGreenySnippet = ({greeny}) => {
    
-    // console.log(greeny)
     return (
         <div className="flex">
             <div className="flex-1">

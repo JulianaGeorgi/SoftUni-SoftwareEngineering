@@ -14,7 +14,7 @@ export const Greeny = ({ greeny }) => {
                     <Link to={`/greenies/${greeny.id}`}>
                         <img
                             className="object-cover h-1/2 w-full md:h-64 rounded-lg lg:w-64 max-w-s transition duration-300 ease-in-out hover:scale-110 sm:h-5/6"
-                            img alt={greeny.name}
+                            alt={greeny.name}
                             src={greeny.imageUrl}
                         />
                     </Link>

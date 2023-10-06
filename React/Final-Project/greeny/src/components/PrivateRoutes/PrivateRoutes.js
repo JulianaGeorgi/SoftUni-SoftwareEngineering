@@ -6,15 +6,15 @@ export const PrivateRoutes = ({ children }) => {
 
   const location = useLocation()
 
-  if (currentUser) {
-    // User is already logged in
-    if (location.pathname === "/register") {
-      // Redirect to profile if trying to access the register page
-      return <Navigate to="/profile" />;
-    }
-  } else {
-    // User is not logged in, redirect to the login page for all routes
+  if (currentUser && location.pathname === "/register") {
+    // User is already logged in and trying to access the register page
+    return <Navigate to="/profile" />;
+  }
+
+  if (!currentUser && location.pathname !== "/register") {
+    // User is not logged in and not on the register page
     return <Navigate to="/login" />;
   }
+
   return <Outlet />;
 };

@@ -10,7 +10,6 @@ import { Footer } from './components/Footer/Footer';
 import { About } from './components/About/About';
 import { Register } from './components/Register/Register';
 import { Login } from './components/Login/Login';
-import { Logout } from './components/Logout/Logout';
 import { GreeniesGrid } from './components/GreeniesGrid/GreeniesGrid';
 import { CreateGreeny } from './components/CreateGreeny/CreateGreeny';
 import { GreenyDetails } from './components/GreenyDetails.js/GreenyDetails';
@@ -46,9 +45,8 @@ function App() {
                       <EditGreeny/>
                     </GreenyOwnerGuard>
                   } />
-                  <Route path='/logout' element={<Logout />} />
                   <Route path='/profile' element={<UserProfile />} />
-
+                  <Route path='/register' element={<Register />} />
                 </Route>
 
                 <Route path='/' element={<Home />} />
@@ -59,7 +57,7 @@ function App() {
                 </Route>
                 <Route path='/about' element={<About />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/register' element={<Register />} />
+                
 
 
               </Routes>
