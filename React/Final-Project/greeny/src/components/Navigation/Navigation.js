@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 import ProfileDropDownMenu from "./ProfileDropDownMenu";
+import { GreeniesDropDownMenu } from "./GreeniesDropDownMenu";
 
 export const Navigation = () => {
 
@@ -70,15 +71,10 @@ export const Navigation = () => {
                                     Home
                                 </Link>
                             </li>
-                            <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
-                                <Link to="/greenies"
-                                    className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
-                                    data-te-nav-link-ref=""
-                                >
-                                    Greenies
-                                </Link>
-                            </li>
-                            {!currentUser ?
+
+                            <GreeniesDropDownMenu />
+
+                            {!currentUser &&
                                 (
                                     <div className="flex flex-row">
 
@@ -99,20 +95,6 @@ export const Navigation = () => {
                                                 data-te-nav-link-ref=""
                                             >
                                                 Register
-                                            </Link>
-                                        </li>
-                                    </div>
-                                )
-                                :
-                                (
-                                    <div className="flex flex-row">
-                                        <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref="">
-                                            <Link to="/create"
-                                                className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                                                href="/"
-                                                data-te-nav-link-ref=""
-                                            >
-                                                Create Greeny
                                             </Link>
                                         </li>
                                     </div>
@@ -184,7 +166,7 @@ export const Navigation = () => {
 
                         {/* Second dropdown container - AVATAR */}
                         {currentUser && (
-                            <ProfileDropDownMenu currentUser={currentUser} />
+                            <ProfileDropDownMenu />
                         )}
                     </div>
                 </div>

@@ -25,7 +25,7 @@ export const Home = () => {
                         )
                             :
                             (
-                                <button className="bg-indigo-500 text-white py-4 px-12 rounded-full hover:bg-indigo-600"><Link to='/create' >POST A GREENY <span><b>♡</b></span></Link></button>
+                                <button className="bg-indigo-500 text-white py-4 px-12 rounded-full hover:bg-indigo-600"><Link to='/create' >POST GREENY <span><b>♡</b></span></Link></button>
                             )}
 
                     </div>
