@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faLeaf, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 
 
-function ProfileDropDownMenu({ currentUser }) {
+function ProfileDropDownMenu() {
 
     const navigate = useNavigate();
-    const { logout } = useAuth()
+    const { currentUser, logout } = useAuth()
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -42,7 +42,6 @@ function ProfileDropDownMenu({ currentUser }) {
                 <button
                     className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
                     id="dropdownMenuButton2"
-                    role="button"
                     data-te-dropdown-toggle-ref=""
                     aria-expanded={isDropdownOpen}
                     onClick={toggleDropdown}
