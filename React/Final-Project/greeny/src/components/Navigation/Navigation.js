@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 import ProfileDropDownMenu from "./ProfileDropDownMenu";
-import { GreeniesDropDownMenu } from "./GreeniesDropDownMenu";
 import { useState } from "react";
 import { MainNavMenu } from "./MainNavMenu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,7 +40,7 @@ export const Navigation = () => {
                     >
                         <FontAwesomeIcon icon={faHamburger} className="h-7 w-7 text-neutral-500 px-2 hover:text-neutral-700" />
                     </button>
-
+                    {/* Mobile navigation */}
                     <ul
                         className={`absolute top-full z-10 mt-2 w-56 ${isDropdownOpen ? 'block' : 'hidden'
                             } min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-neutral-500 text-left`}
@@ -120,62 +119,21 @@ export const Navigation = () => {
 
 
                     </ul>
-                    {/* Collapsible navigation container */}
+                    {/* Desktop navigation */}
                     <MainNavMenu />
-                    {/* Right elements */}
+
+
+                    {/* Right side elements */}
                     <div className="relative flex items-center">
-                        {/* Cart Icon */}
+                        {/* Shopping Basket Icon */}
                         <Link
                             className="mr-4 text-neutral-600 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
                             to="/"
                         >
                            <FontAwesomeIcon icon={faShoppingBasket} className="h-7 w-7 text-neutral-500 px-2 hover:text-neutral-700" />
                         </Link>
-                        {/* Container with two dropdown menus */}
-                        <div
-                            className="relative"
-                            data-te-dropdown-ref=""
-                            data-te-dropdown-alignment="end"
-                        >
 
-                            {/* First dropdown menu - SHOPPING CART */}
-                            <ul
-                                className="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
-                                aria-labelledby="dropdownMenuButton1"
-                                data-te-dropdown-menu-ref=""
-                            >
-                                {/* First dropdown menu items */}
-                                <li>
-                                    <a
-                                        className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="/"
-                                        data-te-dropdown-item-ref=""
-                                    >
-                                        Action
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="/"
-                                        data-te-dropdown-item-ref=""
-                                    >
-                                        Another action
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
-                                        href="/"
-                                        data-te-dropdown-item-ref=""
-                                    >
-                                        Something else here
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Second dropdown container - AVATAR */}
+                        {/* Profile Photo - Dropdown menu  */}
                         {currentUser && (
                             <ProfileDropDownMenu />
                         )}
