@@ -1,0 +1,1 @@
+{"version":3,"file":"calculateCircleArea.js","sourceRoot":"","sources":["../src/calculateCircleArea.ts"],"names":[],"mappings":";AAAA,SAAS,mBAAmB,CAAC,MAAc;IACvC,MAAM,IAAI,GAAG,OAAO,GAAG,MAAM,GAAG,MAAM,CAAC;IACvC,OAAO,MAAM,CAAC,IAAI,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC;AAED,OAAO,CAAC,GAAG,CAAC,mBAAmB,CAAC,CAAC,CAAC,CAAC,CAAC"}

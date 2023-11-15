@@ -1,0 +1,1 @@
+{"version":3,"file":"convertInchesToCentimeters.js","sourceRoot":"","sources":["../src/convertInchesToCentimeters.ts"],"names":[],"mappings":";AAAA,SAAS,0BAA0B,CAAE,MAAc;IAC/C,MAAM,gBAAgB,GAAW,MAAM,GAAG,IAAI,CAAC;IAE/C,OAAO,gBAAgB,CAAC;AAC5B,CAAC;AAED,OAAO,CAAC,GAAG,CAAC,0BAA0B,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,OAAO,CAAC,GAAG,CAAC,0BAA0B,CAAC,CAAC,CAAC,CAAC,CAAC"}
