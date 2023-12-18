@@ -1,3 +1,65 @@
+# General Info 
+
+## About Greeny
+
+A web application designed to facilitate user engagement with environmentally conscious events and advice. It provides a platform for users to share green initiatives and tips, which are displayed in a **dynamic feed, complete with corresponding metrics for likes and comments.** The system offers account creation and authentication features, empowering registered users to contribute, edit, and delete their posts seamlessly. Authenticated users further have the capability to express their opinions through liking or disliking content, as well as posting and removing comments. Additionally, all visitors can effortlessly explore the content and refine their search through category-based filters. 
+
+The development of Greeny was executed with the following technologies: **ReactJS, React Hook Form, Tailwind CSS, and Firebase.**
+
+## Guest user views
+
+### Home page
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/8a6ce8f6-efc0-4ff3-89d5-5ef287164955)
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/c3e9f5e5-9d02-4c3b-9838-b7c6af7c9b3c)
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/4063b71c-43c8-4098-9568-62fc272a38f3)
+
+### Article page 
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/b12f9ba8-fc4d-43f1-989c-0c2ec05cc6cc)
+
+
+### Register page
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/515ea150-78fc-4ceb-80b8-e4f2d12d4066)
+
+### Login page
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/885bb187-5246-4b82-95a4-2a7a81fa6d8a)
+
+### Category-baseed search
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/f8d95d64-0f8f-4f61-a327-d3f38f5c43cc)
+
+### Keyword-based search
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/6bbc6784-2e92-41e1-a786-07a89ef1134e)
+
+
+-----------------------------------------------------------------------------------
+## Functionalities for authenticated users
+
+### Submit a tip
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/4e5c04f4-59a5-4d3d-85a1-cbac17e4d03f)
+
+### User home feed 
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/43391dd2-9d93-4b5a-8c1e-5d8489317dfa)
+
+### Edit and delete article
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/6c26d0ad-117d-4714-8b64-608b78b75983)
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/be2b45e8-bf2c-4dfb-a6e4-93a867b3bce1)
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/c2392dd3-c65a-4481-9901-097abff8146f)
+
+
+### Comment section
+
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/b58f2fc2-e749-4709-a537-35d47f9e8f0c)
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/6e8bcbb2-1326-498c-817b-ad9b041c4819)
+
+-----------------------------------------------------------------------------------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
