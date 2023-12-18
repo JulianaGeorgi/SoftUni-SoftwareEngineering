@@ -18,7 +18,7 @@ export const Comment = ({ comment }) => {
 
     const { greenyId } = useParams();
     const { deleteComment } = useComment();
-    const { getUserProfile } = useAuth();
+    const { getUserProfile, currentUser } = useAuth();
 
     const [author, setAuthor] = useState(null);
 
@@ -85,78 +85,82 @@ export const Comment = ({ comment }) => {
                         </p>
                     </div>
                 }
-                <div className="relative inline-block text-left">
-                    <button
-                        onClick={toggleDropdownComment}
-                        id="dropdownComment1Button"
-                        // data-dropdown-toggle="dropdownComment1"
-                        className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    >
-                        <FontAwesomeIcon icon={faEllipsis} />
-
-                    </button>
-                    {/* Dropdown menu */}
-                    {isDropDownCommentOpen && (
-                        <div
-                            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                            role="menu"
-                            aria-orientation="vertical"
-                            aria-labelledby="menu-button"
-                            tabIndex={-1}
+                {currentUser && (
+                    <div className="relative inline-block text-left">
+                        <button
+                            onClick={toggleDropdownComment}
+                            id="dropdownComment1Button"
+                            // data-dropdown-toggle="dropdownComment1"
+                            className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         >
-                            <div className="py-1" role="none">
-                                {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
-                                <button
-                                    href="#"
-                                    className="text-gray-700 block px-4 py-2 text-sm hover:bg-blue-400 hover:text-white"
-                                    role="menuitem"
-                                    tabIndex={-1}
-                                    id="menu-item-0"
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    onClick={toggleDeleteModal}
-                                    className="text-gray-700 block px-4 py-2 text-sm  hover:bg-blue-400 hover:text-white"
-                                    role="menuitem"
-                                    tabIndex={-1}
-                                    id="menu-item-1"
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
+                            <FontAwesomeIcon icon={faEllipsis} />
 
-                    )}
-                </div>
+                        </button>
+                        {/* Dropdown menu */}
+                        {isDropDownCommentOpen && (
+                            <div
+                                className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                role="menu"
+                                aria-orientation="vertical"
+                                aria-labelledby="menu-button"
+                                tabIndex={-1}
+                            >
+                                <div className="py-1" role="none">
+                                    {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
+                                    <button
+                                        href="#"
+                                        className="text-gray-700 block px-4 py-2 text-sm hover:bg-blue-400 hover:text-white"
+                                        role="menuitem"
+                                        tabIndex={-1}
+                                        id="menu-item-0"
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        onClick={toggleDeleteModal}
+                                        className="text-gray-700 block px-4 py-2 text-sm  hover:bg-blue-400 hover:text-white"
+                                        role="menuitem"
+                                        tabIndex={-1}
+                                        id="menu-item-1"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+
+                        )}
+                    </div>
+                )}
             </footer>
 
             <p className="text-gray-500 dark:text-gray-400">
                 {comment.comment}
             </p>
-            <div className="flex items-center mt-4 space-x-4">
-                <button
-                    type="button"
-                    className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
-                >
-                    <svg
-                        className="mr-1.5 w-3.5 h-3.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 18"
+            {currentUser && (
+                <div className="flex items-center mt-4 space-x-4">
+                    <button
+                        type="button"
+                        className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
                     >
-                        <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"
-                        />
-                    </svg>
-                    Reply
-                </button>
-            </div>
+                        <svg
+                            className="mr-1.5 w-3.5 h-3.5"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 20 18"
+                        >
+                            <path
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"
+                            />
+                        </svg>
+                        Reply
+                    </button>
+                </div>
+            )}
 
             <DeleteModal
                 isOpen={isDeleteModalOpen}
