@@ -4,7 +4,7 @@
 
 A web application designed to facilitate user engagement with environmentally conscious events and advice. It provides a platform for users to share green initiatives and tips, which are displayed in a **dynamic feed, complete with corresponding metrics for likes and comments.** The system offers account creation and authentication features, empowering registered users to contribute, edit, and delete their posts seamlessly. Authenticated users further have the capability to express their opinions through liking or disliking content, as well as posting and removing comments. Additionally, all visitors can effortlessly explore the content and refine their search through category-based filters. 
 
-The development of Greeny was executed with the following technologies: **ReactJS, Tailwind CSS, and Firebase.**
+The development of Greeny was executed with the following technologies: **ReactJS, React Hook Form, Tailwind CSS, and Firebase.**
 
 ## Guest user views
 
