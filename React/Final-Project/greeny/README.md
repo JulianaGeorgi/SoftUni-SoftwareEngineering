@@ -31,6 +31,10 @@ The development of Greeny was executed with the following technologies: **ReactJ
 
 ![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/f8d95d64-0f8f-4f61-a327-d3f38f5c43cc)
 
+### Keyword-based search
+![image](https://github.com/JulianaGeorgi/SoftUni-SoftwareEngineering/assets/106109538/6bbc6784-2e92-41e1-a786-07a89ef1134e)
+
+
 -----------------------------------------------------------------------------------
 ## Functionalities for authenticated users
 
