@@ -74,12 +74,12 @@ export const Comment = ({ comment }) => {
                             <img
                                 className="mr-2 w-6 h-6 rounded-full"
                                 src={author.photoURL}
-                                alt="Michael Gough"
+                                alt="user profile icon"
                             />
                             {author.username}
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                            <time pubdate="" dateTime="2022-02-08" title="February 8th, 2022">
+                            <time>
                                 {formattedDate}
                             </time>
                         </p>
@@ -98,7 +98,7 @@ export const Comment = ({ comment }) => {
                         </button>
                         {/* Dropdown menu */}
                         {isDropDownCommentOpen && (
-                            <div
+                            <ul
                                 className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                 role="menu"
                                 aria-orientation="vertical"
@@ -107,26 +107,30 @@ export const Comment = ({ comment }) => {
                             >
                                 <div className="py-1" role="none">
                                     {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
-                                    <button
-                                        href="#"
-                                        className="text-gray-700 block px-4 py-2 text-sm hover:bg-blue-400 hover:text-white"
-                                        role="menuitem"
-                                        tabIndex={-1}
-                                        id="menu-item-0"
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={toggleDeleteModal}
-                                        className="text-gray-700 block px-4 py-2 text-sm  hover:bg-blue-400 hover:text-white"
-                                        role="menuitem"
-                                        tabIndex={-1}
-                                        id="menu-item-1"
-                                    >
-                                        Delete
-                                    </button>
+                                    <li className=" hover:bg-blue-400">
+                                        <button
+                                            href="#"
+                                            className="text-gray-700 block px-4 py-2 text-sm hover:text-white"
+                                            role="menuitem"
+                                            tabIndex={-1}
+                                            id="menu-item-0"
+                                        >
+                                            Edit
+                                        </button>
+                                    </li>
+                                    <li className=" hover:bg-blue-400">
+                                        <button
+                                            onClick={toggleDeleteModal}
+                                            className="text-gray-700 block px-4 py-2 text-sm hover:text-white"
+                                            role="menuitem"
+                                            tabIndex={-1}
+                                            id="menu-item-1"
+                                        >
+                                            Delete
+                                        </button>
+                                    </li>
                                 </div>
-                            </div>
+                            </ul>
 
                         )}
                     </div>

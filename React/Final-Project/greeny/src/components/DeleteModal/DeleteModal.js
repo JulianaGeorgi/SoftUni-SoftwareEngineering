@@ -3,7 +3,7 @@ export const DeleteModal = ({ isOpen, onClose, onDelete }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
                 <p className="text-gray-800 dark:text-white text-lg font-semibold mb-4">
-                    Are you sure you want to delete this item?
+                    Are you sure you want to delete this comment?
                 </p>
                 <div className="flex justify-end">
                     <button

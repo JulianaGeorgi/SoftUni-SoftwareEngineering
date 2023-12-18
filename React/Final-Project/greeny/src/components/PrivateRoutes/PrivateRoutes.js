@@ -9,12 +9,21 @@ export const PrivateRoutes = ({ children }) => {
   if (currentUser && location.pathname === "/register") {
     // User is already logged in and trying to access the register page
     return <Navigate to="/profile" />;
+  } 
+
+  if (currentUser && location.pathname === "/login") {
+    // User is already logged in and trying to access the register page
+    return <Navigate to="/profile" />;
+  } 
+
+  // if (!currentUser && location.pathname !== "/register") {
+  //   // User is not logged in and not on the register page
+  //   return <Navigate to="/login" />;
+  // }
+
+  else {
+    return <Outlet />;
   }
 
-  if (!currentUser && location.pathname !== "/register") {
-    // User is not logged in and not on the register page
-    return <Navigate to="/login" />;
-  }
-
-  return <Outlet />;
+  
 };

@@ -56,8 +56,6 @@ export const AuthProvider = ({ children }) => {
 
         const userRef = ref(database, 'users/' + userId);
 
-        // console.log(profilePhotoUrl)
-
         try {
             await set(userRef, {
                 username: username,

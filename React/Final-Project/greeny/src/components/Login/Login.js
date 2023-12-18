@@ -1,7 +1,8 @@
-import { useAuth } from "../../contexts/AuthContext";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { TEInput, TERipple } from "tw-elements-react";
+
+import { useAuth } from "../../contexts/AuthContext";
 
 export const Login = () => {
 
@@ -10,7 +11,7 @@ export const Login = () => {
 
     const {
         handleSubmit,
-        register,
+        register, // method used to register form inputs with the form state.
         formState: { errors },
     } = useForm();
 

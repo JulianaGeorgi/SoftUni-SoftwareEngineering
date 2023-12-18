@@ -1,10 +1,12 @@
 import { TEInput, TERipple } from "tw-elements-react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
-
 import { DevTool } from "@hookform/devtools";
 
 import { useAuth } from "../../contexts/AuthContext";
+
+import { defaultPhotoUrl } from "../../utils/constants";
+
 
 export const Register = () => {
 
@@ -15,7 +17,6 @@ export const Register = () => {
         {
             mode: "onChange",
             defaultValues: {
-                // name: "",
                 profilePhotoUrl: "",
                 email: "",
                 username: "",
@@ -33,12 +34,12 @@ export const Register = () => {
             const userId = await signup(formData.email, formData.password);
 
             if (!formData.profilePhotoUrl) {
-                formData.profilePhotoUrl = "https://e1.pxfuel.com/desktop-wallpaper/940/647/desktop-wallpaper-the-best-16-default-pfp-aesthetic-kidcore-pfp-icon.jpg";
+                formData.profilePhotoUrl = defaultPhotoUrl;
             }
 
             await updateUserProfile(formData.username, formData.profilePhotoUrl); // update the currentUser object
             await saveUserData(userId, formData.username, formData.profilePhotoUrl); // update in db
-            navigate('/');
+            navigate('/profile');
         } catch (err) {
             alert(`Registration failed - ${err.code - err.message}`);
         };
@@ -69,19 +70,6 @@ export const Register = () => {
                                         </div>
 
                                         <form onSubmit={handleSubmit(onRegisterSubmitHandler)} noValidate>
-
-                                            {/* <!--NAME--> */}
-                                            {/* <TEInput
-                                                type="text"
-                                                label="Name"
-                                                className="mb-4"
-                                                id="name"
-                                                {...register("name",
-                                                    {
-                                                        required: "Name is required.",
-                                                    })}
-                                            ></TEInput>
-                                            <p className="text-sm text-red-600">{errors.name?.message}</p> */}
 
                                             {/* <!--EMAIL--> */}
                                             <TEInput
@@ -137,7 +125,6 @@ export const Register = () => {
                                                     <p className="text-red-600 text-sm">{errors.profilePhotoUrl.message}</p>
                                                 )}
                                             </div>
-
 
                                             {/* <!--PASS--> */}
                                             <TEInput

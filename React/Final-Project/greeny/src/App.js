@@ -15,6 +15,7 @@ import { GreenyDetails } from './components/GreenyDetails.js/GreenyDetails';
 import { EditGreeny } from './components/EditGreeny/EditGreeny';
 import { UserProfile } from './components/UserProfile/UserProfile';
 import { CommentSection } from './components/GreenyDetails.js/CommentSection/CommentSection';
+import { NotFound } from './components/NotFound/NotFound';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { GreenyProvider } from './contexts/GreenyContext';
@@ -46,6 +47,7 @@ function App() {
                   } />
                   <Route path='/profile' element={<UserProfile />} />
                   <Route path='/register' element={<Register />} />
+                  <Route path='/login' element={<Login />} />
                 </Route>
 
                 <Route path='/' element={<Home />} />
@@ -55,7 +57,9 @@ function App() {
                   <Route path='comments' element={<CommentSection />} />
                 </Route>
                 <Route path='/about' element={<About />} />
-                <Route path='/login' element={<Login />} />
+               
+                
+                <Route path='*' exact={true} element={<NotFound/>} />
                 
 
 

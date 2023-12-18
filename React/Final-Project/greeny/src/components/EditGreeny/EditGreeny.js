@@ -20,21 +20,6 @@ export const EditGreeny = () => {
 
     const { editGreeny } = useGreeny();
 
-
-    //TODO: do it with a guard
-    // useEffect(()=>{
-    //     async function checkifIsOwner (){
-    //         const currentGreeny = await postServices().getGreenyById(id);
-    //         const isOwner = currentUser && currentUser.uid === currentGreeny.ownerId;
-    //         if (!isOwner){
-    //             navigate("/")
-    //         }
-    //     }
-    //     checkifIsOwner();
-    // }, [currentUser, id, navigate])
-
-    // const isOwner = currentUser && currentUser.uid === currentGreeny.ownerId;
-
     const form = useForm(
         {
             mode: "onChange",

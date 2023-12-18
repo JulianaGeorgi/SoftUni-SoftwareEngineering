@@ -25,8 +25,8 @@ export const GreeniesDropDownMenu = () => {
             data-te-dropdown-alignment="end"
         >
             {/* Second dropdown trigger */}
-            <button
-                className="hidden-arrow flex items-center whitespace-nowrap"
+            <button 
+                className="hidden-arrow flex items-center whitespace-nowrap text-neutral-500 px-2 hover:text-neutral-700"
                 id="dropdownMenuButton2"
                 data-te-dropdown-toggle-ref=""
                 aria-expanded={isDropdownOpen}
@@ -67,7 +67,7 @@ export const GreeniesDropDownMenu = () => {
                             className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-m hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
                             data-te-dropdown-item-ref=""
                         >
-                            Post Greeny <span><b>♡</b></span>
+                            Post Greeny
                         </Link>
                     </li>
                 )}
