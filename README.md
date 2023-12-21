@@ -22,4 +22,4 @@
 
 9. <a href="https://softuni.bg/trainings/4343/typescript-october-2023" > TypeScript </a> -> <a href="https://softuni.bg/certificates/details/193664/4b995c82"> Certificate </a>
 
-10. <a href="https://softuni.bg/trainings/4333/software-engineering-and-devops-october-2023" > Software Engineering and DevOps </a> -> <a href="https://softuni.bg/certificates/details/174767/1acefd67"> Certificate </a>
+10. <a href="https://softuni.bg/trainings/4333/software-engineering-and-devops-october-2023" > Software Engineering and DevOps </a> -> <a href="https://softuni.bg/certificates/details/201297/55998e6d"> Certificate </a>
